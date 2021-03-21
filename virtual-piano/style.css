@@ -316,6 +316,6 @@ body {
   }
 }
 
-.active {
+.piano-key.active {
   background-color: red;
 }
