@@ -1,11 +1,10 @@
 const PIANO=document.getElementById("piano");
 const COLLECTION=document.querySelectorAll(".piano-key");
 
-
-
 const startCorrespondOver = (event) => {
     if(event.target.classList.contains("piano-key")){
         event.target.classList.add("active");
+        event.target.classList.add("piano-key-active-pseudo");
         startSound (event);
     }
 
@@ -18,6 +17,7 @@ const startCorrespondOver = (event) => {
 const stopCorrespondOver = () => {
     COLLECTION.forEach((elem) => {
         elem.classList.remove("active");
+        elem.classList.remove("piano-key-active-pseudo");
         elem.removeEventListener("mouseover", startSound);
         elem.removeEventListener("mouseout", stopSound);
     });
@@ -28,7 +28,6 @@ const startSound = (event)=> {
     if(!audio) return;
     audio.currentTime=0;
     audio.play();
-    //console.log(event.target.dataset.note);
     event.target.classList.add("active");
 }
 
@@ -40,21 +39,25 @@ PIANO.addEventListener("mousedown", startCorrespondOver);
 PIANO.addEventListener("mouseup", stopCorrespondOver);
 
 window.addEventListener("keydown", (event) => {
-    const upKey=event.key.toUpperCase();
-    const audio_by_key=document.querySelector(`audio[data-letter="${upKey}"]`);
-    
+    const audio_by_key=document.querySelector(`audio[data-key="${event.code}"]`);
+    if(!audio_by_key) return;   
     audio_by_key.currentTime=0;
     audio_by_key.play();
-    const piano_key_by_key=document.querySelector(`div[data-letter="${upKey}"]`)
+
+    const piano_key_by_key=document.querySelector(`div[data-key="${event.code}"]`);
+    if(!piano_key_by_key) return;
     piano_key_by_key.classList.add("active");
+    piano_key_by_key.classList.add("piano-key-active");
+  
 })
 
 window.addEventListener("keyup", (event) => {
-    const upKey=event.key.toUpperCase();
-    const piano_key_by_key=document.querySelector(`div[data-letter="${upKey}"]`)
+    const piano_key_by_key=document.querySelector(`div[data-key="${event.code}"]`);
+    if(!piano_key_by_key) return;
     piano_key_by_key.classList.remove("active");
+    piano_key_by_key.classList.remove("piano-key-active");
+    
 })
-
 
 const TOGGLE = document.getElementById("btn-container");
 const TOGGLE_COLLECTION = document.querySelectorAll(".btn");
@@ -85,5 +88,21 @@ const setNote = () => {
 LETTER.addEventListener("mousedown", setLetter);
 NOTE.addEventListener("mousedown", setNote);
 
+
+
+
+  const toggleFullScreen = function () {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+
+
+const FULLSCREEN_BTN=document.getElementById("fullscreen");
+FULLSCREEN_BTN.addEventListener("mousedown", toggleFullScreen)
 
 
