@@ -1,3 +1,63 @@
+@font-face {
+  font-family: SceneW01-Black;
+  src: url(../../assets/fonts/SceneW01-Black.ttf);
+}
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("../../assets/fonts/roboto-v20-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/roboto-v20-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""),
+    url("../../assets/fonts/roboto-v20-latin-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/roboto-v20-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+/* Header styles start */
+.header {
+  padding-top: 12px;
+  width: 100%;
+  height: 700px;
+  background: radial-gradient(
+    71.89% 152.21% at 40.1% 50%,
+    #b5e6ff 0%,
+    #59c3fb 100%
+  );
+}
+
 .heading {
   position: absolute;
   display: block;
@@ -9,12 +69,94 @@
   overflow: hidden;
 }
 
-.header {
-  width: 100%;
-  height: 700px;
-  background: radial-gradient(
-    71.89% 152.21% at 40.1% 50%,
-    #b5e6ff 0%,
-    #59c3fb 100%
-  );
+.wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1160px;
+  margin: 0 auto;
 }
+
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 412px;
+  margin-left: 57px;
+}
+
+.header-nav-list__item {
+  width: fit-content;
+  height: 21px;
+  margin-right: 35px;
+}
+
+.header-nav-list__item:last-child {
+  margin-right: 0;
+}
+
+.header-nav__link {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.active {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #70cb0e;
+  pointer-events: none;
+}
+
+.header {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.header-main-back {
+  position: absolute;
+  z-index: 0;
+}
+
+.header-main-back_img {
+  position: absolute;
+  top: 0;
+  left: 220px;
+  z-index: 1;
+}
+
+.header-main-txt {
+  max-width: 570px;
+  max-height: 252px;
+  margin-top: 130px;
+  font-family: "SceneW01-Black";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 70px;
+  line-height: 120%; /* or 84px */
+  letter-spacing: 0.03em;
+  color: #000000;
+}
+
+.header-play__btn {
+  width: 233px;
+  height: 51px;
+  background: #70cb0e;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+/* Header styles end */
