@@ -12,12 +12,12 @@
 
 </head>
 <body>
-    <header class="header">
-        <h1 class="heading">Online Zoo</h1>
-        <div class="header-main-back">
+    <header class="header"><!--pr z0-->
+        <h1 class="hidden">Online Zoo</h1> 
+        <div class="header-main-back"><!--pa z0-->
             <img src="../../assets/images/main-back.png" alt="main image" class="header-main-back_img">
         </div>
-        <div class="wrapper">
+        <div class="wrapper"><!--pr z2-->
             <nav class="header-nav">
             <div class="header-logo">
                 <a href="index.html" class="heder-logo__link">
@@ -40,8 +40,107 @@
             </form>
         </div>
     </header>
-    
+    <section class="carousel"><!--pr z0-->
+        <div class="carousel-bg"><!--pa z0-->
+            <img src="../../assets/images/svg/carousel-bg.svg" alt="carousel background" class="carousel-bg__img">
+        </div>
+        <div class="wrapper"><!--pr z2-->
+            <h2 class="heading">How it works</h2>
 
+                    <ul class="carousel-list">
+                        <li class="carousel-list__item">
+                            <img src="../../assets/images/carousel-eagle.jpg" alt="eagle" class="carousel-item__img">
+                        </li>
+                        <li class="carousel-list__item">
+                            <img src="../../assets/images/carousel-tiger.jpg" alt="tiger" class="carousel-item__img">
+                        </li>
+                        <li class="carousel-list__item">
+                            <img src="../../assets/images/carousel-panda.jpg" alt="panda" class="carousel-item__img">
+                        </li>
+                        <li class="carousel-list__item">
+                            <img src="../../assets/images/carousel-baboon.jpg" alt="baboon" class="carousel-item__img">
+                        </li>
+                        <li class="carousel-list__item">
+                            <img src="../../assets/images/carousel-elephant.jpg" alt="elephant" class="carousel-item__img">
+                        </li>
+                    </ul>
+                    
+            <div class="carousel-bottom">
+                <p class="carousel-txt">The application Оnline zoo will allow you to watch zoos' and nature reserves' inhabitants in live. 
+                    Currently, under video-surveillance are pandas in China, eagles on Catalina Island (USA), alligators in Florida and gorillas in the Congo. 
+                    We are expanding our capabilities and soon online you will meet Arctic snowy owl in Alaska, Penguin in California, Elephant from South Africa and Polar bear from Canada. 
+                    You will see unique video-shots at any time of the day. If you liked a pet you watch and you want to please it with a delicious treat, you can pay a donation and the animal will receive a surprise from you during feeding hours.
+                    <br>We want to thank you for helping the animals and give you <a href="#!" class="carousel-txt__link">discount coupons</a> from our partners.</p>
+            </div>
+        </div>
+    </section>
+    <section class="grid">
+        <div class="wrapper"><!--pr z2-->
+            <h2 class="heading">Pets in zoo</h2>
+            <div class="flex-container">
+                <div class="flex-item">
+                    <a href="#!" class="flex-item__link"><img src="../../assets/images/svg/grid-arrow-left.svg" alt="arrow left" class="flex-item__img"></a>
+                </div>
+                <div class="grid-container">
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Panda, China
+                        </div>
+                        <img src="../../assets/images/grid-panda.jpg" alt="panda" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Alligator, USA
+                        </div>
+                        <img src="../../assets/images/grid-alligator.jpg" alt="alligator" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Gorilla, Eastern DRC
+                        </div>
+                        <img src="../../assets/images/grid-gorilla.jpg" alt="gorrila" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Elephant, South Africa
+                        </div>
+                        <img src="../../assets/images/grid-elephant.jpg" alt="elephant" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Polar bear, Canada
+                        </div>
+                        <img src="../../assets/images/grid-bear.jpg" alt="bear" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Bald eagle, USA
+                        </div>
+                        <img src="../../assets/images/grid-eagle.jpg" alt="eagle" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Arctic snowy owl, Alaska
+                        </div>
+                        <img src="../../assets/images/grid-owl.jpg" alt="owl" class="grid-item__img">
+                    </div></a>
+                    <a href="#!" class="grid-item__link"><div class="grid-item">
+                        <div class="grid-item__txt">
+                            Penguin, USA
+                        </div>
+                        <img src="../../assets/images/grid-penguin.jpg" alt="penguin" class="grid-item__img">
+                    </div></a>
+                </div>
+                <div class="flex-item">
+                    <a href="#!" class="flex-item__link"><img src="../../assets/images/svg/grid-arrow-right.svg" alt="arrow left" class="flex-item__img"></a>
+                </div>
+            </div>
+            <form action="#!" class="grid-form">
+                <button type="submit" class="grid__btn">Choose your favorite</button>
+            </form>
+        </div>
+    </section>
+    
     <script src="script.js"></script>
 </body>
 </html>

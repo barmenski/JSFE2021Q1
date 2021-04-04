@@ -34,6 +34,15 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+}
+
 a {
   text-decoration: none;
 }
@@ -58,7 +67,7 @@ ul {
   );
 }
 
-.heading {
+.hidden {
   position: absolute;
   display: block;
   width: 1px;
@@ -160,3 +169,141 @@ ul {
 }
 
 /* Header styles end */
+
+/* How it works styles sart */
+.carousel {
+  position: relative;
+  z-index: 0;
+}
+
+.heading {
+  margin-top: 100px;
+  margin-bottom: 80px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 47px;
+  text-align: center;
+  color: #000000;
+}
+
+.carousel-bg {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-bg__img {
+  width: 1365px;
+  height: 549px;
+}
+
+.carousel-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-list__item {
+  display: block;
+  overflow: hidden;
+}
+
+.carousel-item__img {
+  width: 100%;
+  border: 1px solid #ffffff;
+}
+
+.carousel-txt__link {
+  text-decoration: underline;
+}
+
+.carousel-bottom {
+  max-width: 933px;
+  margin: 0 auto;
+}
+
+.carousel-txt {
+  text-align: center;
+}
+
+/* How it works styles end */
+
+/* Pets in zoo styles start */
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-item {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.flex-item__img {
+  width: 100%;
+}
+
+.flex-item:hover {
+  transform: scale(1.5);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 15px;
+}
+
+.grid-item {
+  position: relative;
+}
+
+.grid-item:hover {
+  transform: scale(1.1);
+}
+
+.grid-item__txt {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+}
+
+.grid-item__img {
+  width: 100%;
+}
+
+.grid-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.grid__btn {
+  width: 286px;
+  height: 51px;
+  background: #70cb0e;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+/* Pets in zoo styles end */
