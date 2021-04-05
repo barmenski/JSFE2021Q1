@@ -1,0 +1,383 @@
+@font-face {
+  font-family: SceneW01-Black;
+  src: url(../../assets/fonts/SceneW01-Black.ttf);
+}
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("../../assets/fonts/roboto-v20-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/roboto-v20-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""),
+    url("../../assets/fonts/roboto-v20-latin-500.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/roboto-v20-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+/* Header styles start */
+.header {
+  padding-top: 12px;
+  width: 100%;
+  height: 700px;
+  background: radial-gradient(
+    71.89% 152.21% at 40.1% 50%,
+    #b5e6ff 0%,
+    #59c3fb 100%
+  );
+}
+
+.hidden {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 1px;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header-nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 412px;
+  margin-left: 57px;
+}
+
+.header-nav-list__item {
+  width: fit-content;
+  height: 21px;
+  margin-right: 35px;
+}
+
+.header-nav-list__item:last-child {
+  margin-right: 0;
+}
+
+.header-nav__link {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.active {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #70cb0e;
+  pointer-events: none;
+}
+
+.header {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.header-main-back {
+  position: relative;
+  z-index: 0;
+}
+
+.header-main-back_img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 1;
+}
+
+.header-main-txt {
+  max-width: 570px;
+  max-height: 252px;
+  margin-top: 130px;
+  font-family: "SceneW01-Black";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 70px;
+  line-height: 120%; /* or 84px */
+  letter-spacing: 0.03em;
+  color: #000000;
+}
+
+.header-play__btn {
+  width: 233px;
+  height: 51px;
+  background: #70cb0e;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+/* Header styles end */
+
+/* How it works styles sart */
+.carousel {
+  position: relative;
+  z-index: 0;
+}
+
+.carousel-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1365px;
+  margin: 0 auto;
+}
+
+.heading {
+  margin-top: 100px;
+  margin-bottom: 80px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 47px;
+  text-align: center;
+  color: #000000;
+}
+
+.carousel-bg {
+  position: absolute;
+  z-index: 0;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-bg__img {
+  width: 1365px;
+  height: 549px;
+}
+
+.carousel-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-list__item:nth-child(1),
+.carousel-list__item:nth-child(5) {
+  width: 20%;
+}
+
+.carousel-list__item:nth-child(2),
+.carousel-list__item:nth-child(4) {
+  width: 25%;
+}
+
+.carousel-list__item:nth-child(3) {
+  width: 32%;
+}
+
+.carousel-item__img {
+  width: 100%;
+  border: 1px solid #ffffff;
+}
+
+.carousel-txt__link {
+  text-decoration: underline;
+}
+
+.carousel-bottom {
+  max-width: 933px;
+  margin: 0 auto;
+}
+
+.carousel-txt {
+  margin-top: 80px;
+  text-align: center;
+}
+
+/* How it works styles end */
+
+/* Pets in zoo styles start */
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-item {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.flex-item__img {
+  width: 100%;
+}
+
+.flex-item:hover {
+  transform: scale(1.5);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 20px;
+  grid-column-gap: 15px;
+}
+
+.grid-item {
+  position: relative;
+}
+
+.grid-item:hover {
+  transform: scale(1.1);
+}
+
+.grid-item__txt {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #ffffff;
+  width: 100%;
+}
+
+.grid-item__img {
+  width: 100%;
+}
+
+.grid-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.grid__btn {
+  width: 286px;
+  height: 51px;
+  background: #70cb0e;
+  border-radius: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+}
+/* Pets in zoo styles end */
+
+/* Pay and feed styles start */
+
+.pay-and-feed-arrow__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pay-and-feed-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pay-and-feed-container-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 320px;
+}
+
+.pay-and-feed-container-item__txt {
+  display: block;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #000000;
+}
+
+/* Pay and feed styles end */
+
+/* Testimonials styles start */
+
+.testimonials-container-arrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testimonials-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testimonials-container-item {
+  width: 233px;
+  background-color: #a7e1ff;
+}
+
+/* Testimonials styles end */
