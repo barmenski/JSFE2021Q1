@@ -214,11 +214,7 @@ ul {
   justify-content: center;
   align-items: center;
 }
-/*
-.carousel-list__item {
-  display: block;
-  overflow: hidden;
-}*/
+
 .carousel-list__item:nth-child(1),
 .carousel-list__item:nth-child(5) {
   width: 20%;
@@ -329,3 +325,38 @@ ul {
   line-height: 21px;
 }
 /* Pets in zoo styles end */
+
+/* Pay and feed styles start */
+
+.pay-and-feed-arrow__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.pay-and-feed-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pay-and-feed-container-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 320px;
+}
+
+.pay-and-feed-container-item__txt {
+  display: block;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #000000;
+}
+
+/* Pay and feed styles end */
