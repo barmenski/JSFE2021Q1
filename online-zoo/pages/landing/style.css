@@ -169,6 +169,10 @@ ul {
   line-height: 21px;
 }
 
+.header-play__btn:hover {
+  box-shadow: 0 0 4px 10px #59c3fb;
+  cursor: pointer;
+}
 /* Header styles end */
 
 /* How it works styles sart */
@@ -311,6 +315,10 @@ ul {
   justify-content: center;
   margin-top: 50px;
   margin-bottom: 100px;
+}
+.grid__btn:hover {
+  box-shadow: 0 0 4px 10px #59c3fb;
+  cursor: pointer;
 }
 
 .grid__btn {
