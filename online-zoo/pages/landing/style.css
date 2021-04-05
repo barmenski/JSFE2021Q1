@@ -360,3 +360,24 @@ ul {
 }
 
 /* Pay and feed styles end */
+
+/* Testimonials styles start */
+
+.testimonials-container-arrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testimonials-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testimonials-container-item {
+  width: 233px;
+  background-color: #a7e1ff;
+}
+
+/* Testimonials styles end */
