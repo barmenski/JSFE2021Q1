@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../../assets/fonts/bebasneuethin.woff2") format("woff2"),
+    url("bebasneuethin.woff") format("woff"),
+    url("bebasneuethin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../../assets/fonts/bebasneuelight.woff2") format("woff2"),
+    url("bebasneuelight.woff") format("woff"),
+    url("bebasneuelight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../../assets/fonts/bebasneuebook.woff2") format("woff2"),
+    url("bebasneuebook.woff") format("woff"),
+    url("bebasneuebook.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../../assets/fonts/bebasneueregular.woff2") format("woff2"),
+    url("bebasneueregular.woff") format("woff"),
+    url("bebasneueregular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../../assets/fonts/bebasneuebold.woff2") format("woff2"),
+    url("bebasneuebold.woff") format("woff"),
+    url("bebasneuebold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: SceneW01-Black;
+  src: url(../../assets/fonts/SceneW01-Black.ttf);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+/* Main styles start */
+.hidden {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 1px;
+  box-sizing: content-box;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.main {
+  position: relative;
+  z-index: 0;
+}
+
+.wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 30%);
+}
+
+.main__img {
+  width: 100%;
+}
+
+.main__link {
+  display: block;
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 20px;
+  text-align: center;
+  color: #59c3fb;
+  margin: 0 auto;
+}
+
+.main__link:hover {
+  text-decoration: underline;
+}
