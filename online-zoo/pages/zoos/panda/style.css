@@ -509,10 +509,3 @@ ul {
 }
 
 /* Footer styles end */
-.test {
-  width: 150px;
-  height: 100px;
-  /*background-color: aquamarine;*/
-  background-image: url(../../../assets/icons/youtube-ico.svg);
-  background-repeat: no-repeat repeat;
-}
