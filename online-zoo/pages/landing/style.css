@@ -119,6 +119,12 @@ ul {
   color: #000000;
 }
 
+.footer-nav__link:hover,
+.header-nav__link:hover {
+  text-shadow: #70cb0e 1px 1px 0, #70cb0e -1px -1px 0, #70cb0e -1px 1px 0,
+    #70cb0e 1px -1px 0;
+}
+
 .active {
   text-shadow: #70cb0e 1px 1px 0, #70cb0e -1px -1px 0, #70cb0e -1px 1px 0,
     #70cb0e 1px -1px 0;
@@ -557,27 +563,36 @@ ul {
 .footer-insta__link {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   background-image: url(../../assets/icons/insta-ico.svg);
 }
 
 .footer-facebook__link {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   background-image: url(../../assets/icons/facebook-ico.svg);
 }
 
 .footer-twitter__link {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   background-image: url(../../assets/icons/twitter-ico.svg);
 }
 
 .footer-youtube__link {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
   background-image: url(../../assets/icons/youtube-ico.svg);
 }
-
+.footer-insta__link:hover,
+.footer-facebook__link:hover,
+.footer-twitter__link:hover,
+.footer-youtube__link:hover {
+  box-shadow: 0 0 4px 10px #59c3fb;
+}
 .footer-flex-container-bottom {
   display: flex;
   justify-content: space-between;

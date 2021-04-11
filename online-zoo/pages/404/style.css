@@ -114,6 +114,7 @@ ul {
   text-align: center;
   color: #59c3fb;
   margin: 0 auto;
+  text-transform: uppercase;
 }
 
 .main__link:hover {
