@@ -292,6 +292,7 @@ body {
 .map__animal-link_polar-bear::after {
   content: "POLAR BEAR";
 }
+
 .map__animal-link:hover::after {
   content: attr(data-title);
   position: absolute;
