@@ -254,11 +254,11 @@ body {
 }
 .map__animal-link::after {
   position: absolute;
-  left: 69%;
+  left: 90%;
   top: 26%;
   z-index: 1;
-  font-size: 1.6rem;
-  line-height: 1.9rem;
+  font-size: 16px;
+  line-height: 19px;
   color: #000000;
   min-width: 111px;
   text-align: center;
@@ -301,8 +301,11 @@ body {
   background-image: url("../../assets/images/svg/tooltipe.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  font-size: 1.6rem;
-  line-height: 1.9rem;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
   color: #000000;
   min-width: 111px;
   text-align: center;
