@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Map</title>
+        <link rel="stylesheet" href="../../../assets/css/normalize.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" type="image/ico" href="../../../assets/icons/favicon.ico"/>
+        <!--<link rel="prefetch prerender" href=""/>-->
+
+    </head>
+    <body class="map__background">
+        <header class="header"><!--pr z0-->
+            <h1 class="hidden">Online-Zoo</h1> 
+            <div class="wrapper"><!--pr z2-->
+                <nav class="header-nav">
+                <div class="header-logo">
+                    <a href="../../landing/landing.html" class="heder-logo__link">
+                        <img src="../../../assets/images/svg/logo.svg" alt="logo of zoo" class="header-logo__img">
+                    </a>
+                </div>
+                <ul class="header-nav-list">
+                    <li class="header-nav-list__item"><a href="../../landing/landing.html" class="header-nav__link">About</a></li>
+                    <li class="header-nav-list__item"><a href="../../map/map.html" class="header-nav__link active">Map</a></li>
+                    <li class="header-nav-list__item"><a href="../../pages/zoos/panda/panda.html" class="header-nav__link ">Zoos</a></li>
+                    <li class="header-nav-list__item"><a href="../../404/404.html" class="header-nav__link">Contact us</a></li>
+                    <li class="header-nav-list__item"><a href="https://www.figma.com/file/aBvQMVmI665DtzprpiniuH/online-zoo?node-id=0%3A1" class="header-nav__link">Design</a></li>
+                </ul>
+                </nav>
+
+            </div>
+        </header>
+
+        <section class="map map__background">
+            <div class="wrapper map__wrapper">
+                <span class="map__item map__caption map__usa">usa</span>
+                <span class="map__item map__caption map__drc">Eastern DRC</span>
+                <span class="map__item map__caption map__china">China</span>
+                <img class="map__item map__mark-eagle" src="../../assets/images/svg/map-marker.svg" alt="mark">
+                <img class="map__item map__mark-alligator" src="../../assets/images/svg/map-marker.svg" alt="mark">
+                <img class="map__item map__mark-gorilla" src="../../assets/images/svg/map-marker.svg" alt="mark">
+                <img class="map__item map__mark-panda" src="../../assets/images/svg/map-marker.svg" alt="mark">
+                <img src="../../assets/images/svg/map.svg" alt="Map" class="map__img">
+                <div class="map__animal map__animal_eagle tooltip">
+                    <a data-title="EAGLE, California,USA" class="map__animal-link map__animal-link_eagle" href="../../pages/zoos/eagle/eagle.html">
+                        <img src="../../assets/images/zoos-eagle.png" alt="Eagle" class="map__animal-img">
+                    </a>
+                </div>
+                <div class="map__animal map__animal_alligator">
+                    <a data-title="ALLIGATOR, Florida,USA" class="map__animal-link map__animal-link_alligator" href="../../pages/zoos/alligator/alligator.html">
+                        <img src="../../assets/images/zoos-alligator.png" alt="Alligator" class="map__animal-img">
+                    </a>
+                </div>
+                <div class="map__animal map__animal_gorilla">
+                    <a data-title="GORILLA, Eastern DRC" class="map__animal-link map__animal-link_gorilla" href="../../pages/zoos/alligator/alligator.html">
+                        <img src="../../assets/images/zoos-gorilla.png" alt="Gorilla" class="map__animal-img">
+                    </a>
+                </div>
+                <div class="map__animal map__animal_panda">
+                    <a data-title="PANDA, China" class="map__animal-link map__animal-link_panda" href="../../pages/zoos/panda/panda.html">
+                        <img src="../../assets/images/zoos-panda.png" alt="Panda" class="map__animal-img">
+                    </a>
+                </div>
+                <div class="map__zoom">
+                    <button class="map__zoom-button map__zoom-button_minus">-</button>
+                    <div class="map__zoom-button-division"></div>
+                    <button class="map__zoom-button map__zoom-button_plus">+</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-back"><!--pa z0-->
+                <img src="../../../assets/images/footer-bg.png" alt="footer background image" class="footer-back__img">
+            </div>
+            <div class="footer-wrapper"><!--pr z2-->
+                <div class="footer-flex-container">
+                    <div class="footer-flex-item">
+                        <div class="footer-logo">
+                            <a href="lending.html" class="footer-logo__link">
+                                <img src="../../../assets/images/svg/logo.svg" alt="logo of zoo" class="footer-logo__img">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-flex-item">
+                        <form action="#!" class="footer__form">
+                            <button type="submit" class="footer__btn">Donate for volunteers</button>
+                        </form>
+                    </div>
+                    <div class="footer-flex-item">
+                        <ul class="footer-nav-list">
+                            <li class="footer-nav-item">
+                                <a href="../../landing/landing.html" class="footer-nav__link">About</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="../../map/map.html" class="footer-nav__link">Map</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-flex-item">
+                        <ul class="footer-nav-list">
+                            <li class="footer-nav-item">
+                                <a href="../../404/404.html" class="footer-nav__link">Contact us</a>
+                            </li>
+                            <li class="footer-nav-item">
+                                <a href="#!" class="footer-nav__link">Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-flex-item">
+                        <div class="footer-social-container">
+                            <a href="https://instagram.com" class="footer-nav__link">
+                                <div class="footer-insta__link"></div>
+                            </a>
+                            <a href="https://facebook.com" class="footer-nav__link">
+                                <div class="footer-facebook__link"></div>
+                            </a>
+                            <a href="https://twitter.com" class="footer-nav__link">
+                                <div class="footer-twitter__link"></div>
+                            </a>
+                            <a href="https://youtube.com" class="footer-nav__link">
+                                <div class="footer-youtube__link"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-flex-container-bottom">
+                    <div class="footer-flex-item">
+                        <img src="../../../assets/images/svg/rss-logo.svg" title="Rolling Scopes School" alt="logo of rs school" class="footer-flex-item__img">
+                    </div>
+                    <div class="footer-flex-item">
+                        <img src="../../../assets/images/svg/yem-logo.svg" title="YEM Digital" alt="logo of yem" class="footer-flex-item__img">
+                    </div>
+                    <div class="footer-flex-item">
+                        <p class="footer-flex__txt">Copyright ©RSSchool and ©Yem Digital 2020 - 2021</p>
+                    </div>
+                    <div class="footer-flex-item">
+                        <p class="footer-flex__txt">Grigoreva Margarita</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
