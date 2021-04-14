@@ -94,7 +94,7 @@ ul {
   flex-wrap: wrap;
   align-items: center;
   max-width: 412px;
-  margin-left: 57px;
+  margin-left: 60px;
 }
 
 .header-nav-list__item {
@@ -128,17 +128,38 @@ ul {
   pointer-events: none;
 }
 
-.header-main-txt {
-  margin: 0 auto;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 47px;
-  text-align: center;
-  color: #000000;
+.header {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
 }
 
+.header-main-back {
+  position: relative;
+  z-index: 0;
+}
+
+.header-main-back__img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-52%, -1.5%);
+  z-index: 1;
+}
+
+.header-main-txt {
+  max-width: 570px;
+  max-height: 252px;
+  margin-top: 135px;
+  margin-bottom: 50px;
+  font-family: "SceneW01-Black";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 70px;
+  line-height: 120%; /* or 84px */
+  letter-spacing: 0.03em;
+  color: #000000;
+}
 /* Header styles end */
 
 /* Map styles start */
@@ -151,7 +172,7 @@ body {
 }
 
 .map {
-  padding: 100px 0px;
+  padding: 100px 0 0 0;
 }
 
 .map__background {
@@ -215,11 +236,11 @@ body {
   left: 26%;
 }
 .map__animal_gorilla {
-  top: 69%;
+  top: 68%;
   left: 56%;
 }
 .map__animal_panda {
-  top: 53%;
+  top: 55%;
   left: 79%;
 }
 .map__animal_elephant {
@@ -320,7 +341,7 @@ body {
 .map__zoom {
   position: absolute;
   right: -31%;
-  bottom: -5%;
+  bottom: -0%;
   border-radius: 10%;
   display: flex;
   flex-direction: column;
@@ -331,7 +352,7 @@ body {
   width: 32px;
   background-color: #ffffff;
   border: none;
-  padding: 20px 10px;
+  padding: 5px 10px;
   font-size: 1.8rem;
   line-height: 1.8rem;
   font-weight: 400;
@@ -359,6 +380,7 @@ body {
 }
 
 .footer-flex-container {
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -372,7 +394,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 10%);
   z-index: 1;
 }
 
@@ -387,7 +409,7 @@ body {
 }
 
 .footer__btn {
-  width: 286px;
+  width: 250px;
   height: 51px;
   background: #70cb0e;
   border-radius: 30px;
@@ -403,7 +425,7 @@ body {
   z-index: 2;
   max-width: 1160px;
   margin: 0 auto;
-  padding-top: 180px;
+  padding-top: 130px;
 }
 
 .footer-nav-list {
@@ -427,6 +449,10 @@ body {
 
 .footer-nav-item:last-child {
   padding-bottom: 0;
+}
+
+.footer-logo__img {
+  width: 100px;
 }
 
 .footer-social-container {
@@ -473,11 +499,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 .footer-flex__txt {
-  margin: 30px 0 0 0;
+  margin: 25px 0 0 0;
 }
 
 /* Footer styles end */
