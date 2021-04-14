@@ -1,6 +1,6 @@
 @font-face {
   font-family: SceneW01-Black;
-  src: url(../../../assets/fonts/SceneW01-Black.ttf);
+  src: url(../../assets/fonts/SceneW01-Black.ttf);
 }
 
 /* roboto-regular - latin */
@@ -9,9 +9,9 @@
   font-style: normal;
   font-weight: 400;
   src: local(""),
-    url("../../../assets/fonts/roboto-v20-latin-regular.woff2") format("woff2"),
+    url("../../assets/fonts/roboto-v20-latin-regular.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("../../../assets/fonts/roboto-v20-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/fonts/roboto-v20-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 /* roboto-500 - latin */
 @font-face {
@@ -19,9 +19,9 @@
   font-style: normal;
   font-weight: 500;
   src: local(""),
-    url("../../../assets/fonts/roboto-v20-latin-500.woff2") format("woff2"),
+    url("../../assets/fonts/roboto-v20-latin-500.woff2") format("woff2"),
     /* Chrome 26+, Opera 23+, Firefox 39+ */
-      url("../../../assets/fonts/roboto-v20-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+      url("../../assets/fonts/roboto-v20-latin-500.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
 html {
@@ -440,28 +440,28 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-image: url(../../../assets/icons/insta-ico.svg);
+  background-image: url(../../assets/icons/insta-ico.svg);
 }
 
 .footer-facebook__link {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-image: url(../../../assets/icons/facebook-ico.svg);
+  background-image: url(../../assets/icons/facebook-ico.svg);
 }
 
 .footer-twitter__link {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-image: url(../../../assets/icons/twitter-ico.svg);
+  background-image: url(../../assets/icons/twitter-ico.svg);
 }
 
 .footer-youtube__link {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-image: url(../../../assets/icons/youtube-ico.svg);
+  background-image: url(../../assets/icons/youtube-ico.svg);
 }
 .footer-insta__link:hover,
 .footer-facebook__link:hover,
