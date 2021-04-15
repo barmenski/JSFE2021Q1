@@ -97,7 +97,7 @@ ul {
   flex-wrap: wrap;
   align-items: center;
   max-width: 412px;
-  margin-left: 57px;
+  margin-left: 60px;
 }
 
 .header-nav-list__item {
@@ -146,14 +146,15 @@ ul {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-52%, -1.5%);
   z-index: 1;
 }
 
 .header-main-txt {
   max-width: 570px;
   max-height: 252px;
-  margin-top: 130px;
+  margin-top: 135px;
+  margin-bottom: 50px;
   font-family: "SceneW01-Black";
   font-style: normal;
   font-weight: 900;
@@ -209,7 +210,7 @@ ul {
 .carousel-bg {
   position: absolute;
   z-index: 0;
-  top: 46%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -254,7 +255,7 @@ ul {
 }
 
 .carousel-txt {
-  margin-top: 80px;
+  margin-top: 65px;
   text-align: center;
 }
 
@@ -262,20 +263,27 @@ ul {
 
 /* Pets in zoo styles start */
 
+.grid {
+  margin-top: 200px;
+}
+
 .flex-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.flex-item {
-  margin-left: 15px;
-  margin-right: 15px;
+.flex-arrow-left {
+  margin-right: 20px;
+}
+
+.flex-arrow-right {
+  margin-left: 20px;
 }
 
 .flex-item__img {
-  width: 64px;
-  height: 64px;
+  width: 65px;
+  height: 65px;
 }
 
 .flex-item:hover {
@@ -286,8 +294,8 @@ ul {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-row-gap: 20px;
-  grid-column-gap: 15px;
+  grid-row-gap: 25px;
+  grid-column-gap: 20px;
 }
 
 .grid-item {
@@ -342,16 +350,19 @@ ul {
 /* Pets in zoo styles end */
 
 /* Pay and feed styles start */
+.pay-and-feed {
+  margin-top: 200px;
+}
 
 .pay-and-feed-arrow__img {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-45%, -45%);
 }
 .pay-and-feed-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -360,11 +371,17 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 320px;
+  width: 252px;
+}
+
+.pay-and-feed-container-item__img {
+  display: block;
+  width: 100%;
 }
 
 .pay-and-feed-container-item__txt {
   display: block;
+  margin-top: 2px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: normal;
@@ -377,6 +394,10 @@ ul {
 /* Pay and feed styles end */
 
 /* Testimonials styles start */
+
+.testimonials {
+  margin-top: 182px;
+}
 
 .testimonials-container-arrow {
   display: flex;
@@ -391,11 +412,15 @@ ul {
   width: 992px;
 }
 
+.testimonials-main__txt {
+  line-height: 19px;
+}
+
 .testimonials-container-item {
   width: 233px;
   height: 370px;
   background-color: #a7e1ff;
-  padding: 20px 20px;
+  padding: 23px 20px;
   margin-right: 20px;
 }
 
@@ -456,7 +481,6 @@ ul {
   display: flex;
   justify-content: center;
   margin-top: 50px;
-  margin-bottom: 50px;
 }
 .testimonials__btn:hover {
   box-shadow: 0 0 4px 10px #59c3fb;
@@ -464,7 +488,7 @@ ul {
 }
 
 .testimonials__btn {
-  width: 286px;
+  width: 250px;
   height: 51px;
   background: #70cb0e;
   border-radius: 30px;
@@ -483,6 +507,7 @@ ul {
 }
 
 .footer-flex-container {
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -496,7 +521,7 @@ ul {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 10%);
   z-index: 1;
 }
 
@@ -511,7 +536,7 @@ ul {
 }
 
 .footer__btn {
-  width: 286px;
+  width: 250px;
   height: 51px;
   background: #70cb0e;
   border-radius: 30px;
@@ -527,7 +552,7 @@ ul {
   z-index: 2;
   max-width: 1160px;
   margin: 0 auto;
-  padding-top: 180px;
+  padding-top: 130px;
 }
 
 .footer-nav-list {
@@ -551,6 +576,10 @@ ul {
 
 .footer-nav-item:last-child {
   padding-bottom: 0;
+}
+
+.footer-logo__img {
+  width: 100px;
 }
 
 .footer-social-container {
@@ -597,11 +626,11 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 
 .footer-flex__txt {
-  margin: 30px 0 0 0;
+  margin: 25px 0 0 0;
 }
 
 /* Footer styles end */
