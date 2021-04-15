@@ -94,7 +94,7 @@ ul {
   flex-wrap: wrap;
   align-items: center;
   max-width: 412px;
-  margin-left: 60px;
+  margin-left: 57px;
 }
 
 .header-nav-list__item {
@@ -128,36 +128,14 @@ ul {
   pointer-events: none;
 }
 
-.header {
-  position: relative;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.header-main-back {
-  position: relative;
-  z-index: 0;
-}
-
-.header-main-back__img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-52%, -1.5%);
-  z-index: 1;
-}
-
 .header-main-txt {
-  max-width: 570px;
-  max-height: 252px;
-  margin-top: 135px;
-  margin-bottom: 50px;
-  font-family: "SceneW01-Black";
+  margin: 0 auto;
+  font-family: "Roboto";
   font-style: normal;
-  font-weight: 900;
-  font-size: 70px;
-  line-height: 120%; /* or 84px */
-  letter-spacing: 0.03em;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 47px;
+  text-align: center;
   color: #000000;
 }
 /* Header styles end */
@@ -316,24 +294,39 @@ body {
 
 .map__animal-link:hover::after {
   content: attr(data-title);
-  position: absolute;
-  left: 94%;
-  top: -20%;
-  z-index: 1;
-  background-image: url("../../assets/images/svg/tooltipe.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
   color: #000000;
+  min-height: 40px;
   min-width: 111px;
   text-align: center;
   padding: 5px 15px;
   pointer-events: none;
+  background-color: #70cb0e;
+  padding: 2px 0;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  left: 110%;
+  width: 105px;
+  font-size: 16px;
 }
+
+.map__animal-link:hover::before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: -10%;
+  margin-top: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent #70cb0e transparent transparent;
+}
+
 .map__animal-link:hover .map__animal-img {
   border: 4px solid #70cb0e;
 }
@@ -506,4 +499,5 @@ body {
   margin: 25px 0 0 0;
 }
 
+/* Footer styles end */
 /* Footer styles end */
