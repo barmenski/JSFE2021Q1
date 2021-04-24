@@ -91,7 +91,6 @@ const baseEvening = 'https://raw.githubusercontent.com/rolling-scopes-school/sta
 
 let now = new Date();
 let hours=now.getHours();
-console.log(hours);
 if ((hours>6)&&(hours<12)) {
     base=baseMorning;
 } else if ((hours>=12)&&(hours<18)) {
@@ -127,3 +126,18 @@ btn.addEventListener('click', getImage);
 /*console.log(MAIN);
 
 console.log(COLLECTION);*/
+
+
+
+const toggleFullScreen = function () {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+  
+const FULLSCREEN_BTN=document.querySelector(".fullscreen");
+FULLSCREEN_BTN.addEventListener("mousedown", toggleFullScreen)
