@@ -17,7 +17,7 @@ var invert = rootStyles.getPropertyValue('--invert');
 var sepia = rootStyles.getPropertyValue('--sepia');
 var saturate = rootStyles.getPropertyValue('--saturate');
 var hue = rootStyles.getPropertyValue('--hue');
-
+//console.log(blur, invert, sepia, saturate, hue);
 const MAIN=document.querySelector(".filters");
 const OUTPUT=document.querySelectorAll("output");
 const COLLECTION=document.querySelectorAll("input");
@@ -30,18 +30,18 @@ const startCorrespondOver = (event) => {
     output.value=event.target.value;
     const suffix=event.target.dataset.sizing || "";
     root.style.setProperty(`--${event.target.name}`, output.value + suffix);
-}
 
-
-const stopCorrespondOver = () => {
-    COLLECTION.forEach((elem) => {
-        elem.classList.remove("active");
-
-    });
+    var blur = rootStyles.getPropertyValue('--blur');
+    var invert = rootStyles.getPropertyValue('--invert');
+    var sepia = rootStyles.getPropertyValue('--sepia');
+    var saturate = rootStyles.getPropertyValue('--saturate');
+    var hue = rootStyles.getPropertyValue('--hue');
+    drawPic(pictureSrc);
+    console.log(blur, invert, sepia, saturate, hue);
 }
 
 MAIN.addEventListener("input", startCorrespondOver);
-MAIN.addEventListener("mouseup", stopCorrespondOver);
+
 
 /*----------------------------------For input-range end--------------------------------*/
 
@@ -49,7 +49,7 @@ MAIN.addEventListener("mouseup", stopCorrespondOver);
 /*----------------------------------For reset start--------------------------------*/
 
 const startEditor = (event) => {
-
+    
     if(event.target.classList.contains("btn")){
         BUTTON.forEach((elem) => {
             elem.classList.remove("btn-active");
@@ -62,6 +62,7 @@ const startEditor = (event) => {
         root.style.setProperty(`--sepia`, "0%");
         root.style.setProperty(`--saturate`, "100%");
         root.style.setProperty(`--hue`, "0deg");
+        drawPic(pictureSrc);
         COLLECTION.forEach((elem) => {
             var someOutput=document.querySelector(`input[name="${elem.name}"]+output`);
 
@@ -73,10 +74,8 @@ const startEditor = (event) => {
                 someOutput.value="0";
             }
         });
-
-
-
     };
+    
 }
 
 EDITOR.addEventListener("click", startEditor);
@@ -100,7 +99,6 @@ function viewBgImage(src) {
     img.src = src;
     pictureSrc = src;
     drawPic(pictureSrc);
-    console.log("pictureSrc of NEXT: ", pictureSrc);
     img.onload = () => {      
     imageContainer.setAttribute("src", `${src}`);
   }; 
@@ -141,7 +139,6 @@ function imgLoad() {
     img.src = reader.result;
     pictureSrc = reader.result;
     drawPic(pictureSrc);
-    console.log("pictureSrc of LOAD: ", pictureSrc);
     imageContainer.setAttribute("src", `${img.src}`);
   }
   reader.readAsDataURL(file);
@@ -151,17 +148,19 @@ btnLoad.addEventListener('change', imgLoad);
 
 /*----------------------------------For make canvas start--------------------------------*/
 
+
 const canvas = document.querySelector('canvas');
 
   function drawPic(src) {
     const img = new Image();
     img.setAttribute('crossOrigin', 'anonymous');
     img.setAttribute("src", `${src}`); 
-    console.log("img.src of CANVAS: ", img.src);
     img.onload = function() {
       canvas.width = img.width;
       canvas.height = img.height;
       const ctx = canvas.getContext("2d");
+
+      ctx.filter = `blur(${rootStyles.getPropertyValue('--blur')}) invert(${rootStyles.getPropertyValue('--invert')}) sepia(${rootStyles.getPropertyValue('--sepia')}) saturate(${ rootStyles.getPropertyValue('--saturate')}) hue-rotate(${rootStyles.getPropertyValue('--hue')})`;
       ctx.drawImage(img, 0, 0);
     };  
   }
