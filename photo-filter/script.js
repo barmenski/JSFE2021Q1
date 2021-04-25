@@ -85,6 +85,19 @@ EDITOR.addEventListener("click", startEditor);
 
 
 /*----------------------------------For next picture start--------------------------------*/
+var img1 = new Image();
+img1.src = "assets/img/img.jpg";
+img1.setAttribute('crossOrigin', 'anonymous'); 
+var img2 = new Image();
+img2.src = "assets/img/img.jpg";
+img2.setAttribute('crossOrigin', 'anonymous');
+const canvas = document.querySelector('canvas');
+//const body = document.querySelector('img');
+const imageContainer = document.querySelector('img');
+const btnNext = document.querySelector('.btn-next'); //выбрали кнопку для NEXT PICTURE
+const fileInput = document.querySelector('input[type="file"]'); //выбрали кнопку для LOAD PICTURE
+
+/*----исходные данные для картинок----*/
 
 var base="";
 const baseNight = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/night/';
@@ -92,46 +105,52 @@ const baseMorning = 'https://raw.githubusercontent.com/rolling-scopes-school/sta
 const baseDay = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/day/';
 const baseEvening = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/evening/';
 
-let now = new Date();
-let hours=now.getHours();
-if ((hours>6)&&(hours<12)) {
-    base=baseMorning;
-} else if ((hours>=12)&&(hours<18)) {
-        base=baseDay;
-    } else if ((hours>=18)&&(hours<00)) {
-        base=baseEvening;
-        } else {
-            base=baseNight;
-        }
+
 
 const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
 let i = 0;
-const body = document.querySelector('img');
-const btn = document.querySelector('.btn-next');
 
-function viewBgImage(src) {  
-  const img = new Image();
-  img.src = src;
-  img.onload = () => {      
-  body.setAttribute("src", `${src}`);
+
+function viewBgImage(src) { 
+    img1.src = src;
+    img1.onload = function() {
+        canvas.width = img1.width;
+        canvas.height = img1.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img1, 0, 0);// рисуем canvas
+        imageContainer.setAttribute("src", `${img1.src}`);// назначаем src для img
   }; 
 }
 
 function getImage() {
-  const index = i % images.length;
-  const imageSrc = base + images[index];
-  viewBgImage(imageSrc);
-  i++;
-  btn.disabled = true;
-  setTimeout(function() { btn.disabled = false }, 1000);
+    let now = new Date();
+    let hours=now.getHours();
+    if ((hours>6)&&(hours<12)) {
+        base = baseMorning;
+    } else if ((hours>=12)&&(hours<18)) {
+        base = baseDay;
+    } else if ((hours>=18)&&(hours<00)) {
+        base = baseEvening;
+    } else {
+            base = baseNight;
+    }
+    const index = i % images.length;
+    const imageSrc = base + images[index];
+    viewBgImage(imageSrc); //вызываем viewBgImage с подготовленным src
+    i++;
+    btnNext.disabled = true;
+    setTimeout(function() { btnNext.disabled = false }, 1000);
 } 
-btn.addEventListener('click', getImage);
+
+btnNext.addEventListener('click', getImage);//обработчик нажатия на кнопку NEXT PICTURE
 
 
 /*----------------------------------For next picture end--------------------------------*/
 
 
-/*----------------------------------For load picture start--------------------------------*/
+/*----------------------------------For upload picture start--------------------------------*/
+
+/*
 const fileInput = document.querySelector('input[type="file"]');
 const imageContainer = document.querySelector('img');
 
@@ -145,8 +164,55 @@ fileInput.addEventListener('change', function(e) {
   }
   reader.readAsDataURL(file);
 });
+*/
+/*----------------------------------For upload picture end--------------------------------*/
 
-/*----------------------------------For load picture end--------------------------------*/
+/*----------------------------------For save picture start--------------------------------*/
+
+
+
+
+
+//var img = new Image();
+
+
+
+function loadImg() {
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  //img2.src = reader.result;
+  reader.onload = () => {
+      
+        img2.src = reader.result;
+        canvas.width = img2.width;
+        canvas.height = img2.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img2, 0, 0);
+        imageContainer.setAttribute("src", `${reader.result}`);
+      
+  }
+  reader.readAsDataURL(file);
+};
+
+
+
+
+ const img = new Image();
+ img.src = "assets/img/img.jpg";
+  function drawCanvas(){
+    img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+    }; 
+}
+
+  fileInput.addEventListener('change', loadImg);
+  document.addEventListener("DOMContentLoaded", drawCanvas);
+  const dataURL = canvas.toDataURL("image/jpeg");
+
+/*----------------------------------For save picture end--------------------------------*/
 
 /*----------------------------------For fullscreen start--------------------------------*/
 const toggleFullScreen = function () {
