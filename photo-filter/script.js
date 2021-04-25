@@ -129,10 +129,10 @@ btnNext.addEventListener('click', getImage);
 
 /*----------------------------------For upload picture end--------------------------------*/
 
-const btnLoad = document.querySelector('input[type="file"]');
+const btnUpLoad = document.querySelector('input[type="file"]');
 
 function imgLoad() {
-  const file = btnLoad.files[0];
+  const file = btnUpLoad.files[0];
   const reader = new FileReader();
   reader.onload = () => {
     const img = new Image();
@@ -144,12 +144,13 @@ function imgLoad() {
   reader.readAsDataURL(file);
 };
 
-btnLoad.addEventListener('change', imgLoad);
+btnUpLoad.addEventListener('change', imgLoad);
 
 /*----------------------------------For make canvas start--------------------------------*/
 
 
 const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext("2d");
 
   function drawPic(src) {
     const img = new Image();
@@ -158,8 +159,6 @@ const canvas = document.querySelector('canvas');
     img.onload = function() {
       canvas.width = img.width;
       canvas.height = img.height;
-      const ctx = canvas.getContext("2d");
-
       ctx.filter = `blur(${rootStyles.getPropertyValue('--blur')}) invert(${rootStyles.getPropertyValue('--invert')}) sepia(${rootStyles.getPropertyValue('--sepia')}) saturate(${ rootStyles.getPropertyValue('--saturate')}) hue-rotate(${rootStyles.getPropertyValue('--hue')})`;
       ctx.drawImage(img, 0, 0);
     };  
@@ -172,6 +171,21 @@ const canvas = document.querySelector('canvas');
 /*----------------------------------For save picture start--------------------------------*/
 
 
+
+const btnDownLoad = document.querySelector('.btn-save');
+
+function imgDown(e) {
+    let now = new Date();
+    let time = String(now.getHours()) + "-"+ String(now.getMinutes()) +"-" + String(now.getSeconds());
+    console.log(canvas.toDataURL());
+    var link = document.createElement('a');
+    link.download = `Photo-filter ${time}.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+    link.delete;
+  };
+
+  btnDownLoad.addEventListener('click', imgDown);
 
 
 
