@@ -7,6 +7,8 @@
   }
 */
 
+/*----------------------------------For input-range start--------------------------------*/
+
 var root = document.querySelector(':root');
 var rootStyles = getComputedStyle(root);
 
@@ -15,13 +17,8 @@ var invert = rootStyles.getPropertyValue('--invert');
 var sepia = rootStyles.getPropertyValue('--sepia');
 var saturate = rootStyles.getPropertyValue('--saturate');
 var hue = rootStyles.getPropertyValue('--hue');
-//console.log(blur, invert, sepia, saturate, hue);
 
-
-
-
-
-const MAIN=document.querySelector(".main");
+const MAIN=document.querySelector(".filters");
 const OUTPUT=document.querySelectorAll("output");
 const COLLECTION=document.querySelectorAll("input");
 const EDITOR=document.querySelector(".editor");
@@ -29,19 +26,12 @@ const BUTTON=document.querySelectorAll(".btn");
 
 
 const startCorrespondOver = (event) => {
-
     var output=document.querySelector(`input[name="${event.target.name}"]+output`);
-        //let nameEvent=event.target.name;
-    //if(event.target.matches('input[name="blur"]')){
-        //event.target.classList.add("active");
-        //console.log(event.target.name);
-        //const output=document.querySelector(`input[name="blur"]+output`);
-        // document.documentElement.style.setProperty(`--${event.target.name}`, output.value + suffix);
-        output.value=event.target.value;
-        const suffix=event.target.dataset.sizing || "";
-        root.style.setProperty(`--${event.target.name}`, output.value + suffix);
-        //console.log(blur, invert, sepia, saturate, hue);    
+    output.value=event.target.value;
+    const suffix=event.target.dataset.sizing || "";
+    root.style.setProperty(`--${event.target.name}`, output.value + suffix);
 }
+
 
 const stopCorrespondOver = () => {
     COLLECTION.forEach((elem) => {
@@ -50,12 +40,22 @@ const stopCorrespondOver = () => {
     });
 }
 
-const startEditor = (event) => {
-    BUTTON.forEach((elem) => {
-        elem.classList.remove("btn-active");
+MAIN.addEventListener("input", startCorrespondOver);
+MAIN.addEventListener("mouseup", stopCorrespondOver);
 
-    });
-    event.target.classList.add("btn-active");
+/*----------------------------------For input-range end--------------------------------*/
+
+
+/*----------------------------------For reset start--------------------------------*/
+
+const startEditor = (event) => {
+
+    if(event.target.classList.contains("btn")){
+        BUTTON.forEach((elem) => {
+            elem.classList.remove("btn-active");
+        });
+        event.target.classList.add("btn-active");
+    }
     if(event.target.classList.contains("btn-reset")){
         root.style.setProperty(`--blur`, "0px");
         root.style.setProperty(`--invert`, "0%");
@@ -79,9 +79,12 @@ const startEditor = (event) => {
     };
 }
 
-MAIN.addEventListener("input", startCorrespondOver);
-MAIN.addEventListener("mouseup", stopCorrespondOver);
+
 EDITOR.addEventListener("click", startEditor);
+/*----------------------------------For reset end--------------------------------*/
+
+
+/*----------------------------------For next picture start--------------------------------*/
 
 var base="";
 const baseNight = 'https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/night/';
@@ -123,12 +126,29 @@ function getImage() {
   setTimeout(function() { btn.disabled = false }, 1000);
 } 
 btn.addEventListener('click', getImage);
-/*console.log(MAIN);
-
-console.log(COLLECTION);*/
 
 
+/*----------------------------------For next picture end--------------------------------*/
 
+
+/*----------------------------------For load picture start--------------------------------*/
+const fileInput = document.querySelector('input[type="file"]');
+const imageContainer = document.querySelector('img');
+
+fileInput.addEventListener('change', function(e) {
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  reader.onload = () => {
+    const img = new Image();
+    img.src = reader.result;
+    imageContainer.setAttribute("src", `${img.src}`);
+  }
+  reader.readAsDataURL(file);
+});
+
+/*----------------------------------For load picture end--------------------------------*/
+
+/*----------------------------------For fullscreen start--------------------------------*/
 const toggleFullScreen = function () {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
