@@ -30,14 +30,7 @@ const startCorrespondOver = (event) => {
     output.value=event.target.value;
     const suffix=event.target.dataset.sizing || "";
     root.style.setProperty(`--${event.target.name}`, output.value + suffix);
-
-    var blur = rootStyles.getPropertyValue('--blur');
-    var invert = rootStyles.getPropertyValue('--invert');
-    var sepia = rootStyles.getPropertyValue('--sepia');
-    var saturate = rootStyles.getPropertyValue('--saturate');
-    var hue = rootStyles.getPropertyValue('--hue');
     drawPic(pictureSrc);
-    console.log(blur, invert, sepia, saturate, hue);
 }
 
 MAIN.addEventListener("input", startCorrespondOver);
@@ -142,6 +135,7 @@ function imgLoad() {
     imageContainer.setAttribute("src", `${img.src}`);
   }
   reader.readAsDataURL(file);
+  btnUpLoad.value="";
 };
 
 btnUpLoad.addEventListener('change', imgLoad);
@@ -177,7 +171,6 @@ const btnDownLoad = document.querySelector('.btn-save');
 function imgDown(e) {
     let now = new Date();
     let time = String(now.getHours()) + "-"+ String(now.getMinutes()) +"-" + String(now.getSeconds());
-    console.log(canvas.toDataURL());
     var link = document.createElement('a');
     link.download = `Photo-filter ${time}.png`;
     link.href = canvas.toDataURL();
