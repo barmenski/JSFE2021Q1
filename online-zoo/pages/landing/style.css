@@ -188,17 +188,57 @@ ul {
 /* Header styles end */
 
 /* How it works styles sart */
-.carousel {
+
+.carousel-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  font-family: Arial;
+}
+.carousel-list {
+  display: flex;
+  list-style: none;
   position: relative;
-  z-index: 0;
-  overflow: hidden;
+  width: 100%;
+  height: 300px;
+  justify-content: center;
+  perspective: 300px;
 }
 
-.carousel-wrapper {
-  position: relative;
-  z-index: 2;
-  max-width: 1365px;
-  margin: 0 auto;
+.carousel-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  width: 350px;
+  height: 450px;
+  position: absolute;
+  transition: all 0.3s ease-in;
+}
+
+.carousel-list__item[data-pos="0"] {
+  z-index: 5;
+}
+
+.carousel-list__item[data-pos="-1"] {
+  transform: translateX(-73%) scale(0.9);
+  z-index: 4;
+}
+
+.carousel-list__item[data-pos="1"] {
+  transform: translateX(73%) scale(0.9);
+  z-index: 4;
+}
+
+.carousel-list__item[data-pos="-2"] {
+  transform: translateX(-135%) scale(0.8);
+  z-index: 3;
+}
+
+.carousel-list__item[data-pos="2"] {
+  transform: translateX(135%) scale(0.8);
+  z-index: 3;
 }
 
 .heading {
@@ -232,35 +272,23 @@ ul {
   justify-content: center;
   align-items: center;
 }
-
-.carousel-list__item:nth-child(1) {
-  transform: translateY(-15px);
+.carousel {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
 }
 
-.carousel-list__item:nth-child(2) {
-  transform: scale(1.17, 1.14) translateY(-13px);
-  padding-right: 45px;
-}
-
-.carousel-list__item:nth-child(3) {
-  transform: scale(1.36, 1.29) translateY(-12px);
-  z-index: 10;
-}
-
-.carousel-list__item:nth-child(4) {
-  transform: scale(1.17, 1.14) translateY(-13px);
-  padding-left: 45px;
-  z-index: 5;
-}
-
-.carousel-list__item:nth-child(5) {
-  transform: translateY(-15px);
+.carousel-wrapper {
+  position: relative;
+  z-index: 2;
+  max-width: 1365px;
+  margin: 0 auto;
 }
 
 .carousel-item__img {
   border: 1px solid #ffffff;
   max-width: 280px;
-  height: 350px;
+  height: 100%;
   width: 100%;
   object-position: center;
   object-fit: cover;
@@ -276,7 +304,7 @@ ul {
 }
 
 .carousel-txt {
-  margin-top: 107px;
+  margin-top: 130px;
   text-align: center;
 }
 
