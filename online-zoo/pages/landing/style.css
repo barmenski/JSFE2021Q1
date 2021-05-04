@@ -753,18 +753,17 @@ ul {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
+  backdrop-filter: blur(5px);
 }
-/*
-background: #DFF5B0;
-border: 1px solid #9CA498
-*/
+/* Pop-up  start */
+
 .form-feedback {
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-
+  position: relative;
   color: #9ca498;
   width: 630px;
   height: 436px;
@@ -782,26 +781,29 @@ border: 1px solid #9CA498
   position: relative;
   width: 470px;
   height: 336px;
+  margin-top: 60px;
+  margin-bottom: 40px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
-.feedback__close {
+.form__close {
+  display: block;
   content: "";
   width: 27px;
   height: 27px;
   background-image: url(../../assets/images/svg/close.svg);
   position: absolute;
-  top: -11%;
-  right: -14%;
+  top: 4%;
+  right: 3%;
   cursor: pointer;
 }
 
-input[type="text"],
-input[type="email"],
-#text-feedback {
+#name,
+#text-feedback,
+#email {
   background: #dff5b0;
   border: 1px solid #9ca498;
   width: 100%;
@@ -812,15 +814,13 @@ input[type="email"],
   height: 180px;
 }
 
-.notVisible {
-  display: none;
-}
-
 .notScrollable {
   overflow: hidden;
 }
 
-.feedback__btn {
+.feedback__btn,
+.donat__btn,
+.pay__btn {
   width: 177px;
   height: 40px;
   background: #70cb0e;
@@ -836,6 +836,173 @@ input[type="email"],
   background: #a2a79d;
   color: white;
 }
+
+#amount,
+#card-number,
+#cardholder-name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+
+  background: white;
+  border: 1px solid #9ca498;
+  width: 303px;
+  height: 40px;
+}
+
+#amount {
+  text-align: left;
+}
+
+#select-list__animal {
+  width: 100%;
+  background: #dff5b0;
+  border: 1px solid #9ca498;
+  height: 40px;
+  margin-bottom: 8px;
+}
+
+#select-list__cash {
+  width: 159px;
+  background: white;
+  border: 1px solid #9ca498;
+  margin-left: 8px;
+  height: 40px;
+}
+
+.container-donat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+#text-donat {
+  width: 100%;
+  height: 85px;
+  border: 1px solid #9ca498;
+  background: white;
+}
+
+.form-donat {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #9ca498;
+  width: 630px;
+  height: 339px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+  top: calc(50vh - 170px);
+  left: calc(50vw - 315px);
+  background-color: white;
+}
+
+.form-pay {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #9ca498;
+  width: 630px;
+  height: 385px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+  top: calc(50vh - 170px);
+  left: calc(50vw - 315px);
+  background-color: white;
+}
+
+.container-front {
+  display: flex;
+  padding: 35px 25px;
+  position: absolute;
+  top: -10px;
+  left: -30px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 358px;
+  height: 203px;
+  background-color: #dcdcdc;
+  border-radius: 10px;
+  z-index: 20;
+}
+
+#mm,
+#yy {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+  background: white;
+  border: 1px solid #9ca498;
+  margin-right: 6px;
+  width: 80px;
+  height: 40px;
+}
+
+.container-back {
+  display: flex;
+  position: absolute;
+  bottom: 57px;
+  right: -30px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: 328px;
+  height: 190px;
+  background-image: url(../../assets/images/svg/card-back.svg);
+  object-fit: cover;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+#cvc {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+
+  background: white;
+  border: 1px solid #9ca498;
+  margin-right: 32px;
+  margin-bottom: 10px;
+  width: 80px;
+  height: 35px;
+}
+
+.pay__btn {
+  position: absolute;
+  bottom: 0px;
+  cursor: pointer;
+}
+.notVisible {
+  display: none;
+}
+
+/* Pop-up  end */
+
 /* --------------- Media queries ----------------------*/
 
 @media screen and (max-width: 1183px) {

@@ -345,21 +345,65 @@
             </div>
         </div>
     </footer>
+
+    <!--*********************Buttons*********************-->
     <div class="form-feedback notVisible" id="form-feedback">
-        <form action="feedback" class="action">
-            <!--<label for="name">Name: </label>-->
+        <form action="" class="action">
             <input type="text" id="name" placeholder="Name" required>
             <br>
-            <!--<label for="email">Email: </label>-->
             <input type="email" id="email" placeholder="Email" required>
             <br>
-            <!--<label for="text-feeback">Your feedback: </label>-->
             <textarea id="text-feedback" placeholder="Your text here (300 max)" required></textarea>
             <br>
-            <button class="feedback__btn invalid" id="send" type="submit" disabled>SEND</button>
-            <div class="feedback__close"></div>
+            <button class="feedback__btn invalid" type="submit" disabled>Submit</button>
         </form>
+        <span class="form__close"></span>
     </div>
+
+  <div class="form-donat notVisible" id="form-donat">
+        <form action="" class="action">
+            <select name="" id="select-list__animal" class="form-select">
+                <option value="Alligator" class="select-item">Alligator</option>
+                <option selected value="Panda" class="select-item">Panda</option>
+                <option value="Eagle" class="select-item">Eagle</option>
+                <option value="Gorilla" class="select-item">Gorilla</option>
+            </select>
+            <br>
+            <div class="container-donat">
+                <input type="number" id="amount" max="9999" placeholder="Amount" required>
+                <select name="" id="select-list__cash" class="form-select">
+                    <option value="" class="select-item">USD</option>
+                    <option value="" class="select-item">EUR</option>
+                </select>
+            </div>
+            <br>
+            <textarea id="text-donat" placeholder="Your text here (280 max)" maxlength="280" required></textarea>
+            <br>
+            <button class="donat__btn invalid" type="submit" disabled>Next</button>
+        </form>
+        <span class="form__close"></span>
+    </div>
+
+    <div class="form-pay notVisible" id="form-pay">
+        <form action="" class="action">
+            <div class="container-front">
+                <input type="text" id="card-number" maxlength="16" placeholder="Card Number" required>
+                
+                <div class="container-pay">
+                    <input type="text" id="mm" maxlength="2" placeholder="MM" required>
+                    <input type="text" id="yy" maxlength="2" placeholder="YY" required>
+                </div>
+                
+                <input type="text" id="cardholder-name" placeholder="Cardholder Name" required>
+            </div>
+            <div class="container-back">
+                <input type="text" id="cvc" maxlength="3" placeholder="CVC" required>
+            </div>
+            <button class="pay__btn invalid" type="submit" disabled>Donate</button>
+        </form>
+        <span class="form__close"></span>
+    </div>
+
     <div class="cover notVisible" id="cover"></div>
     <script src="script.js"></script>
 </body>
