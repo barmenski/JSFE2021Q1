@@ -206,3 +206,58 @@ const getPos = function (current, active) {
 /*----------------------------------------Carousel end---------------------------------------*/
 
 
+/*----------------------------------------Carousel for grid start---------------------------------------*/
+let items = document.querySelectorAll(".grid-container");
+let currentItem = 0;
+let isEnabled = true;
+
+function changeCurrentItem(n) {
+  currentItem = (n + items.length) % items.length;
+}
+
+function hideItem(direction) {
+  isEnabled = false;
+  items[currentItem].classList.add(direction);
+  items[currentItem].addEventListener("animationend", function() {
+    this.classList.remove("active-item", direction);
+  });
+}
+
+function showItem(direction) {
+  items[currentItem].classList.add("next-item", direction);
+  items[currentItem].addEventListener("animationend", function() {
+    this.classList.remove("next-item", direction);
+    this.classList.add("active-item");
+    isEnabled = true;
+  });
+}
+
+
+
+function previousItem(n) {
+  hideItem("to-right");
+  changeCurrentItem(n-1);
+  showItem("from-left");
+}
+
+function nextItem(n) {
+  hideItem("to-left");
+  changeCurrentItem(n+1);
+  showItem("from-right");
+}
+
+document.querySelector('.grid-flex-arrow-left').addEventListener("click", function() {
+  if (isEnabled) {
+    previousItem(currentItem);
+
+  }
+});
+
+document.querySelector('.grid-flex-arrow-right').addEventListener("click", function() {
+  if (isEnabled) {
+    nextItem(currentItem);
+
+  }
+});
+
+/*----------------------------------------Carousel for grid start---------------------------------------*/

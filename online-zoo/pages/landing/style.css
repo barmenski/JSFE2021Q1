@@ -321,6 +321,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* !!!!!!!!!!!!!!!!!!*/
 }
 
 .grid-flex-arrow-left {
@@ -346,10 +347,16 @@ ul {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-row-gap: 25px;
   grid-column-gap: 20px;
+  animation: 0.5s ease-in-out; /* !!!!!!!!!!!!!!!!!!*/
+  display: none; /* !!!!!!!!!!!!!!!!!!*/
+  position: relative; /* !!!!!!!!!!!!!!!!!!*/
 }
 
 .grid-item {
   position: relative;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
 }
 
 .grid-item:hover {
@@ -397,6 +404,66 @@ ul {
   font-size: 18px;
   line-height: 21px;
 }
+
+/*------Grid carousel start ----*/
+
+.active-item,
+.next-item {
+  display: grid;
+}
+
+.next-item {
+  position: absolute;
+  top: 0;
+  /*width: 100%;*/
+}
+/*---animation--*/
+
+.to-left {
+  animation-name: left;
+}
+
+.to-right {
+  animation-name: right;
+  animation-direction: reverse;
+}
+
+.from-left {
+  animation-name: left;
+  animation-direction: reverse;
+}
+
+.from-right {
+  animation-name: right;
+}
+
+@keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes right {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+.wrapper-overflow {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 10px;
+}
+
+/*---Grid carousel end ---*/
+
 /* Pets in zoo styles end */
 
 /* Pay and feed styles start */
