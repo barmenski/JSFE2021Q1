@@ -64,7 +64,7 @@ module.exports = ({develop}) => ({
     }),
     new CopyPlugin({
       patterns: [
-        { from: './public'}
+        {from: './public'}
       ]
     }),
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false}),

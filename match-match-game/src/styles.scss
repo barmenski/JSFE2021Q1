@@ -8,74 +8,20 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; /*flex можно и в card-field*/
   color: white;
   background-color: darkslategrey;
 }
 
-.cards-field {
-  width: 70%;
-  /*min-height: 100%; 100vh*/
+main {
+  min-height: calc(100vh - 2rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 
-.card-container {
-  margin: 1%;
-  flex: 1 0 22%;
+footer {
+  height: 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  perspective: 25rem;
-  cursor: pointer;
-
-  &:hover > .card {
-    transform: translateZ(2rem);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-  }
-}
-
-.card {
-  position: relative;
-  width: 10rem; /*168x168*/
-  height: 12rem;
-  transform-style: preserve-3d;
-  transform-origin: right;
-  transition: all 0.5s;
-  box-shadow: 0 0 0.25rem black;
-  border-radius: 0.5rem;
-
-  &.flipped {
-    transform: rotateY(180deg) translateX(-100%);
-    transform-origin: left;
-  }
-
-  &__front,
-  &__back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: inherit;
-  }
-
-  &__front {
-    background-color: crimson;
-  }
-
-  &__back {
-    background-color: gray;
-    background-image: url('./assets/card-back.jpg');
-    background-position: center;
-    background-size: cover;
-    transform: rotateY(180deg);
-  }
+  justify-content: center;
 }
