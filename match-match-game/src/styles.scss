@@ -1,3 +1,25 @@
+@font-face {
+  font-family: SceneW01-Black;
+  src: url('./assets/fonts/SceneW01-Black.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('./assets/fonts/roboto-v20-latin-regular.woff2') format('woff2'),
+    url('./assets/fonts/roboto-v20-latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local(''),
+    url('./assets/fonts/roboto-v20-latin-500.woff2') format('woff2'),
+    url('./assets/fonts/roboto-v20-latin-500.woff') format('woff');
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,19 +31,13 @@ html {
 
 body {
   color: white;
-  background-color: darkslategrey;
+  background-color: white;
 }
 
-main {
-  min-height: calc(100vh - 2rem);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+li {
+  list-style-type: none;
 }
 
-footer {
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+a {
+  text-decoration: none;
 }

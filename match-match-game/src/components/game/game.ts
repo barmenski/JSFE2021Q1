@@ -2,17 +2,22 @@ import { delay } from "../../shared/delay";
 import { BaseComponent } from "../base-component";
 import { Card } from "../card/card";
 import { CardsField } from "../cards-field/cards-field";
+import { Timer } from "../timer/timer";
 
-const FLIP_DELAY = 3000;
+const FLIP_DELAY = 1.5;
 
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
+  readonly timer: Timer;
   private activeCard?: Card;
   private isAnimation = false;
 
   constructor() {
-    super();
+    super('div', ['wrapper-cards']);
     this.cardsField = new CardsField();
+    this.timer = new Timer();
+    this.timer.Start();
+    this.element.appendChild(this.timer.element);
     this.element.appendChild(this.cardsField.element);
   }
 
@@ -28,7 +33,6 @@ export class Game extends BaseComponent {
     });
 
     this.cardsField.addCards(cards);
-
   }
 
   private async cardHandler(card: Card){
@@ -45,8 +49,15 @@ export class Game extends BaseComponent {
     }
 
     if (this.activeCard.image != card.image) {
-      await delay(FLIP_DELAY);
+      card.element.classList.add('wrong');
+      this.activeCard.element.classList.add('wrong');
+      await delay(FLIP_DELAY * 1000);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
+      card.element.classList.remove('wrong');
+      this.activeCard.element.classList.remove('wrong');
+    } else {
+      card.element.classList.add('right');
+      this.activeCard.element.classList.add('right');
     }
 
     this.activeCard = undefined;
