@@ -3,6 +3,8 @@ import { Cover } from './components/cover/cover';
 import { FormReg } from './components/formReg/formReg';
 import { Game } from './components/game/game';
 import { Header } from './components/header/header';
+import { Score } from './components/score/score';
+import { Settings } from './components/settings/settings';
 import { Wrapper } from './components/wrapper/wrapper';
 import { ImageCategoryModel } from './models/image-category-model';
 
@@ -14,7 +16,9 @@ export class App {
   private readonly game: Game;
   private readonly aboutGame: AboutGame;
   private readonly cover: Cover;
-  private readonly formReg: FormReg
+  private readonly formReg: FormReg;
+  private readonly settings: Settings;
+  private readonly score: Score;
 
 
   constructor(private readonly rootElement: HTMLElement) {
@@ -24,11 +28,16 @@ export class App {
     this.aboutGame = new AboutGame();
     this.cover = new Cover();
     this.formReg = new FormReg();
+    this.settings = new Settings();
+    this.score = new Score();
     this.rootElement.appendChild(this.header.element);
     this.rootElement.appendChild(this.wrapper.element);
-    this.wrapper.element.appendChild(this.aboutGame.element);
-    this.rootElement.appendChild(this.cover.element);
-    this.rootElement.appendChild(this.formReg.element);
+    this.wrapper.element.appendChild(this.score.element);
+    //this.wrapper.element.appendChild(this.settings.element);
+    //this.wrapper.element.appendChild(this.aboutGame.element);
+    //this.rootElement.appendChild(this.cover.element);
+    //this.rootElement.appendChild(this.formReg.element);
+    //this.rootElement.appendChild(this.settings.element);
     //this.wrapper.element.appendChild(this.game.element);
   }
 

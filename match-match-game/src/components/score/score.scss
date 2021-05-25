@@ -1,0 +1,61 @@
+main {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 36px;
+}
+
+.score-item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 18px;
+}
+
+.item__image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: url(../../assets/images/avatar.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.item-container {
+  margin-right: auto;
+  margin-left: 16px;
+}
+
+.item__name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.1px;
+  color: #333333;
+}
+
+.item__email {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.4px;
+  color: #333333;
+}
+
+.item__score,
+.item__score span {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.item__score span {
+  color: #2196f3;
+}
