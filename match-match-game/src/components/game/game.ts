@@ -16,12 +16,15 @@ export class Game extends BaseComponent {
     super('div', ['wrapper-cards']);
     this.cardsField = new CardsField();
     this.timer = new Timer();
+    this.timer.Clear();
     this.timer.Start();
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.cardsField.element);
   }
 
   newGame(images: string[]) {
+    this.timer.Clear();
+    this.timer.Start();
     this.cardsField.clear();
     const cards = images
       .concat(images)

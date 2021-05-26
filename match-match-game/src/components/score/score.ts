@@ -3,7 +3,7 @@ import "./score.scss"
 
 export class Score extends BaseComponent {
   constructor() {
-    super('main', ['main']);
+    super('div', ['main']);
     this.element.innerHTML = `
     <h1 class="heading">Best players</h1>
     <ul class="score-list">

@@ -4,7 +4,7 @@ import './about-game.scss';
 export class AboutGame extends BaseComponent {
 
   constructor() {
-    super('main', ['main']);
+    super('div', ['about-game']);
     this.element.innerHTML = `
       <h1 class="heading">How to play?</h1>
       <div class="main-section">
