@@ -1,8 +1,7 @@
-import { BaseComponent } from "../base-component";
+import { BaseComponent } from '../base-component';
 import './about-game.scss';
 
 export class AboutGame extends BaseComponent {
-
   constructor() {
     super('div', ['about-game']);
     this.element.innerHTML = `

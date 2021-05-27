@@ -2,8 +2,7 @@ import { BaseComponent } from '../base-component';
 import './header.scss';
 
 export class Header extends BaseComponent {
-
-  constructor () {
+  constructor() {
     super('header', ['header']);
     this.element.innerHTML = `
     <a href="#about-game" class="logo-link"></a>
@@ -13,12 +12,11 @@ export class Header extends BaseComponent {
       <li class="nav-item"><a href="#settings" class="nav-link__settings">Game Settings</a></li>
     </ul>
     <div class="wrapper__btn">
-      <form action="#" class="stop-form">
-        <button type="submit" class="stop__btn">STOP GAME</button>
+      <form action="#form-reg" class="reg-form">
+        <button type="submit" class="reg__btn">REGISTER NEW PLAYER</button>
       </form>
-      <div class="avatar__img"></div>
+      <div class="avatar__img hidden"></div>
     </div>
   `;
   }
-
 }

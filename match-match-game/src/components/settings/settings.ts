@@ -1,5 +1,5 @@
-import { BaseComponent } from "../base-component";
-import "./settings.scss"
+import { BaseComponent } from '../base-component';
+import './settings.scss';
 
 export class Settings extends BaseComponent {
   constructor() {

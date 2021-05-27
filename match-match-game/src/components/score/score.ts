@@ -1,5 +1,5 @@
-import { BaseComponent } from "../base-component";
-import "./score.scss"
+import { BaseComponent } from '../base-component';
+import './score.scss';
 
 export class Score extends BaseComponent {
   constructor() {

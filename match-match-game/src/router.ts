@@ -1,9 +1,8 @@
-
 /**
-	* @typedef IRoute
-	* @property {string} name
-	* @property {typeof Function} component
-	*/
+ * @typedef IRoute
+ * @property {string} name
+ * @property {typeof Function} component
+ */
 /*
   window.onpopstate = () => {
     console.log(window.location.hash);
