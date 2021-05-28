@@ -93,3 +93,204 @@
   height: 240px;
   background-image: url(../../assets/images/about-game.jpg);
 }
+
+.formReg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  position: relative;
+  color: #9ca498;
+  width: 640px;
+  height: 460px;
+
+  position: fixed;
+  z-index: 100;
+  top: calc(50vh - 230px);
+  left: calc(50vw - 320px);
+  background-color: #fafafa;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.heading-form {
+  display: block;
+  height: 67px;
+  width: 100%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 67px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+
+  padding-left: 20px;
+  background-color: white;
+}
+
+.action {
+  padding: 20px;
+}
+
+.input-container {
+  width: 350px;
+  position: relative;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.player-avatar {
+  width: 198px;
+  height: 198px;
+  display: block;
+  background-image: url(../../assets/images/avatar.svg);
+}
+
+.first-name,
+.last-name,
+.email {
+  height: 56px;
+  width: 328px;
+  background-color: rgba(33, 33, 33, 0.08);
+  border: none;
+  box-shadow: 0 0.1rem 0.25rem black;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+  padding-left: 10px;
+}
+
+.button-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.formReg-add__btn {
+  width: 108px;
+  height: 36px;
+  background: #2196f3;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 4px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.formReg-cancel__btn {
+  width: 93px;
+  height: 36px;
+  margin-left: 17px;
+  background: #e3f2fd;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 4px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #2196f3;
+}
+
+.first-name-error,
+.last-name-error,
+.email-error {
+  display: block;
+  height: 25px;
+  width: 328px;
+  font-family: Roboto, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: rgba(172, 16, 16, 0.87);
+}
+
+.inputError {
+  border: 1.5px solid rgba(172, 16, 16, 0.87);
+}
+
+.invalid {
+  background-color: grey;
+}
+
+.validCheck__image {
+  display: block;
+  position: absolute;
+
+  width: 40px;
+  height: 40px;
+  background-image: url(../../assets/images/validCheck.svg);
+  background-size: cover;
+}
+
+.first-name-error + .validCheck__image {
+  top: 12px;
+  right: 27px;
+}
+
+.last-name-error + .validCheck__image {
+  top: 105px;
+  right: 27px;
+}
+
+.email-error + .validCheck__image {
+  top: 195px;
+  right: 27px;
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+  backdrop-filter: blur(5px);
+}
+
+.notVisible,
+.notVisible.formReg,
+.notVisible.cover,
+.notVisible.avatar__img,
+.notVisible.reg__btn,
+.notVisible.stop__btn,
+.notVisible.start__btn {
+  display: none;
+}

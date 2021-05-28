@@ -10,13 +10,7 @@ declare global {
 const appElement = document.querySelector('body');
 if (!appElement) throw Error('<body> element not found');
 window.app = new App(appElement);
-window.app.aboutGamePage();
-
-/* interface Routing {
-  name: string;
-  component: () => void;
-}
-[]; */
+window.app.initPage();
 
 const Routing = [
   {
@@ -31,14 +25,6 @@ const Routing = [
     name: 'best-score',
     component: window.app.bestScorePage,
   },
-  {
-    name: 'form-reg',
-    component: window.app.formRegPage,
-  },
-  {
-    name: 'form-reg-close',
-    component: window.app.formRegClosePage,
-  },
 ];
 
 const defaultRoute = {
@@ -51,5 +37,3 @@ window.addEventListener('hashchange', () => {
   const currentRoute = Routing.find(p => p.name === currentRouteName);
   (currentRoute || defaultRoute).component();
 });
-
-// nwindow.onpopstate = () =>{};

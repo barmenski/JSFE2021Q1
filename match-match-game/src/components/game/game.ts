@@ -5,6 +5,8 @@ import { CardsField } from '../cards-field/cards-field';
 import { Timer } from '../timer/timer';
 
 const FLIP_DELAY = 1.5;
+let gameTimeStr: string;
+let gameTimeNum: number;
 
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
@@ -39,6 +41,21 @@ export class Game extends BaseComponent {
     });
 
     this.cardsField.addCards(cards);
+
+    const timeField = document.querySelector('.timer') as HTMLElement;
+    const startButton = document.querySelector('.start__btn') as HTMLElement;
+    const stopButton = document.querySelector('.stop__btn') as HTMLElement;
+
+    stopButton.addEventListener('click', () => {
+      startButton.classList.remove('notVisible');
+      stopButton.classList.add('notVisible');
+      console.log(timeField);
+      this.timer.Stop();
+      gameTimeStr = timeField.innerHTML;
+      gameTimeNum = this.timer.resultTime;
+      console.log(gameTimeStr, gameTimeNum);
+      window.app.bestScorePage();
+    });
   }
 
   private async cardHandler(card: Card) {

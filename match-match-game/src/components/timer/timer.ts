@@ -9,6 +9,8 @@ export class Timer {
 
   element: HTMLElement;
 
+  resultTime = 0;
+
   constructor() {
     this.element = document.createElement('div');
     this.element.classList.add('timer');
@@ -45,6 +47,7 @@ export class Timer {
     if (this.timerId) {
       clearInterval(this.timerId);
     }
+    this.resultTime = this.sec;
   };
 
   Clear = () => {
