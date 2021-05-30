@@ -30,13 +30,13 @@ export class Header extends BaseComponent {
     <div class="action">
       <div class="input-wrapper">
         <div class="input-container">
-          <input type="text" class="first-name" placeholder="First Name" maxlength="30">
+          <input type="text" class="first-name" placeholder="First Name" maxlength="30" required>
           <div class="first-name-error"></div>
           <div class="validCheck__image notVisible"></div>
-          <input type="text" class="last-name" placeholder="Last Name" maxlength="30">
+          <input type="text" class="last-name" placeholder="Last Name" maxlength="30" required>
           <div class="last-name-error"></div>
           <div class="validCheck__image notVisible"></div>
-          <input type="email" class="email" placeholder="E-mail" maxlength="30">
+          <input type="email" class="email" placeholder="E-mail" maxlength="30" required>
           <div class="email-error"></div>
           <div class="validCheck__image notVisible"></div>
         </div>
@@ -162,7 +162,7 @@ export class Header extends BaseComponent {
       this.player.firstName = FirstNameField.value;
       this.player.lastName = LastNameField.value;
       this.player.email = EmailField.value;
-      // console.log(this.player);
+      console.log(this.player);
     });
 
     startButton.addEventListener('click', () => {
@@ -171,36 +171,43 @@ export class Header extends BaseComponent {
       window.location.hash = '#game';
     });
 
+    const checkAddButton = () => {
+      if (
+        FirstNameField.validity.valid &&
+        LastNameField.validity.valid &&
+        EmailField.value.match(/^[\w-.]+@([\w-]+.)+[\w-]{2,5}$/g)
+      ) {
+        addButton.classList.remove('invalid');
+        addButton.removeAttribute('disabled');
+      } else {
+        addButton.classList.add('invalid');
+        addButton.setAttribute('disabled', '');
+      }
+    };
+
     const validateFirstName = () => {
       if (FirstNameField.value === '') {
         FirstNameField.classList.add('inputError');
         firstNameCheckValid.classList.add('notVisible');
         firstNameError.innerHTML = `Имя не может быть пустым.`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else if (FirstNameField.value.match(/[0-9]/)) {
         FirstNameField.classList.add('inputError');
         firstNameCheckValid.classList.add('notVisible');
         firstNameError.innerHTML = `Имя не может состоять из цифр.`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else if (FirstNameField.value.match(/[~!@#$%*()_—+=|:;"'`<>,.?/^]/)) {
         FirstNameField.classList.add('inputError');
         firstNameCheckValid.classList.add('notVisible');
         firstNameError.innerHTML = `Имя не может содержать служебные символы.`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else {
         firstNameError.innerHTML = ``;
         FirstNameField.classList.remove('inputError');
         firstNameCheckValid.classList.remove('notVisible');
-        addButton.classList.remove('invalid');
-        addButton.removeAttribute('disabled');
       }
     };
 
     FirstNameField.addEventListener('input', () => {
       validateFirstName();
+      checkAddButton();
     });
 
     const validateLastName = () => {
@@ -208,31 +215,24 @@ export class Header extends BaseComponent {
         LastNameField.classList.add('inputError');
         lastNameCheckValid.classList.add('notVisible');
         lastNameError.innerHTML = `Имя не может быть пустым.`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else if (LastNameField.value.match(/[0-9]/)) {
         LastNameField.classList.add('inputError');
         lastNameCheckValid.classList.add('notVisible');
         lastNameError.innerHTML = `Имя не может состоять из цифр.`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else if (LastNameField.value.match(/[~!@#$%*()_—+=|:;"'`<>,.?/^]/)) {
         LastNameField.classList.add('inputError');
         lastNameCheckValid.classList.add('notVisible');
         lastNameError.innerHTML = `Имя не может содержать служебные символы.`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else {
         lastNameError.innerHTML = ``;
         LastNameField.classList.remove('inputError');
         lastNameCheckValid.classList.remove('notVisible');
-        addButton.classList.remove('invalid');
-        addButton.removeAttribute('disabled');
       }
     };
 
     LastNameField.addEventListener('input', () => {
       validateLastName();
+      checkAddButton();
     });
 
     const validateEmail = () => {
@@ -240,25 +240,20 @@ export class Header extends BaseComponent {
         emailError.innerHTML = ``;
         EmailField.classList.remove('inputError');
         emailCheckValid.classList.remove('notVisible');
-        addButton.classList.remove('invalid');
-        addButton.removeAttribute('disabled');
       } else if (EmailField.value === '') {
         EmailField.classList.add('inputError');
         emailCheckValid.classList.add('notVisible');
         emailError.innerHTML = `Адрес не может быть пустым`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       } else {
         EmailField.classList.add('inputError');
         emailCheckValid.classList.add('notVisible');
         emailError.innerHTML = `Адрес должен соответствовать стандартному правилу формированию email [RFC].`;
-        addButton.classList.add('invalid');
-        addButton.setAttribute('disabled', '');
       }
     };
 
     EmailField.addEventListener('input', () => {
       validateEmail();
+      checkAddButton();
     });
   };
 

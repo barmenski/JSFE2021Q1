@@ -219,7 +219,7 @@ h1 {
 }
 
 .button-container {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -268,13 +268,13 @@ h1 {
 .last-name-error,
 .email-error {
   display: block;
-  height: 25px;
+  height: 30px;
   width: 328px;
   font-family: Roboto, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 16px;
   letter-spacing: 0.15px;
   color: rgba(172, 16, 16, 0.87);
 }
@@ -303,12 +303,12 @@ h1 {
 }
 
 .last-name-error + .validCheck__image {
-  top: 105px;
+  top: 109px;
   right: 27px;
 }
 
 .email-error + .validCheck__image {
-  top: 195px;
+  top: 206px;
   right: 27px;
 }
 
