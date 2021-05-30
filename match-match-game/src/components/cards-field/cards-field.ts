@@ -7,19 +7,23 @@ const SHOW_TIME = 10;
 export class CardsField extends BaseComponent {
   private cards: Card[] = [];
 
+ show_timer : ReturnType<typeof setInterval> | null;
+
   constructor() {
     super('div', ['cards-field']);
+    this.show_timer = null;
   }
 
   clear() {
     this.cards = [];
     this.element.innerHTML = '';
+    if (this.show_timer) clearTimeout(this.show_timer);
   }
 
   addCards(cards: Card[]) {
     this.cards = cards;
     this.cards.forEach(card => this.element.appendChild(card.element));
-    setTimeout(() => {
+    this.show_timer=setTimeout(() => {
       this.cards.forEach(card => card.flipToBack());
     }, SHOW_TIME * 1000);
   }

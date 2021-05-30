@@ -27,16 +27,15 @@ export class App {
     this.score = new Score();
     this.wrapper = new Wrapper();
     this.rootElement = rootElement;
-
-    // this.config.category
   }
 
   async start() {
     const res = await fetch('./images.json');
     const categories: ImageCategoryModel[] = await res.json();
-    const cat = categories[0]; // this.config.category
+    const cat = categories[this.settings.categoryCards]; // выбор категории
     const images = cat.images.map(name => `${cat.category}/${name}`);
-    this.game.newGame(images);
+    const imagesSliced = images.slice(32-this.settings.amountCards);
+    this.game.newGame(imagesSliced);
   }
 
   gamePage = () => {
@@ -48,6 +47,7 @@ export class App {
   settingsPage = () => {
     this.wrapper.element.innerHTML = '';
     this.wrapper.element.appendChild(this.settings.element);
+    this.settings.initSettings();
   };
 
   initPage = () => {
@@ -56,29 +56,33 @@ export class App {
     this.rootElement.appendChild(this.wrapper.element);
     this.wrapper.element.appendChild(this.aboutGame.element);
     this.header.initButton();
-    this.aboutGame.checkValid();
+    this.header.initPageLink();
+    this.header.checkValid();
   };
 
   aboutGamePage = () => {
     this.wrapper.element.innerHTML = '';
     this.wrapper.element.appendChild(this.aboutGame.element);
-    this.header.initButton();
   };
 
   bestScorePage = () => {
     this.wrapper.element.innerHTML = '';
     this.wrapper.element.appendChild(this.score.element);
   };
+}
 
-  /* formRegPage = () => {
-    this.rootElement.appendChild(this.cover.element);
-    this.rootElement.appendChild(this.formReg.element);
-    /* this.formReg.newFormReg();
-  };
+let db;
+let dbReq = indexedDB.open('barmenski', 1);
 
-  formRegClosePage = () => {
-    this.rootElement.innerHTML = '';
-    this.rootElement.appendChild(this.header.element);
-  };
-  */
+dbReq.onupgradeneeded = (event: IDBVersionChangeEvent) => {
+  db = (event.target as IDBOpenDBRequest).result;
+
+  let players = db.createObjectStore('players', {autoIncrement: true});
+  dbReq.onsuccess = (event) => {
+    db = (event.target as IDBOpenDBRequest).result;
+  }
+
+  dbReq.onerror = (event) => {
+    alert('error opening database' + (event.target as IDBOpenDBRequest).error);
+  }
 }

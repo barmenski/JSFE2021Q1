@@ -2,6 +2,8 @@ import { delay } from '../../shared/delay';
 import { BaseComponent } from '../base-component';
 import { Card } from '../card/card';
 import { CardsField } from '../cards-field/cards-field';
+import { Congrat } from '../congrat/congrat';
+import { Settings } from '../settings/settings';
 import { Timer } from '../timer/timer';
 
 const FLIP_DELAY = 1.5;
@@ -11,20 +13,33 @@ let gameTimeNum: number;
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
 
+  readonly settings: Settings;
+
   readonly timer: Timer;
+
+  readonly congrat: Congrat;
 
   private activeCard?: Card;
 
   private isAnimation = false;
 
+  rightClick: number;
+
+  wrongClick: number;
+
   constructor() {
     super('div', ['wrapper-cards']);
     this.cardsField = new CardsField();
     this.timer = new Timer();
+    this.congrat = new Congrat();
     this.timer.Clear();
     this.timer.Start();
+    this.settings = new Settings;
+    this.rightClick = 0;
+    this.wrongClick = 0;
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.cardsField.element);
+    this.element.appendChild(this.congrat.element);
   }
 
   newGame(images: string[]) {
@@ -46,16 +61,54 @@ export class Game extends BaseComponent {
     const startButton = document.querySelector('.start__btn') as HTMLElement;
     const stopButton = document.querySelector('.stop__btn') as HTMLElement;
 
+
     stopButton.addEventListener('click', () => {
       startButton.classList.remove('notVisible');
       stopButton.classList.add('notVisible');
-      console.log(timeField);
       this.timer.Stop();
       gameTimeStr = timeField.innerHTML;
       gameTimeNum = this.timer.resultTime;
-      console.log(gameTimeStr, gameTimeNum);
-      window.app.bestScorePage();
+      console.log(gameTimeStr, gameTimeNum, this.rightClick, this.wrongClick);
+      window.location.hash = '#best-score';
     });
+  }
+
+   finishGame = () => {
+    const timeField = document.querySelector('.timer') as HTMLElement;
+    const startButton = document.querySelector('.start__btn') as HTMLElement;
+    const stopButton = document.querySelector('.stop__btn') as HTMLElement;
+
+    const cover = document.querySelector('.cover') as HTMLElement;
+    const congratPopup = document.querySelector('.congrat') as HTMLElement;
+    const congratText = document.querySelector('.congrat__text') as HTMLElement;
+    const congratButton = document.querySelector('.congrat__btn') as HTMLElement;
+
+    startButton.classList.remove('notVisible');
+    stopButton.classList.add('notVisible');
+    this.timer.Stop();
+    gameTimeStr = timeField.innerHTML;
+    gameTimeNum = this.timer.resultTime;
+
+    let score: number;
+     ((this.wrongClick * 100 - gameTimeNum*10)>=0)?score = (this.wrongClick * 100 - gameTimeNum*10):score = 0;
+
+    cover.classList.remove('notVisible');
+    congratPopup.classList.remove('notVisible');
+    congratText.innerHTML = `Congratulations! You successfully found all matches on ${gameTimeStr} minutes. Score: ${score}`;
+
+    congratButton.addEventListener('click', () => {
+      cover.classList.add('notVisible');
+      congratPopup.classList.add('notVisible');
+      congratText.innerHTML = ``;
+      window.location.hash = '#best-score';
+    })
+    cover.addEventListener('click', () => {
+      cover.classList.add('notVisible');
+      congratPopup.classList.add('notVisible');
+      congratText.innerHTML = ``;
+      window.location.hash = '#best-score';
+    })
+
   }
 
   private async cardHandler(card: Card) {
@@ -74,6 +127,8 @@ export class Game extends BaseComponent {
     if (this.activeCard.image !== card.image) {
       card.element.classList.add('wrong');
       this.activeCard.element.classList.add('wrong');
+      this.wrongClick ++;
+      console.log(this.wrongClick);
       await delay(FLIP_DELAY * 1000);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
       card.element.classList.remove('wrong');
@@ -81,6 +136,9 @@ export class Game extends BaseComponent {
     } else {
       card.element.classList.add('right');
       this.activeCard.element.classList.add('right');
+      this.rightClick ++;
+      console.log(this.rightClick);
+      if (this.rightClick === this.settings.amountCards) this.finishGame();
     }
 
     this.activeCard = undefined;
