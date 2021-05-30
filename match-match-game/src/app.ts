@@ -34,7 +34,7 @@ export class App {
     const categories: ImageCategoryModel[] = await res.json();
     const cat = categories[this.settings.categoryCards]; // выбор категории
     const images = cat.images.map(name => `${cat.category}/${name}`);
-    const imagesSliced = images.slice(32-this.settings.amountCards);
+    const imagesSliced = images.slice(32 - this.settings.amountCards);
     this.game.newGame(imagesSliced);
   }
 
@@ -70,19 +70,20 @@ export class App {
     this.wrapper.element.appendChild(this.score.element);
   };
 }
-
+/*
 let db;
-let dbReq = indexedDB.open('barmenski', 1);
+const dbReq = indexedDB.open('barmenski', 1) as IDBOpenDBRequest;
 
 dbReq.onupgradeneeded = (event: IDBVersionChangeEvent) => {
   db = (event.target as IDBOpenDBRequest).result;
 
-  let players = db.createObjectStore('players', {autoIncrement: true});
+  const players = db.createObjectStore('players', { autoIncrement: true });
   dbReq.onsuccess = (event) => {
-    db = (event.target as IDBOpenDBRequest).result;
-  }
+    db = event.target.result;
+  };
 
-  dbReq.onerror = (event) => {
-    alert('error opening database' + (event.target as IDBOpenDBRequest).error);
-  }
-}
+  dbReq.onerror = event => {
+    alert(`error opening database${(event.target as IDBOpenDBRequest).error}`);
+  };
+};
+*/

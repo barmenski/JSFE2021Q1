@@ -34,7 +34,7 @@ export class Game extends BaseComponent {
     this.congrat = new Congrat();
     this.timer.Clear();
     this.timer.Start();
-    this.settings = new Settings;
+    this.settings = new Settings();
     this.rightClick = 0;
     this.wrongClick = 0;
     this.element.appendChild(this.timer.element);
@@ -61,7 +61,6 @@ export class Game extends BaseComponent {
     const startButton = document.querySelector('.start__btn') as HTMLElement;
     const stopButton = document.querySelector('.stop__btn') as HTMLElement;
 
-
     stopButton.addEventListener('click', () => {
       startButton.classList.remove('notVisible');
       stopButton.classList.add('notVisible');
@@ -73,7 +72,7 @@ export class Game extends BaseComponent {
     });
   }
 
-   finishGame = () => {
+  finishGame = () => {
     const timeField = document.querySelector('.timer') as HTMLElement;
     const startButton = document.querySelector('.start__btn') as HTMLElement;
     const stopButton = document.querySelector('.stop__btn') as HTMLElement;
@@ -81,7 +80,9 @@ export class Game extends BaseComponent {
     const cover = document.querySelector('.cover') as HTMLElement;
     const congratPopup = document.querySelector('.congrat') as HTMLElement;
     const congratText = document.querySelector('.congrat__text') as HTMLElement;
-    const congratButton = document.querySelector('.congrat__btn') as HTMLElement;
+    const congratButton = document.querySelector(
+      '.congrat__btn',
+    ) as HTMLElement;
 
     startButton.classList.remove('notVisible');
     stopButton.classList.add('notVisible');
@@ -89,8 +90,8 @@ export class Game extends BaseComponent {
     gameTimeStr = timeField.innerHTML;
     gameTimeNum = this.timer.resultTime;
 
-    let score: number;
-     ((this.wrongClick * 100 - gameTimeNum*10)>=0)?score = (this.wrongClick * 100 - gameTimeNum*10):score = 0;
+    const scoreClick: number = this.settings.amountCards - this.wrongClick || 0;
+    const score: number = scoreClick * 100 - gameTimeNum * 10 || 0;
 
     cover.classList.remove('notVisible');
     congratPopup.classList.remove('notVisible');
@@ -101,15 +102,14 @@ export class Game extends BaseComponent {
       congratPopup.classList.add('notVisible');
       congratText.innerHTML = ``;
       window.location.hash = '#best-score';
-    })
+    });
     cover.addEventListener('click', () => {
       cover.classList.add('notVisible');
       congratPopup.classList.add('notVisible');
       congratText.innerHTML = ``;
       window.location.hash = '#best-score';
-    })
-
-  }
+    });
+  };
 
   private async cardHandler(card: Card) {
     if (this.isAnimation) return;
@@ -127,7 +127,7 @@ export class Game extends BaseComponent {
     if (this.activeCard.image !== card.image) {
       card.element.classList.add('wrong');
       this.activeCard.element.classList.add('wrong');
-      this.wrongClick ++;
+      this.wrongClick++;
       console.log(this.wrongClick);
       await delay(FLIP_DELAY * 1000);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
@@ -136,7 +136,7 @@ export class Game extends BaseComponent {
     } else {
       card.element.classList.add('right');
       this.activeCard.element.classList.add('right');
-      this.rightClick ++;
+      this.rightClick++;
       console.log(this.rightClick);
       if (this.rightClick === this.settings.amountCards) this.finishGame();
     }

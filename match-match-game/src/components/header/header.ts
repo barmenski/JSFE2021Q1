@@ -4,6 +4,7 @@ import './header.scss';
 
 export class Header extends BaseComponent {
   player: Player;
+
   constructor() {
     super('header', ['header']);
     this.player = new Player();
@@ -129,6 +130,14 @@ export class Header extends BaseComponent {
     const avatar = document.querySelector('.avatar__img') as HTMLElement;
     const regButton = document.querySelector('.reg__btn') as HTMLElement;
 
+    const FirstNameField = document.querySelector(
+      '.first-name',
+    ) as HTMLInputElement;
+    const LastNameField = document.querySelector(
+      '.last-name',
+    ) as HTMLInputElement;
+    const EmailField = document.querySelector('.email') as HTMLInputElement;
+
     cancelButton.addEventListener('click', () => {
       // закрываем форму регистрации по cancel
       document.body.classList.remove('notScrollable');
@@ -154,7 +163,6 @@ export class Header extends BaseComponent {
       this.player.lastName = LastNameField.value;
       this.player.email = EmailField.value;
       console.log(this.player);
-
     });
 
     startButton.addEventListener('click', () => {
@@ -162,14 +170,6 @@ export class Header extends BaseComponent {
       stopButton.classList.remove('notVisible');
       window.location.hash = '#game';
     });
-
-    const FirstNameField = document.querySelector(
-      '.first-name',
-    ) as HTMLInputElement;
-    const LastNameField = document.querySelector(
-      '.last-name',
-    ) as HTMLInputElement;
-    const EmailField = document.querySelector('.email') as HTMLInputElement;
 
     const validateFirstName = () => {
       if (FirstNameField.value === '') {
@@ -265,45 +265,47 @@ export class Header extends BaseComponent {
   initPageLink = () => {
     const aboutLink = document.querySelector('.nav-link__about') as HTMLElement;
     const scoreLink = document.querySelector('.nav-link__score') as HTMLElement;
-    const settingsLink = document.querySelector('.nav-link__settings') as HTMLElement;
-      window.addEventListener('hashchange', () => {
-        const currentRouteName = window.location.hash.slice(1);
-        console.log(currentRouteName);
-        switch(currentRouteName) {
-          case 'about-game':
-            if(!aboutLink.classList.contains('active')) {
-              aboutLink.classList.add('active');
-            }
-            scoreLink.classList.remove('active');
-            settingsLink.classList.remove('active');
-            break;
-          case 'settings':
-            if(!settingsLink.classList.contains('active')) {
-              settingsLink.classList.add('active');
-            }
-            scoreLink.classList.remove('active');
-            aboutLink.classList.remove('active');
-            break;
-            case 'best-score':
-              if(!scoreLink.classList.contains('active')) {
-                scoreLink.classList.add('active');
-              }
-              settingsLink.classList.remove('active');
-              aboutLink.classList.remove('active');
-            break;
-            case 'game':
-              settingsLink.classList.remove('active');
-              scoreLink.classList.remove('active');
-              aboutLink.classList.remove('active');
-            break;
-            default:
-              if(!aboutLink.classList.contains('active')) {
-                aboutLink.classList.add('active');
-              }
-              scoreLink.classList.remove('active');
-              settingsLink.classList.remove('active');
-              break;
-        }
+    const settingsLink = document.querySelector(
+      '.nav-link__settings',
+    ) as HTMLElement;
+    window.addEventListener('hashchange', () => {
+      const currentRouteName = window.location.hash.slice(1);
+      console.log(currentRouteName);
+      switch (currentRouteName) {
+        case 'about-game':
+          if (!aboutLink.classList.contains('active')) {
+            aboutLink.classList.add('active');
+          }
+          scoreLink.classList.remove('active');
+          settingsLink.classList.remove('active');
+          break;
+        case 'settings':
+          if (!settingsLink.classList.contains('active')) {
+            settingsLink.classList.add('active');
+          }
+          scoreLink.classList.remove('active');
+          aboutLink.classList.remove('active');
+          break;
+        case 'best-score':
+          if (!scoreLink.classList.contains('active')) {
+            scoreLink.classList.add('active');
+          }
+          settingsLink.classList.remove('active');
+          aboutLink.classList.remove('active');
+          break;
+        case 'game':
+          settingsLink.classList.remove('active');
+          scoreLink.classList.remove('active');
+          aboutLink.classList.remove('active');
+          break;
+        default:
+          if (!aboutLink.classList.contains('active')) {
+            aboutLink.classList.add('active');
+          }
+          scoreLink.classList.remove('active');
+          settingsLink.classList.remove('active');
+          break;
+      }
     });
-  }
+  };
 }

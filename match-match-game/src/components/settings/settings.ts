@@ -2,10 +2,9 @@ import { BaseComponent } from '../base-component';
 import './settings.scss';
 
 export class Settings extends BaseComponent {
+  categoryCards: number;
 
-  categoryCards: number ;
-
-  amountCards: number ;
+  amountCards: number;
 
   constructor() {
     super('div', ['settings']);
@@ -35,21 +34,25 @@ export class Settings extends BaseComponent {
   }
 
   initSettings = () => {
+    const selectCategoryCards = document.querySelector(
+      '.category-cards-select',
+    ) as HTMLSelectElement;
+    const selectAmountCards = document.querySelector(
+      '.amount-cards-select',
+    ) as HTMLSelectElement;
 
-    const selectCategoryCards = document.querySelector('.category-cards-select') as HTMLSelectElement;
-    const selectAmountCards = document.querySelector('.amount-cards-select') as HTMLSelectElement;
-
-    selectCategoryCards.addEventListener('change', (event) => {
-      this.categoryCards = parseInt((event.target as HTMLSelectElement).value);
+    selectCategoryCards.addEventListener('change', event => {
+      this.categoryCards = parseInt(
+        (event.target as HTMLSelectElement).value,
+        10,
+      );
     });
 
-
-    selectAmountCards.addEventListener('change', (event) => {
-      this.amountCards = parseInt((event.target as HTMLSelectElement).value);
+    selectAmountCards.addEventListener('change', event => {
+      this.amountCards = parseInt(
+        (event.target as HTMLSelectElement).value,
+        10,
+      );
     });
-
-  //return [this.catergoryCards, this.amountCards];
-  }
-
-
+  };
 }
