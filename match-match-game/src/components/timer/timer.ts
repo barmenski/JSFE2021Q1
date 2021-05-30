@@ -47,7 +47,7 @@ export class Timer {
     if (this.timerId) {
       clearInterval(this.timerId);
     }
-    this.resultTime = this.sec;
+    this.resultTime = this.sec + this.min * 60;
   };
 
   Clear = () => {

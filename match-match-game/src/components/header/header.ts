@@ -162,7 +162,7 @@ export class Header extends BaseComponent {
       this.player.firstName = FirstNameField.value;
       this.player.lastName = LastNameField.value;
       this.player.email = EmailField.value;
-      console.log(this.player);
+      // console.log(this.player);
     });
 
     startButton.addEventListener('click', () => {
@@ -270,7 +270,6 @@ export class Header extends BaseComponent {
     ) as HTMLElement;
     window.addEventListener('hashchange', () => {
       const currentRouteName = window.location.hash.slice(1);
-      console.log(currentRouteName);
       switch (currentRouteName) {
         case 'about-game':
           if (!aboutLink.classList.contains('active')) {

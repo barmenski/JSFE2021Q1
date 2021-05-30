@@ -27,6 +27,10 @@ export class Game extends BaseComponent {
 
   wrongClick: number;
 
+  scoreClick: number;
+
+  score: number;
+
   constructor() {
     super('div', ['wrapper-cards']);
     this.cardsField = new CardsField();
@@ -37,6 +41,9 @@ export class Game extends BaseComponent {
     this.settings = new Settings();
     this.rightClick = 0;
     this.wrongClick = 0;
+    this.scoreClick = 0;
+    this.score = 0;
+
     this.element.appendChild(this.timer.element);
     this.element.appendChild(this.cardsField.element);
     this.element.appendChild(this.congrat.element);
@@ -46,6 +53,10 @@ export class Game extends BaseComponent {
     this.timer.Clear();
     this.timer.Start();
     this.cardsField.clear();
+    this.rightClick = 0;
+    this.wrongClick = 0;
+    this.scoreClick = 0;
+    this.score = 0;
     const cards = images
       .concat(images)
       .map(url => new Card(url))
@@ -67,7 +78,6 @@ export class Game extends BaseComponent {
       this.timer.Stop();
       gameTimeStr = timeField.innerHTML;
       gameTimeNum = this.timer.resultTime;
-      console.log(gameTimeStr, gameTimeNum, this.rightClick, this.wrongClick);
       window.location.hash = '#best-score';
     });
   }
@@ -90,8 +100,8 @@ export class Game extends BaseComponent {
     gameTimeStr = timeField.innerHTML;
     gameTimeNum = this.timer.resultTime;
 
-    const scoreClick: number = this.settings.amountCards - this.wrongClick || 0;
-    const score: number = scoreClick * 100 - gameTimeNum * 10 || 0;
+    let score: number = this.rightClick * 100 - gameTimeNum * 10;
+    if (score < 0) score = 0;
 
     cover.classList.remove('notVisible');
     congratPopup.classList.remove('notVisible');
@@ -128,7 +138,6 @@ export class Game extends BaseComponent {
       card.element.classList.add('wrong');
       this.activeCard.element.classList.add('wrong');
       this.wrongClick++;
-      console.log(this.wrongClick);
       await delay(FLIP_DELAY * 1000);
       await Promise.all([this.activeCard.flipToBack(), card.flipToBack()]);
       card.element.classList.remove('wrong');
@@ -137,7 +146,6 @@ export class Game extends BaseComponent {
       card.element.classList.add('right');
       this.activeCard.element.classList.add('right');
       this.rightClick++;
-      console.log(this.rightClick);
       if (this.rightClick === this.settings.amountCards) this.finishGame();
     }
 
