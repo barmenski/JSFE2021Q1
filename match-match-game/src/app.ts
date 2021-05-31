@@ -70,20 +70,87 @@ export class App {
     this.wrapper.element.appendChild(this.score.element);
   };
 }
-/*
-let db;
-const dbReq = indexedDB.open('barmenski', 1) as IDBOpenDBRequest;
 
-dbReq.onupgradeneeded = (event: IDBVersionChangeEvent) => {
-  db = (event.target as IDBOpenDBRequest).result;
+const iDB = window.indexedDB;
 
-  const players = db.createObjectStore('players', { autoIncrement: true });
-  dbReq.onsuccess = (event) => {
-    db = event.target.result;
+let database: IDBDatabase;
+
+const openRequest = iDB.open('barmenski');
+openRequest.onupgradeneeded = () => {
+  database = openRequest.result;
+  const store = database.createObjectStore('players', {
+    keyPath: 'id',
+    autoIncrement: true,
+  });
+  store.createIndex('name', 'name', {});
+  store.createIndex('email', 'email', { unique: true });
+};
+
+openRequest.onsuccess = () => {
+  database = openRequest.result;
+
+  const transaction = database.transaction('players', 'readwrite');
+  const store = transaction.objectStore('players');
+  store.put({
+    firstName: 'mike',
+    lastName: 'vazovski',
+    email: 'mike@mike.mike',
+    score: 0,
+    id: 3,
+  });
+  store.put({
+    firstName: 'chiki',
+    lastName: 'bamboni',
+    email: 'me@e.mike',
+    score: 100,
+    id: 5,
+  });
+  store.put({
+    firstName: 'p',
+    lastName: 'bamboni---+',
+    email: 'e@e.mike',
+    score: 400,
+    id: 2,
+  });
+  transaction.oncomplete = () => {
+    // console.log('complete');
   };
-
-  dbReq.onerror = event => {
-    alert(`error opening database${(event.target as IDBOpenDBRequest).error}`);
+  transaction.onerror = () => {
+    // console.log('error');
+  };
+  transaction.onabort = () => {
+    // console.log('abort');
   };
 };
+/*
+setTimeout(() =>{
+  let el = document.createElement('button') as HTMLButtonElement;
+  el.textContent = 'filter';
+  const container = document.querySelector('.heading') as HTMLElement;
+
+  container.appendChild(el);
+
+  el.onclick = () => {
+    let transaction = database.transaction('players', 'readonly');
+    let store = transaction.objectStore('players');
+    let result = store.index('email').openCursor(null, 'next');
+    let resData:Array<string|number> = [];
+    result.onsuccess = ()=> {
+      let cursor = result.result;
+      if (cursor) {
+          console.log(cursor.value);
+          if(cursor.value.id){
+            resData.push(cursor.value)
+          }
+         cursor?.continue();
+      }
+}
+
+    transaction.oncomplete = () =>{
+      console.log(resData);
+    };
+
+  }
+}, 2000);
+
 */

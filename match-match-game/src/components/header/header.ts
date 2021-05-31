@@ -1,13 +1,9 @@
 import { BaseComponent } from '../base-component';
-import { Player } from '../player';
 import './header.scss';
 
 export class Header extends BaseComponent {
-  player: Player;
-
   constructor() {
     super('header', ['header']);
-    this.player = new Player();
     this.element.innerHTML = `
     <a href="#game" title="Go to game!" class="logo-link"></a>
     <ul class="nav-list">
@@ -159,10 +155,6 @@ export class Header extends BaseComponent {
       document.body.classList.remove('notScrollable');
       cover.classList.add('notVisible');
       formReg.classList.add('notVisible');
-      this.player.firstName = FirstNameField.value;
-      this.player.lastName = LastNameField.value;
-      this.player.email = EmailField.value;
-      console.log(this.player);
     });
 
     startButton.addEventListener('click', () => {
