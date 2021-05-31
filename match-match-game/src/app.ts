@@ -122,35 +122,3 @@ openRequest.onsuccess = () => {
     // console.log('abort');
   };
 };
-/*
-setTimeout(() =>{
-  let el = document.createElement('button') as HTMLButtonElement;
-  el.textContent = 'filter';
-  const container = document.querySelector('.heading') as HTMLElement;
-
-  container.appendChild(el);
-
-  el.onclick = () => {
-    let transaction = database.transaction('players', 'readonly');
-    let store = transaction.objectStore('players');
-    let result = store.index('email').openCursor(null, 'next');
-    let resData:Array<string|number> = [];
-    result.onsuccess = ()=> {
-      let cursor = result.result;
-      if (cursor) {
-          console.log(cursor.value);
-          if(cursor.value.id){
-            resData.push(cursor.value)
-          }
-         cursor?.continue();
-      }
-}
-
-    transaction.oncomplete = () =>{
-      console.log(resData);
-    };
-
-  }
-}, 2000);
-
-*/
