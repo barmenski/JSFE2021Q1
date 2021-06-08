@@ -1,4 +1,5 @@
 import { AboutGame } from './components/about-game/about-game';
+import { Database } from './components/database';
 import { Game } from './components/game/game';
 import { Header } from './components/header/header';
 import { Score } from './components/score/score';
@@ -7,7 +8,7 @@ import { Wrapper } from './components/wrapper/wrapper';
 import { ImageCategoryModel } from './models/image-category-model';
 
 export class App {
-  private readonly header: Header;
+  readonly header: Header;
 
   private readonly game: Game;
 
@@ -15,9 +16,11 @@ export class App {
 
   private readonly wrapper: Wrapper;
 
-  private readonly settings: Settings;
+  readonly settings: Settings;
 
   private readonly score: Score;
+
+  readonly database: Database;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
@@ -26,6 +29,7 @@ export class App {
     this.settings = new Settings();
     this.score = new Score();
     this.wrapper = new Wrapper();
+    this.database = new Database();
     this.rootElement = rootElement;
   }
 
@@ -35,6 +39,7 @@ export class App {
     const cat = categories[this.settings.categoryCards]; // выбор категории
     const images = cat.images.map(name => `${cat.category}/${name}`);
     const imagesSliced = images.slice(32 - this.settings.amountCards);
+
     this.game.newGame(imagesSliced);
   }
 
@@ -55,6 +60,7 @@ export class App {
     this.rootElement.appendChild(this.header.element);
     this.rootElement.appendChild(this.wrapper.element);
     this.wrapper.element.appendChild(this.aboutGame.element);
+    this.database.init('barmenski', 1);
     this.header.initButton();
     this.header.initPageLink();
     this.header.checkValid();
@@ -68,10 +74,15 @@ export class App {
   bestScorePage = () => {
     this.wrapper.element.innerHTML = '';
     this.wrapper.element.appendChild(this.score.element);
+    this.score.addLine();
   };
 }
-
-const iDB = window.indexedDB;
+/*
+window.onload = () => {
+  database;
+};
+*/
+/*const iDB = window.indexedDB;
 
 let database: IDBDatabase;
 
@@ -122,3 +133,4 @@ openRequest.onsuccess = () => {
     // console.log('abort');
   };
 };
+*/

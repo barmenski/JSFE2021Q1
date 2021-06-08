@@ -5,8 +5,9 @@ import { CardsField } from '../cards-field/cards-field';
 import { Congrat } from '../congrat/congrat';
 import { Settings } from '../settings/settings';
 import { Timer } from '../timer/timer';
+import '../header/header';
 
-const FLIP_DELAY = 1.5;
+const FLIP_DELAY = 1.0;
 let gameTimeStr: string;
 let gameTimeNum: number;
 
@@ -106,6 +107,9 @@ export class Game extends BaseComponent {
     cover.classList.remove('notVisible');
     congratPopup.classList.remove('notVisible');
     congratText.innerHTML = `Congratulations! You successfully found all matches on ${gameTimeStr} minutes. Score: ${score}`;
+    window.app.header.player.score = score;
+
+    window.app.database.write('players', window.app.header.player);
 
     congratButton.addEventListener('click', () => {
       cover.classList.add('notVisible');

@@ -1,7 +1,12 @@
 import { BaseComponent } from '../base-component';
 import './header.scss';
+import { Database } from '../database';
+import { Player } from '../player';
 
 export class Header extends BaseComponent {
+  database = new Database();
+  player: Player = new Player('', '', '', 0);
+
   constructor() {
     super('header', ['header']);
     this.element.innerHTML = `
@@ -155,6 +160,11 @@ export class Header extends BaseComponent {
       document.body.classList.remove('notScrollable');
       cover.classList.add('notVisible');
       formReg.classList.add('notVisible');
+
+      this.player.FirstName = FirstNameField.value;
+      this.player.LastName = LastNameField.value;
+      this.player.email = EmailField.value;
+      this.player.score = 0;
     });
 
     startButton.addEventListener('click', () => {

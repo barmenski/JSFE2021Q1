@@ -6,10 +6,13 @@ export class Settings extends BaseComponent {
 
   amountCards: number;
 
+  showTime: number;
+
   constructor() {
     super('div', ['settings']);
     this.categoryCards = 0;
     this.amountCards = 8;
+    this.showTime = 10;
     this.element.innerHTML = `
       <div class="game-cards">
         <div class="select-container">
@@ -29,6 +32,17 @@ export class Settings extends BaseComponent {
             <option class="select-item" value="32">8x8</option>
           </select>
         </div>
+        <div class="select-container">
+          <h1 class="heading-settings">Show time</h1>
+          <select class="show-time-select">
+            <option value="">select show time</option>
+            <option class="select-item" value="1">1</option>
+            <option class="select-item" value="5">5</option>
+            <option class="select-item" value="10">10</option>
+            <option class="select-item" value="20">20</option>
+            <option class="select-item" value="30">30</option>
+          </select>
+        </div>
       </div>
     `;
   }
@@ -39,6 +53,9 @@ export class Settings extends BaseComponent {
     ) as HTMLSelectElement;
     const selectAmountCards = document.querySelector(
       '.amount-cards-select',
+    ) as HTMLSelectElement;
+    const selectShowTime = document.querySelector(
+      '.show-time-select',
     ) as HTMLSelectElement;
 
     selectCategoryCards.addEventListener('change', event => {
@@ -53,6 +70,10 @@ export class Settings extends BaseComponent {
         (event.target as HTMLSelectElement).value,
         10,
       );
+    });
+
+    selectShowTime.addEventListener('change', event => {
+      this.showTime = parseInt((event.target as HTMLSelectElement).value, 10);
     });
   };
 }
