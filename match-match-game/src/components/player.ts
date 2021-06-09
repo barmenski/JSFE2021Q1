@@ -1,7 +1,10 @@
 export class Player {
   FirstName: string;
+
   LastName: string;
+
   email: string;
+
   score: number;
 
   constructor(

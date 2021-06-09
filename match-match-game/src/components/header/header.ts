@@ -5,6 +5,7 @@ import { Player } from '../player';
 
 export class Header extends BaseComponent {
   database = new Database();
+
   player: Player = new Player('', '', '', 0);
 
   constructor() {

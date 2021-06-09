@@ -5,7 +5,9 @@ import { Settings } from '../settings/settings';
 
 export class CardsField extends BaseComponent {
   private cards: Card[] = [];
+
   SHOW_TIME = 30;
+
   settings: Settings;
 
   show_timer: ReturnType<typeof setInterval> | null;

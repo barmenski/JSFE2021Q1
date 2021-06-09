@@ -73,64 +73,8 @@ export class App {
 
   bestScorePage = () => {
     this.wrapper.element.innerHTML = '';
+    this.score.reset();
     this.wrapper.element.appendChild(this.score.element);
     this.score.addLine();
   };
 }
-/*
-window.onload = () => {
-  database;
-};
-*/
-/*const iDB = window.indexedDB;
-
-let database: IDBDatabase;
-
-const openRequest = iDB.open('barmenski');
-openRequest.onupgradeneeded = () => {
-  database = openRequest.result;
-  const store = database.createObjectStore('players', {
-    keyPath: 'id',
-    autoIncrement: true,
-  });
-  store.createIndex('name', 'name', {});
-  store.createIndex('email', 'email', { unique: true });
-};
-
-openRequest.onsuccess = () => {
-  database = openRequest.result;
-
-  const transaction = database.transaction('players', 'readwrite');
-  const store = transaction.objectStore('players');
-  store.put({
-    firstName: 'mike',
-    lastName: 'vazovski',
-    email: 'mike@mike.mike',
-    score: 0,
-    id: 3,
-  });
-  store.put({
-    firstName: 'chiki',
-    lastName: 'bamboni',
-    email: 'me@e.mike',
-    score: 100,
-    id: 5,
-  });
-  store.put({
-    firstName: 'p',
-    lastName: 'bamboni---+',
-    email: 'e@e.mike',
-    score: 400,
-    id: 2,
-  });
-  transaction.oncomplete = () => {
-    // console.log('complete');
-  };
-  transaction.onerror = () => {
-    // console.log('error');
-  };
-  transaction.onabort = () => {
-    // console.log('abort');
-  };
-};
-*/
