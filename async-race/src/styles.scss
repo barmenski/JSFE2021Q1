@@ -31,8 +31,10 @@ html {
 }
 
 body {
-  color: white;
-  background-color: white;
+  background-color: gray;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
 }
 
 li {
@@ -44,10 +46,10 @@ a {
 }
 
 button {
-  width: 93px;
+  width: 100px;
   height: 36px;
-  margin-left: 17px;
-  background: #e3f2fd;
+  margin: 5px;
+  background: #a1bacc;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.24);
   border-radius: 4px;
 
@@ -60,5 +62,114 @@ button {
   text-align: center;
   letter-spacing: 1.25px;
   text-transform: uppercase;
-  color: #2196f3;
+  color: #0c1b27;
+  cursor: pointer;
+}
+
+.wrapper {
+  margin: 0 5%;
+}
+
+.button-container {
+  max-width: 200px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+/*
+.button-wrapper {
+  max-width: 450px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+*/
+.car-header {
+  max-width: 450px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.car-name {
+  display: block;
+}
+
+.car__btn {
+  width: 80px;
+  height: 25px;
+  background: #ccb9a1;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.car-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+}
+
+.set-auto-section {
+  max-width: 450px;
+}
+
+.control-race-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 450px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 0.5px dotted #0c1b27;
+}
+
+.page-number {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.road {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 2px dotted white;
+  position: relative;
+}
+
+.car {
+  background-image: url(/src/assets/images/auto.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 50px;
+  height: 30px;
+  left: 90%;
+  animation-duration: 2s;
+  animation-name: race;
+}
+
+@keyframes race {
+  from {
+    left: 0%;
+  }
+
+  to {
+    left: 90%;
+  }
+}
+
+.flag {
+  background-image: url(/src/assets/images/flag.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 30px;
+  margin-right: 10%;
 }

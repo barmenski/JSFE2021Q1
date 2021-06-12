@@ -1,80 +1,32 @@
-import { AboutGame } from './components/about-game/about-game';
-import { Database } from './components/database';
-import { Game } from './components/game/game';
-import { Header } from './components/header/header';
-import { Score } from './components/score/score';
-import { Settings } from './components/settings/settings';
+import { BottomButtons } from './components/bottom-buttons';
+import { ControlRace } from './components/control-race';
+import { Main } from './components/main';
+import { SetAuto } from './components/set-auto';
+import { TopButtons } from './components/top-buttons';
 import { Wrapper } from './components/wrapper/wrapper';
-import { ImageCategoryModel } from './models/image-category-model';
 
 export class App {
-  readonly header: Header;
+  wrapper = new Wrapper();
 
-  private readonly game: Game;
+  topButtons = new TopButtons();
 
-  private readonly aboutGame: AboutGame;
+  setAuto = new SetAuto();
 
-  private readonly wrapper: Wrapper;
+  controlRace = new ControlRace();
 
-  readonly settings: Settings;
+  main = new Main();
 
-  private readonly score: Score;
+  bottomButtons = new BottomButtons();
 
-  readonly database: Database;
-
-  constructor(private readonly rootElement: HTMLElement) {
-    this.header = new Header();
-    this.game = new Game();
-    this.aboutGame = new AboutGame();
-    this.settings = new Settings();
-    this.score = new Score();
-    this.wrapper = new Wrapper();
-    this.database = new Database();
-    this.rootElement = rootElement;
-  }
-
-  async start() {
-    const res = await fetch('./images.json');
-    const categories: ImageCategoryModel[] = await res.json();
-    const cat = categories[this.settings.categoryCards]; // выбор категории
-    const images = cat.images.map(name => `${cat.category}/${name}`);
-    const imagesSliced = images.slice(32 - this.settings.amountCards);
-
-    this.game.newGame(imagesSliced);
-  }
-
-  gamePage = () => {
-    this.wrapper.element.innerHTML = '';
-    window.app.start();
-    this.wrapper.element.appendChild(this.game.element);
-  };
-
-  settingsPage = () => {
-    this.wrapper.element.innerHTML = '';
-    this.wrapper.element.appendChild(this.settings.element);
-    this.settings.initSettings();
-  };
+  constructor(private readonly rootElement: HTMLElement) {}
 
   initPage = () => {
     this.rootElement.innerHTML = '';
-    this.rootElement.appendChild(this.header.element);
     this.rootElement.appendChild(this.wrapper.element);
-    this.wrapper.element.appendChild(this.aboutGame.element);
-    this.database.init('barmenski', 1);
-    this.header.initButton();
-    this.header.initPageLink();
-    this.header.checkValid();
-  };
-
-  aboutGamePage = () => {
-    this.wrapper.element.innerHTML = '';
-    this.wrapper.element.appendChild(this.aboutGame.element);
-  };
-
-  bestScorePage = () => {
-    this.wrapper.element.innerHTML = '';
-    this.score.reset();
-    this.wrapper.element.appendChild(this.score.element);
-    this.score.addLine();
+    this.wrapper.element.appendChild(this.topButtons.element);
+    this.wrapper.element.appendChild(this.setAuto.element);
+    this.wrapper.element.appendChild(this.controlRace.element);
+    this.wrapper.element.appendChild(this.main.element);
+    this.wrapper.element.appendChild(this.bottomButtons.element);
   };
 }
