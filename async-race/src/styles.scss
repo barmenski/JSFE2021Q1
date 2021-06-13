@@ -139,20 +139,22 @@ button {
   height: 30px;
   display: flex;
   justify-content: flex-end;
-  border-bottom: 2px dotted white;
+  border-bottom: 2px dotted #000000;
   position: relative;
 }
 
 .car {
-  background-image: url(/src/assets/images/auto.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
   position: absolute;
   width: 50px;
   height: 30px;
   left: 90%;
-  animation-duration: 2s;
+  animation-duration: attr(data-duration) s;
   animation-name: race;
+}
+
+.car-svg {
+  width: 50px;
+  height: 30px;
 }
 
 @keyframes race {

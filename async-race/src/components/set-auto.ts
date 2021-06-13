@@ -1,9 +1,6 @@
 import { BaseComponent } from './base-component';
 
 export class SetAuto extends BaseComponent {
-  // createNameInput: BaseComponent;
-  // createColorInput: BaseComponent;
-
   createSection: HTMLElement;
 
   createNameInput: HTMLInputElement;
@@ -20,6 +17,12 @@ export class SetAuto extends BaseComponent {
 
   updateBtn: BaseComponent;
 
+  carName: string = 'ZAZ';
+
+  carColor: string = 'black';
+
+  carId: string = '';
+
   constructor() {
     super('div', ['set-auto-section']);
     this.createSection = document.createElement('div');
@@ -29,17 +32,23 @@ export class SetAuto extends BaseComponent {
     this.createNameInput = document.createElement('input');
     this.createNameInput.className = 'create-name__input';
     this.createNameInput.type = 'text';
+    this.createNameInput.addEventListener('change', () => {
+      this.carName = this.createNameInput.value;
+    });
     this.createSection.append(this.createNameInput);
 
     this.createColorInput = document.createElement('input');
     this.createColorInput.className = 'create-color__input';
     this.createColorInput.type = 'color';
+    this.createColorInput.addEventListener('change', () => {
+      this.carColor = this.createColorInput.value;
+    });
     this.createSection.append(this.createColorInput);
 
     this.createBtn = new BaseComponent('button', ['create__btn']);
     this.createBtn.element.textContent = `CREATE`;
     this.createBtn.element.addEventListener('click', () => {
-      alert('Create car!');
+      this.createAuto(this.carName, this.carColor, this.carId);
     });
     this.createSection.appendChild(this.createBtn.element);
 
@@ -64,4 +73,26 @@ export class SetAuto extends BaseComponent {
     });
     this.updateSection.appendChild(this.updateBtn.element);
   }
+
+  createAuto = async (carName: string, carColor: string, carId: string) => {
+    let Car = {
+      name: carName,
+      color: carColor,
+    };
+
+    const response = await fetch(
+      `${window.app.baseUrl}${window.app.path.garage}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Car),
+      },
+    );
+    const newCar = await response.json();
+    window.app.askServer(window.app.currentPage, window.app.currentLimit);
+    window.app.main.addTrack(carName, carColor, carId);
+    return newCar;
+  };
 }

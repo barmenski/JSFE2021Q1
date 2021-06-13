@@ -11,7 +11,8 @@ export class TopButtons extends BaseComponent {
     this.toGarageBtn = new BaseComponent('button', ['to-garage__btn']);
     this.toGarageBtn.element.textContent = `TO GARAGE`;
     this.toGarageBtn.element.addEventListener('click', () => {
-      alert('Go to garage!');
+      console.log(window.app.currentPage, window.app.currentLimit);
+      window.app.askServer(window.app.currentPage, window.app.currentLimit);
     });
     this.element.appendChild(this.toGarageBtn.element);
 
