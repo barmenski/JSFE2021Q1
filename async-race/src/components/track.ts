@@ -26,11 +26,15 @@ export class Track extends BaseComponent {
 
   flag: BaseComponent;
 
-  name: string = '';
+  name = '';
 
-  color: string = '';
+  color = '';
 
-  id: string = '';
+  id = '';
+
+  requestId = 0;
+
+  left = 0;
 
   constructor(carName: string, carColor: string, carId: string) {
     super('div', ['track']);
@@ -50,7 +54,7 @@ export class Track extends BaseComponent {
     ]);
     this.selectBtn.element.textContent = `SELECT`;
     this.selectBtn.element.addEventListener('click', () => {
-      alert('Select!');
+      window.app.setAuto.updateAuto(carName, carColor, carId);
     });
     this.buttonWrapperTop.element.appendChild(this.selectBtn.element);
 
@@ -91,7 +95,7 @@ export class Track extends BaseComponent {
     this.road = new BaseComponent('div', ['road']);
     this.element.appendChild(this.road.element);
 
-    this.car = new Car(carColor);
+    this.car = new Car(carColor, carId);
     this.road.element.appendChild(this.car.element);
 
     this.flag = new BaseComponent('div', ['flag']);
@@ -106,7 +110,7 @@ export class Track extends BaseComponent {
       },
     );
     const newCar = await response.json();
-    let trackSelect = document.querySelector(
+    const trackSelect = document.querySelector(
       `[data-id="${id}"]`,
     ) as HTMLElement;
     trackSelect.remove();
@@ -118,15 +122,17 @@ export class Track extends BaseComponent {
       `${window.app.baseUrl}${window.app.path.engine}?id=${id}&status=started`,
     );
     const data = await response.json();
-
     console.log('startEngine', data);
-    let trackSelect = document.querySelector(
+    const trackSelect = document.querySelector(
       `[data-id="${id}"]`,
     ) as HTMLElement;
     trackSelect.dataset.velocity = data.velocity;
-    trackSelect.dataset.distance = data.distance;
-    trackSelect.dataset.duration = String(data.distance / data.velocity);
+    const widthScreen = window.innerWidth;
+    const duration = Math.round((widthScreen / data.velocity) * 13);
+    trackSelect.dataset.duration = String(duration);
+    this.animation(id, duration, data.velocity);
     if (data) return this.statusDrive(id);
+    return data;
   };
 
   stopEngine = async (id: string) => {
@@ -135,6 +141,12 @@ export class Track extends BaseComponent {
     );
     const data = await response.json();
     console.log('stopEngin', data);
+    const CarSelect = document.querySelector(
+      `[data-car-id="${id}"]`,
+    ) as HTMLElement;
+    cancelAnimationFrame(this.requestId);
+    this.left = 0;
+    CarSelect.style.left = `${this.left}px`;
   };
 
   statusDrive = async (id: string) => {
@@ -142,6 +154,21 @@ export class Track extends BaseComponent {
       `${window.app.baseUrl}${window.app.path.engine}?id=${id}&status=drive`,
     );
     const data = await response.json();
-    console.log('statusDrive', data);
+    console.log('statusDrive', data.success);
+    return data;
+  };
+
+  animation = (id: string, duration: number, velocity: number) => {
+    const CarSelect = document.querySelector(
+      `[data-car-id="${id}"]`,
+    ) as HTMLElement;
+    this.left += velocity / 16;
+    CarSelect.style.left = `${this.left}px`;
+    if (duration > 0) {
+      this.requestId = requestAnimationFrame(() => {
+        this.animation(id, duration - 1, velocity);
+      });
+    } else return cancelAnimationFrame(this.requestId);
+    return duration;
   };
 }

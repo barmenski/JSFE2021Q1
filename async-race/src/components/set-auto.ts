@@ -17,11 +17,11 @@ export class SetAuto extends BaseComponent {
 
   updateBtn: BaseComponent;
 
-  carName: string = 'ZAZ';
+  carName = 'ZAZ';
 
-  carColor: string = 'black';
+  carColor = 'black';
 
-  carId: string = '';
+  carId = '';
 
   constructor() {
     super('div', ['set-auto-section']);
@@ -59,23 +59,29 @@ export class SetAuto extends BaseComponent {
     this.updateNameInput = document.createElement('input');
     this.updateNameInput.className = 'update-name__input';
     this.updateNameInput.type = 'text';
+    this.updateNameInput.addEventListener('change', () => {
+      this.carName = this.updateNameInput.value;
+    });
     this.updateSection.append(this.updateNameInput);
 
     this.updateColorInput = document.createElement('input');
     this.updateColorInput.className = 'update-color__input';
     this.updateColorInput.type = 'color';
+    this.updateColorInput.addEventListener('change', () => {
+      this.carColor = this.updateColorInput.value;
+    });
     this.updateSection.append(this.updateColorInput);
 
     this.updateBtn = new BaseComponent('button', ['update__btn']);
     this.updateBtn.element.textContent = `UPDATE`;
     this.updateBtn.element.addEventListener('click', () => {
-      alert('Update car!');
+      this.updateAuto(this.carName, this.carColor, this.carId);
     });
     this.updateSection.appendChild(this.updateBtn.element);
   }
 
   createAuto = async (carName: string, carColor: string, carId: string) => {
-    let Car = {
+    const Car = {
       name: carName,
       color: carColor,
     };
@@ -94,5 +100,27 @@ export class SetAuto extends BaseComponent {
     window.app.askServer(window.app.currentPage, window.app.currentLimit);
     window.app.main.addTrack(carName, carColor, carId);
     return newCar;
+  };
+
+  updateAuto = async (carName: string, carColor: string, carId: string) => {
+    const Car = {
+      name: carName,
+      color: carColor,
+    };
+    console.log(carId);
+    const response = await fetch(
+      `${window.app.baseUrl}${window.app.path.garage}${carId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Car),
+      },
+    );
+    const data = await response.json();
+    window.app.askServer(window.app.currentPage, window.app.currentLimit);
+    window.app.main.addTracks(data);
+    return data;
   };
 }

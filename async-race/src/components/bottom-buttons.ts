@@ -11,14 +11,16 @@ export class BottomButtons extends BaseComponent {
     this.prevBtn = new BaseComponent('button', ['prev__btn']);
     this.prevBtn.element.textContent = `Prev.`;
     this.prevBtn.element.addEventListener('click', () => {
-      alert('Prev!');
+      window.app.currentPage--;
+      window.app.askServer(window.app.currentPage, window.app.currentLimit);
     });
     this.element.appendChild(this.prevBtn.element);
 
     this.nextBtn = new BaseComponent('button', ['next__btn']);
     this.nextBtn.element.textContent = `Next`;
     this.nextBtn.element.addEventListener('click', () => {
-      alert('Next!');
+      window.app.currentPage++;
+      window.app.askServer(window.app.currentPage, window.app.currentLimit);
     });
     this.element.appendChild(this.nextBtn.element);
   }

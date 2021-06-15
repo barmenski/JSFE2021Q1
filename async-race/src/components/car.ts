@@ -1,7 +1,7 @@
 import { BaseComponent } from './base-component';
 
 export class Car extends BaseComponent {
-  constructor(carColor: string) {
+  constructor(carColor: string, carId: string) {
     super('div', ['car']);
     this.element.innerHTML = `
     <?xml version="1.0" standalone="no"?>
@@ -10,9 +10,7 @@ export class Car extends BaseComponent {
     <svg class="car-svg" version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="50px" height="30px" viewBox="0 0 1280.000000 640.000000"
  preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.15, written by Peter Selinger 2001-2017
-</metadata>
+
 <g transform="translate(0.000000,640.000000) scale(0.100000,-0.100000)"
 fill="${carColor}" stroke="black" stroke-width="10.5">
 <path d="M3525 5341 c-72 -18 -79 -28 -90 -121 -4 -30 -11 -62 -16 -71 -4 -9
@@ -103,5 +101,6 @@ l26 0 -7 123 c-10 179 -15 207 -36 207 -10 0 -63 -48 -119 -107z"/>
 </g>
 </svg>
     `;
+    this.element.dataset.carId = carId;
   }
 }

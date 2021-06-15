@@ -147,16 +147,16 @@ button {
   position: absolute;
   width: 50px;
   height: 30px;
-  left: 90%;
-  animation-duration: attr(data-duration) s;
-  animation-name: race;
+  left: 0%;
+  //animation-duration: attr(data-duration) s;
+  //animation-name: race;
 }
 
 .car-svg {
   width: 50px;
   height: 30px;
 }
-
+/*
 @keyframes race {
   from {
     left: 0%;
@@ -166,7 +166,7 @@ button {
     left: 90%;
   }
 }
-
+*/
 .flag {
   background-image: url(/src/assets/images/flag.svg);
   background-size: contain;

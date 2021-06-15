@@ -14,11 +14,11 @@ export class App {
     engine: '/engine/',
   };
 
-  currentPage: number = 1;
+  currentPage = 1;
 
-  currentLimit: number = 7;
+  currentLimit = 7;
 
-  totalCars: string = '';
+  totalCars = '';
 
   wrapper = new Wrapper();
 
@@ -43,7 +43,6 @@ export class App {
     this.wrapper.element.appendChild(this.controlRace.element);
     this.wrapper.element.appendChild(this.main.element);
     this.wrapper.element.appendChild(this.bottomButtons.element);
-    //this.askServer(this.currentPage, this.currentLimit);
   };
 
   askServer = async (page: number, limit: number) => {
@@ -51,17 +50,17 @@ export class App {
       `${window.app.baseUrl}${window.app.path.garage}?_page=${page}&_limit=${limit}`,
     );
     const data = await response.json();
-    //console.log('response', response.headers.get('X-Total-Count'));
-    let totalCars = response.headers.get('X-Total-Count') as string;
+    const totalCars = response.headers.get('X-Total-Count') as string;
     window.app.main.placeName.element.textContent = `Garage (${totalCars})`;
+    window.app.main.pageNumber.element.textContent = `Page #${this.currentPage}`;
     window.app.totalCars = totalCars;
     window.app.main.addTracks(data);
   };
-
+  /*
   requestServer = async (param: string) => {
     const response = await fetch(
       `${window.app.baseUrl}${window.app.path.engine}?${param}`,
     );
     const data = await response.json();
-  };
+  }; */
 }

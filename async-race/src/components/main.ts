@@ -14,8 +14,6 @@ export class Main extends BaseComponent {
     super('main', ['main']);
 
     this.placeName = new BaseComponent('h2', ['place-name']);
-    console.log(this);
-    //console.log(window.app.totalCars);
     this.placeName.element.textContent = `Garage ()`;
     this.element.appendChild(this.placeName.element);
 
