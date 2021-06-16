@@ -12,6 +12,6 @@ if (!appElement) throw Error('<body> element not found');
 window.app = new App(appElement);
 window.app.initPage();
 
-/*500
+/* 500
 race
-congrat*/
+congrat */

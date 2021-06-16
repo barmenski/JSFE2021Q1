@@ -14,6 +14,7 @@ export class ControlRace extends BaseComponent {
     this.startAllBtn.element.textContent = `RACE`;
     this.startAllBtn.element.addEventListener('click', () => {
       alert('Start All!');
+      this.startAll();
     });
     this.element.appendChild(this.startAllBtn.element);
 
@@ -31,4 +32,13 @@ export class ControlRace extends BaseComponent {
     });
     this.element.appendChild(this.generateCarsBtn.element);
   }
+
+  startAll = () => {
+    // console.log(window.app.main.track);
+
+    const TRACKS = document.querySelectorAll('.car');
+    // for (let item of TRACKS) {
+    console.log(TRACKS);
+    // }
+  };
 }

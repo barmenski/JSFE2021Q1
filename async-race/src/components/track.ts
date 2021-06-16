@@ -1,5 +1,6 @@
 import { BaseComponent } from './base-component';
 import { Car } from './car';
+import { FinishRegistrator } from './finish-registrator/finish-registrator';
 
 export class Track extends BaseComponent {
   carHeader: BaseComponent;
@@ -36,6 +37,10 @@ export class Track extends BaseComponent {
 
   left = 0;
 
+  duration = 0;
+
+  velocity = 0;
+
   constructor(carName: string, carColor: string, carId: string) {
     super('div', ['track']);
     this.element.dataset.id = carId;
@@ -54,7 +59,11 @@ export class Track extends BaseComponent {
     ]);
     this.selectBtn.element.textContent = `SELECT`;
     this.selectBtn.element.addEventListener('click', () => {
-      window.app.setAuto.updateAuto(carName, carColor, carId);
+      window.app.setAuto.updateColorInput.value = carColor;
+      window.app.setAuto.updateNameInput.value = carName;
+      window.app.setAuto.carColorUpdate = carColor;
+      window.app.setAuto.carNameUpdate = carName;
+      window.app.setAuto.carIdUpdate = carId;
     });
     this.buttonWrapperTop.element.appendChild(this.selectBtn.element);
 
@@ -90,6 +99,7 @@ export class Track extends BaseComponent {
 
     this.carName = new BaseComponent('h4', ['car-name']);
     this.carName.element.textContent = `${carName}`;
+    this.name = carName;
     this.carHeader.element.appendChild(this.carName.element);
 
     this.road = new BaseComponent('div', ['road']);
@@ -126,11 +136,13 @@ export class Track extends BaseComponent {
     const trackSelect = document.querySelector(
       `[data-id="${id}"]`,
     ) as HTMLElement;
-    trackSelect.dataset.velocity = data.velocity;
+    // trackSelect.dataset.velocity = data.velocity;
+
     const widthScreen = window.innerWidth;
-    const duration = Math.round((widthScreen / data.velocity) * 13);
-    trackSelect.dataset.duration = String(duration);
-    this.animation(id, duration, data.velocity);
+    this.velocity = data.velocity;
+    this.duration = Math.round((widthScreen / data.velocity) * 13);
+    // trackSelect.dataset.duration = String(duration);
+    this.animation(id, this.duration, this.velocity);
     if (data) return this.statusDrive(id);
     return data;
   };
@@ -153,22 +165,31 @@ export class Track extends BaseComponent {
     const response = await fetch(
       `${window.app.baseUrl}${window.app.path.engine}?id=${id}&status=drive`,
     );
-    const data = await response.json();
-    console.log('statusDrive', data.success);
-    return data;
+
+    try {
+      const data = await response.json();
+      console.log('statusDrive', data.success);
+    } catch (e) {
+      cancelAnimationFrame(this.requestId);
+    }
+    return id;
   };
 
   animation = (id: string, duration: number, velocity: number) => {
     const CarSelect = document.querySelector(
       `[data-car-id="${id}"]`,
     ) as HTMLElement;
+    const durationShow = duration;
     this.left += velocity / 16;
     CarSelect.style.left = `${this.left}px`;
     if (duration > 0) {
       this.requestId = requestAnimationFrame(() => {
         this.animation(id, duration - 1, velocity);
       });
-    } else return cancelAnimationFrame(this.requestId);
+    } else {
+      window.app.main.finishRegistrator.init(this.name, this.duration);
+      cancelAnimationFrame(this.requestId);
+    }
     return duration;
   };
 }

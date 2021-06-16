@@ -23,6 +23,12 @@ export class SetAuto extends BaseComponent {
 
   carId = '';
 
+  carNameUpdate = 'ZAZ';
+
+  carColorUpdate = 'black';
+
+  carIdUpdate = '';
+
   constructor() {
     super('div', ['set-auto-section']);
     this.createSection = document.createElement('div');
@@ -60,7 +66,7 @@ export class SetAuto extends BaseComponent {
     this.updateNameInput.className = 'update-name__input';
     this.updateNameInput.type = 'text';
     this.updateNameInput.addEventListener('change', () => {
-      this.carName = this.updateNameInput.value;
+      this.carNameUpdate = this.updateNameInput.value;
     });
     this.updateSection.append(this.updateNameInput);
 
@@ -68,14 +74,15 @@ export class SetAuto extends BaseComponent {
     this.updateColorInput.className = 'update-color__input';
     this.updateColorInput.type = 'color';
     this.updateColorInput.addEventListener('change', () => {
-      this.carColor = this.updateColorInput.value;
+      this.carColorUpdate = this.updateColorInput.value;
     });
     this.updateSection.append(this.updateColorInput);
 
     this.updateBtn = new BaseComponent('button', ['update__btn']);
     this.updateBtn.element.textContent = `UPDATE`;
     this.updateBtn.element.addEventListener('click', () => {
-      this.updateAuto(this.carName, this.carColor, this.carId);
+      console.log(this.carNameUpdate, this.carColorUpdate, this.carIdUpdate);
+      this.updateAuto();
     });
     this.updateSection.appendChild(this.updateBtn.element);
   }
@@ -102,14 +109,14 @@ export class SetAuto extends BaseComponent {
     return newCar;
   };
 
-  updateAuto = async (carName: string, carColor: string, carId: string) => {
+  updateAuto = async () => {
     const Car = {
-      name: carName,
-      color: carColor,
+      name: this.carNameUpdate,
+      color: this.carColorUpdate,
     };
-    console.log(carId);
+    console.log(this.carId);
     const response = await fetch(
-      `${window.app.baseUrl}${window.app.path.garage}${carId}`,
+      `${window.app.baseUrl}${window.app.path.garage}${this.carIdUpdate}`,
       {
         method: 'PUT',
         headers: {

@@ -1,4 +1,5 @@
 import { BaseComponent } from './base-component';
+import { FinishRegistrator } from './finish-registrator/finish-registrator';
 import { Track } from './track';
 
 export class Main extends BaseComponent {
@@ -9,6 +10,8 @@ export class Main extends BaseComponent {
   trackContainer: BaseComponent;
 
   track?: Track;
+
+  finishRegistrator: FinishRegistrator;
 
   constructor() {
     super('main', ['main']);
@@ -23,6 +26,9 @@ export class Main extends BaseComponent {
 
     this.trackContainer = new BaseComponent('div', ['track-container']);
     this.element.appendChild(this.trackContainer.element);
+
+    this.finishRegistrator = new FinishRegistrator();
+    this.element.appendChild(this.finishRegistrator.element);
   }
 
   addTracks = (data: Array<Track>) => {
