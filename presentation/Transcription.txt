@@ -1,0 +1,9 @@
+1slide: 
+WebRTC (Web Real-Time Communication) is a free, open-source project providing web browsers and mobile applications with real-time communication (RTC) via simple application programming interfaces (APIs)
+
+4slide: 
+Major components of WebRTC include several JavaScript APIs:
+
+getUserMedia acquires the audio and video media (e.g., by accessing a device's camera and microphone).[20]
+RTCPeerConnection enables audio and video communication between peers. It performs signal processing, codec handling, peer-to-peer communication, security, and bandwidth management.[21]
+RTCDataChannel allows bidirectional communication of arbitrary data between peers. It uses the same API as WebSockets and has very low latency
