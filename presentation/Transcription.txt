@@ -9,13 +9,28 @@ In January 2021, the WebRTC 1.0 specification transitioned from Candidate Recomm
 
 4slide: 
 Major components of WebRTC include several JavaScript APIs:
-
 - getUserMedia: acquires the audio and video media (for example, by accessing a device's camera and microphone).
 - RTCPeerConnection: enables audio and video communication between peers. It performs signal processing, codec handling, peer-to-peer communication, security, and bandwidth management.
 - RTCDataChannel: allows bidirectional communication of arbitrary data between peers. It uses the same API as WebSockets and has very low latency.
 
 5slide:
-WebRTC uses RTCPeerConnection to communicate streaming data between browsers, but also needs a mechanism to coordinate communication and to send control messages, a process known as signaling. Signaling methods and protocols are not specified by WebRTC. There are alternative signaling servers. Each of them can uses with WebRTC.
+WebRTC uses RTCPeerConnection to communicate streaming data between browsers, but also needs a mechanism to coordinate communication and to send control messages, a process known as signaling. Signaling methods and protocols are not specified by WebRTC. There are several signaling servers. Each of them can be used with WebRTC.
+The WebRTC specification includes APIs for communicating with an ICE (Internet Connectivity Establishment) Server.
 
 6slide:
-WebRTC is designed to work peer-to-peer, so users can connect by the most direct route possible. However, WebRTC is built to cope with real-world networking: client applications need to traverse NAT gateways and firewalls, and peer to peer networking needs fallbacks in case direct connection fails.
+WebRTC is designed to work peer-to-peer, so users can connect by the most direct route possible. However, WebRTC is built to cope with real-world networking: client applications need to traverse NAT gateways and firewalls, and peer to peer networking needs fallbacks in case direct connection fails. WebRTC APIs use STUN servers to get the IP address of your computer, and TURN servers to function as relay servers in case peer-to-peer communication fails.
+
+7slide:
+If there were more than two participants, and it is necessary to transfer data from one participant to several other participants at once, then server-side WebRTC is used.
+
+8slide:
+1) Upload speed requirements for each participant in the MESH scheme increase with the growth of the group.
+2) While using MESH type of connection each participant is faced with necessity of multiply video compression, which cause high load of CPU.
+
+Because of these two key points, the MESH scheme becomes poorly implemented with an increasing number of participants and the SFU scheme has to be used.
+
+9slide:
+The diagram demonstrates that with 1000 simultaneous web players from one IP camera, the processor load is 5% for the RTMP protocol, and 75% for the WebRTC protocol, that is WebRTC is more than 10 times more resource intensive than RTMP.
+
+10slide:
+As you can see, the creation of WebRTC server has its own characteristics. Therefore, you can use open source solutions or buy a license for a finished product.

@@ -1,82 +1,120 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>Presentation: WebRTC</title>
-        <link rel="icon" type="image/png" href="dist/images/favicon.svg">
-        <link rel="stylesheet" href="dist/reset.css">
-        <link rel="stylesheet" href="dist/reveal.css">
-        <link rel="stylesheet" href="dist/theme/night.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <!-- Theme used for syntax highlighted code -->
-        <link rel="stylesheet" href="plugin/highlight/monokai.css">
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section  data-transition="fade" data-background-color="white">
-                    <img class="r-stretch" src="dist/images/WebRTC_Logo.svg">
-                </section>
-                <section>WebRTC (Web Real-Time Communication) is an open source project to enable realtime communication of audio, video and data in Web and native apps.</section>
-                <section>In January 2021, the WebRTC 1.0 specification transitioned from Candidate Recommendation to Recommendation.</section>
+    <title>Presentation: WebRTC</title>
+    <link rel="icon" type="image/png" href="dist/images/favicon.svg">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/night.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-transition="fade" data-background-color="white">
+                <img class="r-stretch" src="dist/images/WebRTC_Logo.svg">
+            </section>
+            <section>WebRTC (Web Real-Time Communication) is an open source project to enable realtime communication of
+                audio, video and data in Web and native apps.</section>
+            <section>In January 2021, the WebRTC 1.0 specification transitioned from Candidate Recommendation to
+                Recommendation.</section>
+            <section>
+                <h3>WebRTC has several JavaScript APIs:</h3>
+                <ul>
+                    <li class="fragment fade-up"><a
+                            href="https://webrtc.github.io/samples/src/content/getusermedia/gum/">getUserMedia()</a>:
+                        capture audio and video.</li>
+                    <li class="fragment fade-up"><a
+                            href="https://webrtc.github.io/samples/src/content/peerconnection/pc1/">RTCPeerConnection</a>:
+                        stream audio and video between users.</li>
+                    <li class="fragment fade-up"><a
+                            href="https://webrtc.github.io/samples/src/content/datachannel/basic/">RTCDataChannel</a>:
+                        stream data between users.</li>
+                </ul>
+            </section>
+            <section>
+                <section>The WebRTC specification includes APIs for communicating with an ICE (Internet Connectivity
+                    Establishment) Server, but the signaling component is <b>not</b> part of it.</section>
                 <section>
-                    <h3>WebRTC has several JavaScript APIs:</h3>
+                    <h4>Signaling servers:</h4>
                     <ul>
-                        <li class="fragment fade-up"><a href="https://webrtc.github.io/samples/src/content/getusermedia/gum/">getUserMedia()</a>: capture audio and video.</li>
-                        <li class="fragment fade-up"><a href="https://webrtc.github.io/samples/src/content/peerconnection/pc1/">RTCPeerConnection</a>: stream audio and video between users.</li>
-                        <li class="fragment fade-up"><a href="https://webrtc.github.io/samples/src/content/datachannel/basic/">RTCDataChannel</a>: stream data between users.</li>
+                        <li><a
+                                href="https://github.com/muaz-khan/Reliable-Signaler/tree/master/rtcmulticonnection-client">RTCMultiConnection.js</a>
+                        </li>
+                        <li><a
+                                href="https://github.com/muaz-khan/Reliable-Signaler/tree/master/datachannel-client">DataChanel.js</a>
+                        </li>
+                        <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/socketio-over-nodejs">Socket.io
+                                over Node.js</a></li>
+                        <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket-over-nodejs">WebSocket
+                                over Node.js</a></li>
+                        <li><a href="https://github.com/muaz-khan/WebSync-Signaling">WebSync for Signaling - useful only
+                                for .NET developers</a></li>
+                        <li><a href="https://github.com/muaz-khan/XHR-Signaling">XHR/XMLHttpRequest Signaling r-stretch
+                                useful for both .NET and PHP developers!</a></li>
+                        <li><a href="https://github.com/muaz-khan/RTCMultiConnection">RTCMultiConnection </a></li>
                     </ul>
                 </section>
-                <section>
-                    <section>The WebRTC specification includes APIs for communicating with an ICE (Internet Connectivity Establishment) Server, but the signaling component is <b>not</b> part of it.</section>
-                    <section>
-                        <h4>Signaling servers:</h4>
-                        <ul>
-                            <li><a href="https://github.com/muaz-khan/Reliable-Signaler/tree/master/rtcmulticonnection-client">RTCMultiConnection.js</a></li>
-                            <li><a href="https://github.com/muaz-khan/Reliable-Signaler/tree/master/datachannel-client">DataChanel.js</a></li>
-                            <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/socketio-over-nodejs">Socket.io over Node.js</a></li>
-                            <li><a href="https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket-over-nodejs">WebSocket over Node.js</a></li>
-                            <li><a href="https://github.com/muaz-khan/WebSync-Signaling">WebSync for Signaling - useful only for .NET developers</a></li>
-                            <li><a href="https://github.com/muaz-khan/XHR-Signaling">XHR/XMLHttpRequest Signaling r-stretch useful for both .NET and PHP developers!</a></li>
-                            <li><a href="https://github.com/muaz-khan/RTCMultiConnection">RTCMultiConnection </a></li>
-                        </ul>
-                    </section>
-                </section>
-                <section>
-                    <p>WebRTC APIs use STUN servers to get the IP address of your computer, and TURN servers to function as relay servers in case peer-to-peer communication fails.</p>
-                    <img class="r-stretch" src="dist/images/connection2.png">
-                </section>
-                <section>
-                    <p>WebRTC can be use in creating video-server.</p>
-                    <img class="fragment fade"  src="dist/images/server-connection.png">
-                </section>
-                <section>
-                    <h4>SFU (Selective Forwarding Unit) is more effective type of connection if amount of participators is increases.</h4>
-                    <p>1) In MESH type of connection if amount of participators is increased, the amount of streams for each participant is increases too.</p>
-                    <p>2) In MESH type of connection each participant should be make compression of video many times and it is high load for CPU.</p>
-                </section>
-                <section>
-                    <h4>WebRTC is high-load protocol.</h4>
-                    <img class="r-stretch"  src="dist/images/cpu-load.png">
-                </section>
-            </div>
+            </section>
+            <section>
+                <p>WebRTC APIs use STUN servers to get the IP address of your computer, and TURN servers to function as
+                    relay servers in case peer-to-peer communication fails.</p>
+                <img class="r-stretch" src="dist/images/connection2.png">
+            </section>
+            <section>
+                <p>WebRTC can be use in creating video-server.</p>
+                <img class="fragment fade" src="dist/images/server-connection.png">
+            </section>
+            <section>
+                <h4>SFU (Selective Forwarding Unit) is more effective type of connection if amount of participators is
+                    increases.</h4>
+                <p>1) Upload speed requirements for each participant in the MESH scheme increase with the growth of the
+                    group</p>
+                <p>2) While using MESH type of connection each participant is faced with necessity of multiply video
+                    compression, which cause high load of CPU.</p>
+            </section>
+            <section>
+                <h4>WebRTC is high-load protocol.</h4>
+                <img class="r-stretch" src="dist/images/cpu-load.png">
+            </section>
+            <section>
+                <h4>Open-source WebRTC-servers:</h4>
+                <ul>
+                    <li><a href="https://antmedia.io/">Ant Media Server</a></li>
+                    <li><a href="https://www.kurento.org/">Kurento</a></li>
+                    <li><a href="https://janus.conf.meetecho.com/">Janus</a></li>
+                    <li><a href="https://jitsi.org/">Jitsi</a></li>
+                </ul>
+                <h4>Licensed WebRTC-servers:</h4>
+                <ul>
+                    <li><a href="https://www.red5pro.com/">Red5 Pro</a></li>
+                    <li><a href="https://flashphoner.com/">Flashphoner</a></li>
+                    <li><a href="http://umediaserver.net/">Unreal Media Server</a></li>
+                </ul>
+            </section>
         </div>
+    </div>
 
-        <script src="dist/reveal.js"></script>
-        <script src="plugin/notes/notes.js"></script>
-        <script src="plugin/markdown/markdown.js"></script>
-        <script src="plugin/highlight/highlight.js"></script>
-        <script>
-            // More info about initialization & config:
-            // - https://revealjs.com/initialization/
-            // - https://revealjs.com/config/
-            Reveal.initialize({
-                hash: true,
-                slideNumber: true,
-                // Learn about plugins: https://revealjs.com/plugins/
-                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-            });
-        </script>
-    </body>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+    </script>
+</body>
