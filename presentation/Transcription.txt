@@ -1,9 +1,21 @@
-1slide: 
-WebRTC (Web Real-Time Communication) is a free, open-source project providing web browsers and mobile applications with real-time communication (RTC) via simple application programming interfaces (APIs)
+1slide:Hello. My name is Alexandr Bondar. I want to tell about WebRTC.
+
+2slide: 
+WebRTC (Web Real-Time Communication) is a free, open-source project providing web browsers and mobile applications with real-time communication via simple application programming interfaces (APIs).
+
+3slide:
+History of WebRTC started in 2010, when Google bought Global IP Solutions, a VoIP and videoconferencing software company that had developed many components required for RTC. Later Google released an open-source project for browser-based real-time communication known as WebRTC.
+In January 2021, the WebRTC 1.0 specification transitioned from Candidate Recommendation to Recommendation.
 
 4slide: 
 Major components of WebRTC include several JavaScript APIs:
 
-getUserMedia acquires the audio and video media (e.g., by accessing a device's camera and microphone).[20]
-RTCPeerConnection enables audio and video communication between peers. It performs signal processing, codec handling, peer-to-peer communication, security, and bandwidth management.[21]
-RTCDataChannel allows bidirectional communication of arbitrary data between peers. It uses the same API as WebSockets and has very low latency
+- getUserMedia: acquires the audio and video media (for example, by accessing a device's camera and microphone).
+- RTCPeerConnection: enables audio and video communication between peers. It performs signal processing, codec handling, peer-to-peer communication, security, and bandwidth management.
+- RTCDataChannel: allows bidirectional communication of arbitrary data between peers. It uses the same API as WebSockets and has very low latency.
+
+5slide:
+WebRTC uses RTCPeerConnection to communicate streaming data between browsers, but also needs a mechanism to coordinate communication and to send control messages, a process known as signaling. Signaling methods and protocols are not specified by WebRTC. There are alternative signaling servers. Each of them can uses with WebRTC.
+
+6slide:
+WebRTC is designed to work peer-to-peer, so users can connect by the most direct route possible. However, WebRTC is built to cope with real-world networking: client applications need to traverse NAT gateways and firewalls, and peer to peer networking needs fallbacks in case direct connection fails.
