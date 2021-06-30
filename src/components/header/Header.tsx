@@ -1,5 +1,6 @@
 import { Component } from "react";
-import "./Header.css"
+import "./Header.css";
+import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
     render() {
@@ -11,15 +12,15 @@ class Header extends Component {
                 <span></span>
                 <span></span>
                 <ul className="menu">
-                <a href="#/" className="menu-item active">Main Page</a>
-                <a href="#/cards" className="menu-item">Action (set A)</a>
-                <a href="#/cards" className="menu-item">Action (set B)</a>
-                <a href="#/cards" className="menu-item">Action (set C)</a>
-                <a href="#/cards" className="menu-item">Adjective</a>
-                <a href="#/cards" className="menu-item">Animal (set A)</a>
-                <a href="#/cards" className="menu-item">Animal (set B)</a>
-                <a href="#/cards" className="menu-item">Clothets</a>
-                <a href="#/cards" className="menu-item">Emotion</a>
+                <NavLink  to={`/`} className="menu-item active">Main Page</NavLink>
+                <NavLink  to={`cards/0`} className="menu-item">Action (set A)</NavLink>
+                <NavLink  to={`cards/1`}  className="menu-item">Action (set B)</NavLink>
+                <NavLink  to={`cards/2`}  className="menu-item">Animal (set A)</NavLink>
+                <NavLink  to={`cards/3`}  className="menu-item">Animal (set B)</NavLink>
+                <NavLink  to={`cards/4`}  className="menu-item">Clothets</NavLink>
+                <NavLink  to={`cards/5`}  className="menu-item">Emotion</NavLink>
+                <NavLink  to={`cards/6`}  className="menu-item">Electronics</NavLink>
+                <NavLink  to={`cards/7`}  className="menu-item">Garage</NavLink>
                 </ul>
             </div>
             <div className="switch-container">

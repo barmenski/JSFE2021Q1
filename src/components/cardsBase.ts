@@ -299,6 +299,106 @@ export const cards = [
       audioSrc: "audio/laugh.mp3",
     },
   ],
+  [
+    {
+      word: "semiconductor",
+      translation: "полупроводник",
+      image: "img/semiconductor.png",
+      audioSrc: "audio/semiconductor.mp3",
+    },
+    {
+      word: "rosin",
+      translation: "канифоль",
+      image: "img/rosin.jpg",
+      audioSrc: "audio/rosinr.mp3",
+    },
+    {
+      word: "capacitor",
+      translation: "конденсатор",
+      image: "img/capacitor.jpg",
+      audioSrc: "audio/capacitor.mp3",
+    },
+    {
+      word: "chip",
+      translation: "микросхема",
+      image: "img/chip.jpg",
+      audioSrc: "audio/chip.mp3",
+    },
+    {
+      word: "voltage",
+      translation: "напряжение",
+      image: "img/voltage.png",
+      audioSrc: "audio/voltage.mp3",
+    },
+    {
+      word: "oscillograph",
+      translation: "осциллограф",
+      image: "img/oscillograph.png",
+      audioSrc: "audio/oscillograph.mp3",
+    },
+    {
+      word: "soldering iron",
+      translation: "паяльник",
+      image: "img/soldering_iron.jpg",
+      audioSrc: "audio/soldering_iron.mp3",
+    },
+    {
+      word: "resistor",
+      translation: "резистор",
+      image: "img/resistor.jpg",
+      audioSrc: "audio/resistor.mp3",
+    },
+  ],
+  [
+    {
+      word: "compressor",
+      translation: "компрессор",
+      image: "img/compressor.jpg",
+      audioSrc: "audio/compressor.mp3",
+    },
+    {
+      word: "press",
+      translation: "пресс",
+      image: "img/press.jpg",
+      audioSrc: "audio/press.mp3",
+    },
+    {
+      word: "jack",
+      translation: "домкрат",
+      image: "img/jack.jpg",
+      audioSrc: "audio/jack.mp3",
+    },
+    {
+      word: "bearing",
+      translation: "подшипник",
+      image: "img/bearing.jpg",
+      audioSrc: "audio/bearing.mp3",
+    },
+    {
+      word: "screwdriver",
+      translation: "шуруповерт",
+      image: "img/screwdriver.jpg",
+      audioSrc: "audio/screwdriver.mp3",
+    },
+    {
+      word: "potato",
+      translation: "картофель",
+      image: "img/potato.jpg",
+      audioSrc: "audio/potato.mp3",
+    },
+    {
+      word: "rack",
+      translation: "стеллаж",
+      image: "img/rack.jpg",
+      audioSrc: "audio/rack.mp3",
+    },
+    {
+      word: "chisel",
+      translation: "зубило",
+      image: "img/chisel.jpg",
+      audioSrc: "audio/chisel.mp3",
+    },
+  ],
 ];
 
 export default cards;

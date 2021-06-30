@@ -1,37 +1,30 @@
-/*import React, { Component } from 'react';*/
 import * as React from 'react';
-/*import * as ReactDOM from 'react-dom';*/
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-import Main from './components/main/Main';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import Category from './components/category/Category';
+import Play from './components/play/Play';
 import './App.css';
+import { RouteComponentProps } from 'react-router-dom';
 
 
-class App extends React.Component {
+
+class App extends React.Component<RouteComponentProps> {
+
   render() {
+    const { history } = this.props;
     return (
       <div className="App">
-        <Header />
-        <Main/>
-        <Footer />
+        <Switch>
+          <Route  exact path='/' component={Category}/>
+          <Route path='/category' component={Category}/>
+          <Route path="/cards/:cat_url" component={Play}/>
+        </Switch>
+
       </div>
     );
   }
-}
-export default App;
+};
+export default withRouter(App);
 
-/*
-<header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>*/
+/*<Header />
+<Category/>
+<Footer />*/
