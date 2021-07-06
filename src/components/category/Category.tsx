@@ -1,6 +1,5 @@
 /*import { Component } from "react";*/
 import { NavLink } from 'react-router-dom';
-import { NavLinkProps } from 'react-router-dom';
 import * as React from 'react';
 import './Category.css';
 import category from '../categoryBase';

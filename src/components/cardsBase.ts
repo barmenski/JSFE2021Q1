@@ -310,7 +310,7 @@ export const cards = [
       word: "rosin",
       translation: "канифоль",
       image: "img/rosin.jpg",
-      audioSrc: "audio/rosinr.mp3",
+      audioSrc: "audio/rosin.mp3",
     },
     {
       word: "capacitor",
@@ -333,7 +333,7 @@ export const cards = [
     {
       word: "oscillograph",
       translation: "осциллограф",
-      image: "img/oscillograph.png",
+      image: "img/oscillograph.jpg",
       audioSrc: "audio/oscillograph.mp3",
     },
     {
