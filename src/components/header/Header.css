@@ -15,7 +15,7 @@
   position: relative;
   background: #cdcdcd;
   border-radius: 3px;
-  z-index: 1;
+  z-index: 3;
   -webkit-transform-origin: 4px 0;
   transform-origin: 4px 0;
   -webkit-transition: background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
@@ -54,6 +54,7 @@
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   transform-origin: 0 0;
   background: #f5cb0f;
+  z-index: 1;
 }
 
 .menu-item.active {

@@ -19,17 +19,11 @@ function TrainPlay(props: Props) {
       const cat_cards = +props.match.params.cat_url;
       const onClickHandler = (item:ICard) => {
         new Audio("../" + item.audioSrc).play();
-       
-        console.log(item.word, document.querySelector("[data-word='item.word']"));
-       /* const speak_icon = document.querySelector('[data-url=`{ "../" + item.audioSrc}`]');
-        speak_icon?.classList.remove("hidden");
-        setInterval(()=>speak_icon?.classList.add("hidden"),2000);*/
-
       };
     
           return (
         <>
-        <Header />
+        <Header isChecked/>
           <div className="cards-container container">
             {cards[cat_cards].map((item: ICard) =>{
               return (

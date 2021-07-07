@@ -30,25 +30,19 @@ interface IState {
     
   }
 
-
-/*
-  {works.map((work) => (
-    <PortfolioItem key={work.id} work={work} />
-))
-*/
 class Category extends React.Component<IProps, IState> {
 
     render() {
         
         return (
           <>
-          <Header />
+          <Header isChecked/>
             <div className="category-container container">
 
             {category.map((item: ICategory) =>{
                 return (
                 <NavLink  to={`/cards/${item.url}`} className="category-card">
-                <img src={process.env.PUBLIC_URL + item.image} alt={item.text} key="item.image"/>
+                <img src={"./" + item.image} alt={item.text} key={item.image}/>
                 {item.text}</NavLink>
                 )
               })
