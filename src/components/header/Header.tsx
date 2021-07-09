@@ -1,27 +1,32 @@
 import React from "react";
 import "./Header.css";
 import { NavLink } from 'react-router-dom';
+import ChangeButton from "../changeButton/ChangeButton";
+
 
 interface IProps {
-    isChecked: boolean
+    isChecked: boolean,
+    changeMode: (value: boolean) => void
 }
 
 interface IState {
-    isChecked: boolean
+    isChecked: boolean,
+    isPlay: boolean
 }
 
 class Header extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            isChecked: false
+            isChecked: false,
+            isPlay: false
         }
         this.updateViewState = this.updateViewState.bind(this);
-
+        this.changeMode = this.changeMode.bind(this);
     }
     updateViewState(e: MouseEvent) {
        /* const target = e.target as HTMLElement;
-        if(!target.classList.contains('menuToggle')) {
+        if(!target.classList.contains('0.menuToggle')) {
             const sideMenu = document.querySelector('.menuToggle') as HTMLInputElement;
             if(sideMenu) sideMenu.checked = false;
             console.log(sideMenu);
@@ -41,7 +46,17 @@ class Header extends React.Component<IProps, IState> {
                      isChecked: false
                 });
     }
-
+    changeMode(){
+        if(this.state.isPlay === false) {
+            this.setState ({
+                isPlay: true
+            })
+        } else  {
+                    this.setState ({
+                    isPlay: false
+                 })
+                 }
+    }
     componentDidMount() {
         window.addEventListener("mousedown", this.updateViewState);
       }
@@ -50,10 +65,11 @@ class Header extends React.Component<IProps, IState> {
         window.removeEventListener("mousedown", this.updateViewState);
       }
 
+
     render() {
         return (
             <header className="header-container">
-                <div className="menuToggle">
+                <div className = {"menuToggle " + (this.state.isPlay ? 'play-mode' : '')}>
                     <input type="checkbox" className="menu-input" defaultChecked checked={this.state.isChecked}/>
                     <span></span>
                     <span></span>
@@ -70,14 +86,17 @@ class Header extends React.Component<IProps, IState> {
                     <NavLink  to={`/cards/7`}  className="menu-item">Garage</NavLink>
                     </ul>
                 </div>
+                {/*}
                 <div className="switch-container">
-                    <span className="train">Train</span>
-                        <label className="switch">
-                        <input type="checkbox" className="switch-input"/>
-                        <span className="slider round"></span>
-                        </label>
-                    <span className="play">Play</span>
-                </div>
+                <span className="train">Train</span>
+                    <label className="switch">
+                    <input type="checkbox" onChange = {() => this.changeMode()} className="switch-input"/>
+                    <span className="slider round"></span>
+                    </label>
+                <span className="play">Play</span>
+            </div>
+        */}
+        <ChangeButton isPlay changeMode ={this.props.changeMode}/>
             </header>
         )
     }

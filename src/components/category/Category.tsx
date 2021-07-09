@@ -23,27 +23,26 @@ interface ICategory {
 }
 
 interface IProps {
-
+  isPlay: boolean,
+  changeMode: (value: boolean) => void
   }
 
-interface IState {
-    
-  }
 
-class Category extends React.Component<IProps, IState> {
+
+class Category extends React.Component<IProps> {
 
     render() {
         
         return (
           <>
-          <Header isChecked/>
+          <Header isChecked changeMode={this.props.changeMode}/>
             <div className="category-container container">
 
             {category.map((item: ICategory) =>{
                 return (
-                <NavLink  to={`/cards/${item.url}`} className="category-card">
-                <img src={"./" + item.image} alt={item.text} key={item.image}/>
-                {item.text}</NavLink>
+                  <NavLink  to={`/cards/${item.url}`}  className = {"category-card " + (this.props.isPlay ? 'play-mode' : '')} key={item.image}>
+                    <img src={"./" + item.image} alt={item.text} />{item.text}
+                  </NavLink>
                 )
               })
             }
