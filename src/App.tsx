@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import Category from './components/category/Category';
 import TrainPlay from './components/TrainPlay/TrainPlay';
 import './App.css';
@@ -12,26 +12,40 @@ class App extends React.Component<RouteComponentProps> {
 
 state = {
   isPlay: false,
-  changeMode: (value: boolean) => value as boolean
+  changeMode: false,
+  startPlay: false,
+  startPressed: false
 }
 
-changeMode = (value: boolean) => {
+changeMode = () => {
+  this.setState({
+    startPressed: false
+  })
   if(this.state.isPlay === false) {
       this.setState ({
-          isPlay: value
+          isPlay: true
       })
-  } else  this.setState ({
-              isPlay: value
+  } else  {
+    this.setState ({
+              isPlay: false
            })
+          }
+}
+
+startPlay = () => {
+  this.setState({
+    startPressed: true
+  })
 }
 
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route  exact path='/' component={Category}/>
-          <Route path='/category' component={() => <Category isPlay={this.state.isPlay} changeMode={this.changeMode} /> }/>
-          <Route path="/cards/:cat_url" component={(props: RouteComponentProps<IParams>) => (<TrainPlay {...props} isPlay={this.state.isPlay} changeMode={(value: boolean) => value as boolean}/>)}/>
+
+          <Route path='/category' component={() => <Category isPlay={this.state.isPlay} changeMode={this.changeMode} startPlay = {this.startPlay} startPressed = {this.state.startPressed}/> }/>
+          <Redirect exact from='/' to="/category"/>
+          <Route path="/cards/:cat_url" component={(props: RouteComponentProps<IParams>) => (<TrainPlay {...props} isPlay={this.state.isPlay} changeMode={this.changeMode} startPlay={this.startPlay} startPressed = {this.state.startPressed}/>)}/>
         </Switch>
 
       </div>

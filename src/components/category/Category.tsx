@@ -7,15 +7,6 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 
 
-/*interface ICards {
-    word: string,
-    translation: string,
-    image: string,
-    audioSrc: string,
-}
-*/
-/*cards: Array<ICategory>|Array<ICards>;*/
-
 interface ICategory {
   text: string,
   image: string,
@@ -24,7 +15,9 @@ interface ICategory {
 
 interface IProps {
   isPlay: boolean,
-  changeMode: (value: boolean) => void
+  changeMode: (value: boolean) => void,
+  startPlay: (value: boolean) => void,
+  startPressed: boolean
   }
 
 
@@ -35,12 +28,12 @@ class Category extends React.Component<IProps> {
         
         return (
           <>
-          <Header isChecked changeMode={this.props.changeMode}/>
+          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed}/>
             <div className="category-container container">
-
+            {/*<button onClick = {() => {console.log(this.props.isPlay)}}>Console</button>*/}
             {category.map((item: ICategory) =>{
                 return (
-                  <NavLink  to={`/cards/${item.url}`}  className = {"category-card " + (this.props.isPlay ? 'play-mode' : '')} key={item.image}>
+                  <NavLink  to={`/cards/${item.url}`}  className = {"category-card" + (this.props.isPlay ? ' play-mode' : '')} key={item.image}>
                     <img src={"./" + item.image} alt={item.text} />{item.text}
                   </NavLink>
                 )

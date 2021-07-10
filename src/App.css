@@ -25,3 +25,11 @@ li {
 a {
   text-decoration: none;
 }
+
+.play-mode {
+  background: #e90d31;
+}
+
+.non-active {
+  opacity: 10%;
+}

@@ -16,29 +16,19 @@ class ChangeButton extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
         this.state = {
-            isPlay: false
+            isPlay: true
         }
-       /* this.changeMode = this.changeMode.bind(this);*/
     }
-   /* changeMode(){
-        if(this.state.isPlay === false) {
-            this.setState ({
-                isPlay: true
-            })
-        } else  this.setState ({
-                    isPlay: false
-                 })
-                 
-    }*/
+
     render() {
         return (
             <div className="switch-container">
-                <span className="train">Train</span>
+                <span className = {"train" + (this.props.isPlay ? ' non-active' : '')}>Train</span>
                     <label className="switch">
-                    <input type="checkbox" onChange = {() => this.props.changeMode(this.state.isPlay)} className="switch-input"/>
+                    <input type="checkbox" onChange = {() => this.props.changeMode(this.state.isPlay)} className="switch-input" checked = {this.props.isPlay}/>
                     <span className="slider round"></span>
                     </label>
-                <span className="play">Play</span>
+                <span className = {"play" + (this.props.isPlay ? '' : ' non-active')}>Play</span>
             </div>
         )
     }

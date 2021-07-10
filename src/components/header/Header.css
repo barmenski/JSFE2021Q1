@@ -37,7 +37,7 @@
   left: -5px;
   cursor: pointer;
   opacity: 0;
-  z-index: 2;
+  z-index: 5;
 }
 
 .menu {
@@ -176,7 +176,4 @@ input:checked + .slider:before {
   font-size: 24px;
   font-weight: 600;
   margin: 0 3px;
-}
-.play-mode {
-  background: #c00221;
 }

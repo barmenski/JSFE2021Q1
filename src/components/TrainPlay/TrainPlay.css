@@ -34,7 +34,8 @@
 }
 
 .card-word,
-.card-translation {
+.card-translation,
+.card-empty {
   display: block;
   height: 50px;
   width: 100%;
@@ -72,8 +73,4 @@
   position: absolute;
   right: 5px;
   bottom: 7px;
-}
-
-.play-mode {
-  background: #c00221;
 }
