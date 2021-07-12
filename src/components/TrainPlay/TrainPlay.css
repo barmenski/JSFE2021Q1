@@ -8,7 +8,7 @@
 }
 
 .cards-container {
-  padding-top: 55px;
+  padding-top: 20px;
 }
 
 .card {
@@ -73,4 +73,30 @@
   position: absolute;
   right: 5px;
   bottom: 7px;
+}
+
+.result-container {
+  display: flex;
+  justify-content: center;
+}
+
+.failure__img,
+.success__img {
+  height: auto;
+}
+
+.star-win {
+  background-image: url("../../../src/assets/star-win.svg");
+  width: 45px;
+  height: 45px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.star-lose {
+  background-image: url("../../../src/assets/star.svg");
+  width: 45px;
+  height: 45px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

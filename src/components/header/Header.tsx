@@ -10,12 +10,14 @@ interface IProps {
     changeMode: (value: boolean) => void,
     isPlay: boolean,
     startPlay: (value: boolean) => void,
-    startPressed: boolean
+    startPressed: boolean,
+    repeat: (value: boolean) => void,
+    repeatBtn: boolean
 }
 
 interface IState {
     isChecked: boolean,
-
+    
 }
 
 class Header extends React.Component<IProps, IState> {
@@ -41,6 +43,15 @@ class Header extends React.Component<IProps, IState> {
                      isChecked: false
                 });
     }
+    updateChecked = () => { //открытие-закрытие меню при клике по крестику
+        if(this.state.isChecked === false){
+            this.setState({
+                isChecked: true
+            });
+        } else  this.setState({
+                    isChecked: false
+                });
+    }
 
     componentDidMount() {
         window.addEventListener("mousedown", this.updateViewState);
@@ -56,7 +67,7 @@ class Header extends React.Component<IProps, IState> {
             <>
             <header className="header-container">
                 <div className = "menuToggle">
-                    <input type="checkbox" className="menu-input" defaultChecked checked={this.state.isChecked}/>
+                    <input type="checkbox" className="menu-input" onChange = {()=>this.updateChecked} checked={this.state.isChecked}/>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -76,7 +87,7 @@ class Header extends React.Component<IProps, IState> {
         
 
         </header>
-        <PlayButton isPlay= {this.props.isPlay} startPlay ={this.props.startPlay} startPressed = {this.props.startPressed}/>
+        <PlayButton isPlay= {this.props.isPlay} startPlay ={this.props.startPlay} startPressed = {this.props.startPressed} repeat = {this.props.repeat} repeatBtn = {this.props.repeatBtn}/>
         </>
         )
     }

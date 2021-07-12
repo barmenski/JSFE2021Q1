@@ -14,7 +14,8 @@ state = {
   isPlay: false,
   changeMode: false,
   startPlay: false,
-  startPressed: false
+  startPressed: false,
+  repeatBtn: false,
 }
 
 changeMode = () => {
@@ -38,14 +39,22 @@ startPlay = () => {
   })
 }
 
+repeat = () => {
+  this.setState({
+    repeatBtn: true
+  })
+}
+
   render() {
     return (
       <div className="App">
         <Switch>
 
-          <Route path='/category' component={() => <Category isPlay={this.state.isPlay} changeMode={this.changeMode} startPlay = {this.startPlay} startPressed = {this.state.startPressed}/> }/>
+          <Route path='/category' component={() => <Category isPlay={this.state.isPlay} changeMode={this.changeMode} startPlay = {this.startPlay} startPressed = {this.state.startPressed} repeat={this.repeat} repeatBtn = {this.state.repeatBtn}/> }/>
           <Redirect exact from='/' to="/category"/>
-          <Route path="/cards/:cat_url" component={(props: RouteComponentProps<IParams>) => (<TrainPlay {...props} isPlay={this.state.isPlay} changeMode={this.changeMode} startPlay={this.startPlay} startPressed = {this.state.startPressed}/>)}/>
+          <Route path="/cards/:cat_url" component={(props: RouteComponentProps<IParams>) => (<TrainPlay {...props} isPlay={this.state.isPlay} changeMode={this.changeMode} 
+              startPlay={this.startPlay} startPressed = {this.state.startPressed}
+              repeat={this.repeat} repeatBtn = {this.state.repeatBtn}/>)}/>
         </Switch>
 
       </div>

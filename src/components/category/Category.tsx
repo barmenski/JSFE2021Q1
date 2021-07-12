@@ -17,7 +17,9 @@ interface IProps {
   isPlay: boolean,
   changeMode: (value: boolean) => void,
   startPlay: (value: boolean) => void,
-  startPressed: boolean
+  startPressed: boolean,
+  repeat: (value: boolean) => void,
+  repeatBtn: boolean
   }
 
 
@@ -28,7 +30,7 @@ class Category extends React.Component<IProps> {
         
         return (
           <>
-          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed}/>
+          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatBtn = {this.props.repeatBtn}/>
             <div className="category-container container">
             {/*<button onClick = {() => {console.log(this.props.isPlay)}}>Console</button>*/}
             {category.map((item: ICategory) =>{
