@@ -1,12 +1,15 @@
 /* eslint-disable no-console */
 import path from "path";
 import express from "express";
+
 import bodyParser from "body-parser";
 import cors from "cors";
 import categories from "./category/router";
 import items from "./item/router";
 
 const app = express();
+const favicon = require("express-favicon");
+app.use(favicon(__dirname + "../wwwwroot/favicon.svg"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
