@@ -9,7 +9,7 @@ import items from "./item/router";
 
 const app = express();
 const favicon = require("express-favicon");
-app.use(favicon(__dirname + "../wwwwroot/favicon.svg"));
+app.use(favicon(__dirname + "/favicon.svg"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
