@@ -82,7 +82,7 @@
 
 .failure__img,
 .success__img {
-  height: auto;
+  max-height: 600px;
 }
 
 .star-win {

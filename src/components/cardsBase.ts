@@ -376,7 +376,7 @@ export const cards = [
     },
     {
       word: "screwdriver",
-      translation: "шуруповерт",
+      translation: "отвертка",
       image: "img/screwdriver.jpg",
       audioSrc: "audio/screwdriver.mp3",
     },
