@@ -2,7 +2,8 @@
   "name": "english-for-kids-admin-panel",
   "scripts": {
     "start": "ts-node ./src/app.ts",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
