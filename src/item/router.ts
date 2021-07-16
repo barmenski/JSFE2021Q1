@@ -1,18 +1,18 @@
-import { Router } from 'express';
-import { StatusCodes } from '../common';
+import { Router } from "express";
+import { StatusCodes } from "../common";
 import {
   createItem,
   deleteItem,
   getItemByName,
   getItems,
   updateItem,
-} from './repository';
-import { Item } from './item';
-import { getCategoryById } from '../category/repository';
+} from "./repository";
+import { Item } from "./item";
+import { getCategoryById } from "../category/repository";
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const data = await getItems();
     return res.json(data);
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:name', async (req, res) => {
+router.get("/:name", async (req, res) => {
   try {
     const data = await getItemByName(req.params.name);
     if (!data) return res.sendStatus(StatusCodes.NotFound);
@@ -31,7 +31,7 @@ router.get('/:name', async (req, res) => {
   }
 });
 
-router.delete('/:name', async (req, res) => {
+router.delete("/:name", async (req, res) => {
   try {
     await deleteItem(req.params.name);
     return res.sendStatus(StatusCodes.Ok);
@@ -40,11 +40,11 @@ router.delete('/:name', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   const data = req.body as Item;
   const category = await getCategoryById(data.categoryId);
   if (!category) {
-    return res.status(StatusCodes.BadRequest).send('Invalid category ID');
+    return res.status(StatusCodes.BadRequest).send("Invalid category ID");
   }
   try {
     const newData = await createItem(data);
@@ -54,11 +54,11 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put("/", async (req, res) => {
   const data = req.body as Item;
   const category = await getCategoryById(data.categoryId);
   if (!category) {
-    return res.status(StatusCodes.BadRequest).send('Invalid category ID');
+    return res.status(StatusCodes.BadRequest).send("Invalid category ID");
   }
   try {
     const newData = await updateItem(data);
