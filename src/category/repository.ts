@@ -11,6 +11,11 @@ const categories: Category[] = [
     name: "Category 2",
     description: "my test category",
   },
+  {
+    id: 3,
+    name: "Category 2",
+    description: "another test category",
+  },
 ];
 
 const newId = (function () {
