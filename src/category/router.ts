@@ -1,7 +1,11 @@
 import { Router } from "express";
 import { Category } from "./category";
-import { createCategory, deleteCategory, getCategories } from "./repository";
-import { getCategoryById } from "./repository";
+import {
+  createCategory,
+  deleteCategory,
+  getCategories,
+  getCategoryById,
+} from "./repository";
 
 const router = Router();
 
@@ -19,7 +23,7 @@ router.get("/:id", async (req, res) => {
   if (!cat) {
     return res.sendStatus(404);
   }
-  res.json(cat);
+  return res.json(cat);
 });
 
 router.delete("/:id", async (req, res) => {

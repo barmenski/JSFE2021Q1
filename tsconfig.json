@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "types": [
+      "node"
+    ],
 
     /* Basic Options */
     // "incremental": true,                   /* Enable incremental compilation */

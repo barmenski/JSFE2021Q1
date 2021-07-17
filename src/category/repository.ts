@@ -29,7 +29,7 @@ export function getCategoryById(id: number): Promise<Category | undefined> {
 
 export function deleteCategory(id: number): Promise<void> {
   const categoryIndex = categories.findIndex((cat) => cat.id === id);
-  if (categoryIndex < 0) return Promise.reject("category not found");
+  if (categoryIndex < 0) return Promise.reject(new Error("category not found"));
   categories.splice(categoryIndex, 1);
   return Promise.resolve();
 }

@@ -3,7 +3,9 @@
   "scripts": {
     "start": "ts-node ./src/app.ts",
     "watch": "nodemon",
-    "heroku-postbuild": "cd wwwroot && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd wwwroot && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "lint": "eslint src ",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -17,16 +19,26 @@
   "homepage": "https://github.com/rolling-scopes-school/barmenski-JSFE2021Q1#readme",
   "dependencies": {
     "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "prettier": "^2.3.2",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
+    "@types/body-parser": "^1.19.1",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
-    "@types/node": "^16.3.1",
+    "@types/node": "^16.3.3",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.23.4",
     "nodemon": "^2.0.12"
   }
 }
