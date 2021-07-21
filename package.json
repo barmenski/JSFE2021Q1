@@ -3,7 +3,7 @@
   "scripts": {
     "start": "ts-node ./src/app.ts",
     "watch": "nodemon",
-    "heroku-postbuild": "cd wwwroot && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+    "heroku-postbuild": "cd ./src/wwwroot && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "lint": "eslint src ",
     "lint:fix": "npm run lint -- --fix"
   },
