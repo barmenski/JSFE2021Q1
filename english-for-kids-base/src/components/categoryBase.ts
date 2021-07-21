@@ -1,11 +1,11 @@
 import ICategory from "./category/Category";
 
 export let category: ICategory[];
-async function getCategory() {
+export async function getCategory() {
   const response = await fetch(`http://localhost:3000/api/category`);
   category = await response.json();
 }
-export let GETCATEGORY = getCategory();
+
 /*export const category = 
 
 [

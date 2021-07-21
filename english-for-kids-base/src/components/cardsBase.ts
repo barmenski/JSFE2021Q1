@@ -1,11 +1,11 @@
 import ICard from "./TrainPlay/TrainPlay";
 
 export let cards: Array<ICard[]>;
-async function getCards() {
+export async function getCards() {
   const response = await fetch(`http://localhost:3000/api/cards`);
   cards = await response.json();
 }
-export let GETCARDS = getCards();
+
 /*
 [
   [

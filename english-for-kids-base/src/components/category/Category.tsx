@@ -7,7 +7,7 @@ import './Category.css';
 import category from '../categoryBase';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-import {GETCATEGORY} from '../categoryBase';
+import {getCategory} from '../categoryBase';
 
 
 export interface ICategory {
@@ -33,9 +33,10 @@ interface IProps {
   repeatBtn: boolean
   }
 
-GETCATEGORY;
-
 class Category extends React.Component<IProps> {
+  componentDidMount(){
+    getCategory();
+  }
 
     render() {
         

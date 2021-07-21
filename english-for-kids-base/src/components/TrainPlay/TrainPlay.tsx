@@ -7,7 +7,7 @@ import React from "react";
 import { RouteComponentProps } from 'react-router-dom';
 import './TrainPlay.css';
 import {IParams} from '../../App'
-import {GETCARDS} from '../cardsBase'
+import {getCards} from '../cardsBase'
 
 
 export interface ICard {
@@ -40,7 +40,7 @@ interface IState {
   errorAmount: number
 }
 
-GETCARDS;
+
 
 class TrainPlay extends React.Component<IProps, IState> {
   constructor(props: IProps) {
@@ -54,6 +54,7 @@ class TrainPlay extends React.Component<IProps, IState> {
   }
   
 componentDidMount() {
+  getCards();
   this.cardArrayMake();
   this.randomRead();
   this.repeat();
