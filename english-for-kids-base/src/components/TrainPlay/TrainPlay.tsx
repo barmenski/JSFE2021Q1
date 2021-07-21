@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-expressions */
-
-import {cards} from '../cardsBase';
+//import {cards} from '../cardsBase';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import React from "react";
 import { RouteComponentProps } from 'react-router-dom';
 import './TrainPlay.css';
 import {IParams} from '../../App'
-import {getCards} from '../cardsBase'
+//import {getCards} from '../cardsBase'
 
 
 export interface ICard {
@@ -37,7 +35,9 @@ interface IState {
   isPlay: boolean;
   startPressed: boolean;
   repeatBtn: boolean,
-  errorAmount: number
+  errorAmount: number,
+  cards: ICard[][],
+  error: Error | null,
 }
 
 
@@ -49,12 +49,30 @@ class TrainPlay extends React.Component<IProps, IState> {
         isPlay: true,
         startPressed: false,
         repeatBtn: false,
-        errorAmount: 0
+        errorAmount: 0,
+        cards: [],
+        error: null
     }  
+   
   }
   
 componentDidMount() {
-  getCards();
+
+  fetch(`http://localhost:3000/api/cards`)
+  .then(res => res.json())
+  .then(
+    (result) => {
+      this.setState({
+        cards: result
+      });
+    },
+    (error) => {
+      this.setState({
+        error
+      });
+    }
+  )
+
   this.cardArrayMake();
   this.randomRead();
   this.repeat();
@@ -63,15 +81,14 @@ componentDidMount() {
 
   componentDidUpdate() {
 
-
 }
       categoryNumber = Number(this.props.match.params.cat_url); //пераметр из адресной строки (число)
       cardArray: Array<string> = [];
-      arrLength = cards[this.categoryNumber].length;
+      arrLength: number = this.state.cards[this.categoryNumber].length;
       
       cardArrayMake = () => {
         for (let i=0; i <this.arrLength; i++) {
-            this.cardArray.push(cards[this.categoryNumber][i].audioSrc);
+            this.cardArray.push(this.state.cards[this.categoryNumber][i].audioSrc);
         }
         this.cardArray.sort(() => Math.random() - 0.5);
         //console.log("this.cardArray complite = ", this.cardArray);
@@ -165,7 +182,7 @@ componentDidMount() {
         <>
         <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatBtn = {this.props.repeatBtn}/>
           <div className="cards-container container">
-            {cards[this.categoryNumber].map((item: ICard) =>{
+            {this.state.cards[this.categoryNumber].map((item: ICard) =>{
               return (
                 <div className="card" key={item.word} onClick = {this.props.isPlay ?() => this.onClickHandlerPlay(item):() => this.onClickHandlerTrain(item)} onMouseLeave = {()=>this.mouseLeave(item)}>
                   <img src={"../" + item.image} className = "card__img" alt={item.word} data-url = { "../" + item.audioSrc}/>
