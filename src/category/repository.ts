@@ -2,19 +2,52 @@ import { Category } from "./category";
 
 const categories: Category[] = [
   {
+    id: 0,
+    text: "Action (set A)",
+    image: "img/dance.jpg",
+    url: "0",
+  },
+  {
     id: 1,
-    name: "Category 1",
-    description: "don't want without description",
+    text: "Action (set B)",
+    image: "img/play.jpg",
+    url: "1",
   },
   {
     id: 2,
-    name: "Category 2",
-    description: "my test category",
+    text: "Animal (set A)",
+    image: "img/chick.jpg",
+    url: "2",
   },
   {
     id: 3,
-    name: "Category 2",
-    description: "another test category",
+    text: "Animal (set B)",
+    image: "img/fish1.jpg",
+    url: "3",
+  },
+  {
+    id: 4,
+    text: "Clothes",
+    image: "img/pants.jpg",
+    url: "4",
+  },
+  {
+    id: 5,
+    text: "Emotions",
+    image: "img/angry.jpg",
+    url: "5",
+  },
+  {
+    id: 6,
+    text: "Electronics",
+    image: "img/chip.jpg",
+    url: "6",
+  },
+  {
+    id: 7,
+    text: "Garage",
+    image: "img/press.jpg",
+    url: "7",
   },
 ];
 
@@ -40,10 +73,10 @@ export function deleteCategory(id: number): Promise<void> {
 }
 
 export function createCategory(data: Category): Promise<Category> {
-  const isExists = categories.findIndex((cat) => cat.name === data.name) >= 0;
+  const isExists = categories.findIndex((cat) => cat.text === data.text) >= 0;
   if (isExists) {
     return Promise.reject(
-      new Error(`Category with name ${data.name} already exists`)
+      new Error(`Category with name ${data.text} already exists`)
     );
   }
   const newCategory: Category = {
