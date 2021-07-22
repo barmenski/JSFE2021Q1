@@ -4,7 +4,8 @@ import Footer from '../footer/Footer';
 import React from "react";
 import { RouteComponentProps } from 'react-router-dom';
 import './TrainPlay.css';
-import {IParams} from '../../App'
+import {IParams} from '../../App';
+import { urlDeploy } from '../urlDeploy';
 //import {getCards} from '../cardsBase'
 
 
@@ -58,7 +59,7 @@ class TrainPlay extends React.Component<IProps, IState> {
   
 componentDidMount() {
 
-  fetch(`http://localhost:3000/api/cards`)
+  fetch(`${urlDeploy}:3000/api/cards`)
   .then(res => res.json())
   .then(
     (result) => {

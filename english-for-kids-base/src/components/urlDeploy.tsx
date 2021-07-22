@@ -1,0 +1,1 @@
+export const urlDeploy = "https://barmenski-english-for-kids.herokuapp.com"

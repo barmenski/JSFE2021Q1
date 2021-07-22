@@ -8,6 +8,7 @@ import './Category.css';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 //import {getCategory} from '../categoryBase';
+import { urlDeploy } from '../urlDeploy';
 
 
 export interface ICategory {
@@ -48,7 +49,7 @@ class Category extends React.Component<IProps, IState> {
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3000/api/category`)
+    fetch(`${urlDeploy}:3000/api/category`)
     .then(res => res.json())
     .then(
       (result) => {
