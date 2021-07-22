@@ -59,7 +59,7 @@ class TrainPlay extends React.Component<IProps, IState> {
   
 componentDidMount() {
 
-  fetch(`${urlDeploy}:3000/api/cards`)
+  fetch(`${urlDeploy}/api/cards`)
   .then(res => res.json())
   .then(
     (result) => {

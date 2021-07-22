@@ -49,7 +49,7 @@ class Category extends React.Component<IProps, IState> {
   }
 
   componentDidMount(){
-    fetch(`${urlDeploy}:3000/api/category`)
+    fetch(`${urlDeploy}/api/category`)
     .then(res => res.json())
     .then(
       (result) => {
