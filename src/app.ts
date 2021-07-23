@@ -5,7 +5,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import categories from "./category/router";
-import items from "./cards/router";
+import cards from "./cards/router";
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(/^(?!\/api\/)/, (req, res) => {
   res.sendFile(indexPath);
 });
 app.use("/api/category", categories); //загрузили модуль маршрутизации categories из ./category/router
-app.use("/api/cards", items); //загрузили модуль маршрутизации items из ./item/router
+app.use("/api/cards", cards); //загрузили модуль маршрутизации items из ./item/router
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>

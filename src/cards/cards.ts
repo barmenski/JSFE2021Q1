@@ -3,4 +3,5 @@ export interface ICard {
   translation: string;
   image: string;
   audioSrc: string;
+  url: string;
 }
