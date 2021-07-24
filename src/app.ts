@@ -23,7 +23,7 @@ app.use(/^(?!\/api\/)/, (req, res) => {
   res.sendFile(indexPath);
 });
 app.use("/api/category", categories); //загрузили модуль маршрутизации categories из ./category/router
-app.use("/api/cards", cards); //загрузили модуль маршрутизации items из ./item/router
+app.use("/api/cards", cards); //загрузили модуль маршрутизации items из ./cards/router
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>

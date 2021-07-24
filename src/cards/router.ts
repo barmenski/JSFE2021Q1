@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { StatusCodes } from "../common";
 import {
-  //createItem,
-  // deleteItem,
+  createItem,
+  deleteItem,
   getItemByName,
   getItems,
-  //updateItem,
+  updateItem,
 } from "./repository";
 import { ICard } from "./cards";
 import { getCategoryById } from "../category/repository";
@@ -30,10 +30,10 @@ router.get("/:word", async (req, res) => {
     return res.status(StatusCodes.BadRequest).send(e);
   }
 });
-/*
-router.delete("/:name", async (req, res) => {
+
+router.delete("/:word", async (req, res) => {
   try {
-    await deleteItem(req.params.name);
+    await deleteItem(req.params.word);
     return res.sendStatus(StatusCodes.Ok);
   } catch (e) {
     return res.status(StatusCodes.NotFound).send(e);
@@ -41,8 +41,8 @@ router.delete("/:name", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const data = req.body as Item;
-  const category = await getCategoryById(data.categoryId);
+  const data = req.body as ICard;
+  const category = await getCategoryById(Number(data.url));
   if (!category) {
     return res.status(StatusCodes.BadRequest).send("Invalid category ID");
   }
@@ -55,8 +55,8 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
-  const data = req.body as Item;
-  const category = await getCategoryById(data.categoryId);
+  const data = req.body as ICard;
+  const category = await getCategoryById(Number(data.url));
   if (!category) {
     return res.status(StatusCodes.BadRequest).send("Invalid category ID");
   }
@@ -67,5 +67,5 @@ router.put("/", async (req, res) => {
     return res.status(StatusCodes.BadRequest).send(e);
   }
 });
-*/
+
 export default router;

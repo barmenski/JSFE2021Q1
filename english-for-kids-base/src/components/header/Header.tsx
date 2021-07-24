@@ -12,7 +12,7 @@ interface IProps {
     startPlay: (value: boolean) => void,
     startPressed: boolean,
     repeat: (value: boolean) => void,
-    repeatBtn: boolean
+    repeatPressed: boolean
 }
 
 interface IState {
@@ -87,7 +87,7 @@ class Header extends React.Component<IProps, IState> {
         
 
         </header>
-        <PlayButton isPlay= {this.props.isPlay} startPlay ={this.props.startPlay} startPressed = {this.props.startPressed} repeat = {this.props.repeat} repeatBtn = {this.props.repeatBtn}/>
+        <PlayButton isPlay= {this.props.isPlay} startPlay ={this.props.startPlay} startPressed = {this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
         </>
         )
     }

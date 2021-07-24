@@ -6,13 +6,13 @@ interface IProps {
     startPlay: (value: boolean) => void,
     startPressed: boolean,
     repeat: (value: boolean) => void,
-    repeatBtn: boolean
+    repeatPressed: boolean
 }
 
 interface IState {
     isPlay: boolean,
     startPressed: boolean,
-    repeatBtn: boolean
+    repeatPressed: boolean
 }
 
 
@@ -23,7 +23,7 @@ class PlayButton extends React.Component<IProps, IState> {
         this.state = {
             isPlay: true,
             startPressed: true,
-            repeatBtn: true
+            repeatPressed: true
         }
     }
 
@@ -31,7 +31,7 @@ class PlayButton extends React.Component<IProps, IState> {
         return (
             <div className="play-btn-container">
                 <button className={"start-btn"+ (this.props.isPlay && !this.props.startPressed? '' : ' hidden')} onClick = {() => this.props.startPlay(this.state.startPressed)}>Start game</button>
-                <button className={"repeat-btn"+ (this.props.startPressed && this.props.isPlay ? '' : ' hidden')} onClick ={() => this.props.repeat(this.state.repeatBtn)}>Repeat</button>
+                <button className={"repeat-btn"+ (this.props.startPressed && this.props.isPlay ? '' : ' hidden')} onClick ={() => this.props.repeat(this.state.repeatPressed)}>Repeat</button>
             </div>
         )
     }

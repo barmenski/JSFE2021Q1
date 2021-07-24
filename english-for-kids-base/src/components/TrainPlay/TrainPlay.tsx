@@ -1,4 +1,3 @@
-//import {cards} from '../cardsBase';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import React from "react";
@@ -6,8 +5,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import './TrainPlay.css';
 import {IParams} from '../../App';
 import { urlDeploy } from '../urlDeploy';
-//import {getCards} from '../cardsBase'
-
 
 export interface ICard {
     word: string,
@@ -16,7 +13,7 @@ export interface ICard {
     audioSrc: string,
     url: string
 }
-
+/*
 interface TrainPlay {
   word: string,
   translation: string,
@@ -24,37 +21,39 @@ interface TrainPlay {
   audioSrc: string,
   url: string
 }
-
+*/
 interface IProps extends RouteComponentProps<IParams> {
   changeMode: (value: boolean) => void,
   isPlay: boolean,
   startPlay: (value: boolean) => void,
   startPressed: boolean,
   repeat: (value: boolean) => void,
-  repeatBtn: boolean
+  repeatPressed: boolean
 }
 
 interface IState {
   isPlay: boolean;
   startPressed: boolean;
-  repeatBtn: boolean,
+  repeatPressed: boolean,
   errorAmount: number,
   cards: ICard[],
   error: Error | null,
+  cardsArray: ICard[];
+  audioSrcArray: string[]
 }
 
-
-
 class TrainPlay extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+  constructor(props:IProps) {
     super(props);
     this.state = {
         isPlay: true,
         startPressed: false,
-        repeatBtn: false,
+        repeatPressed: false,
         errorAmount: 0,
+        error: null,
         cards: [],
-        error: null
+        cardsArray: [],
+        audioSrcArray: []
     }  
    
   }
@@ -65,59 +64,59 @@ componentDidMount() {
   .then(res => res.json())
   .then(
     (result) => {
+      const categoryName: string = this.props.match.params.cat_url;
+      const cardsFiltered = result.filter((item: { url: string; }) => item.url === categoryName);
+
       this.setState({
-        cards: result
+        cards: cardsFiltered
       });
+      
     },
     (error) => {
       this.setState({
         error
       });
     }
-  )
+  );
 
-  this.cardArrayMake();
-  this.randomRead();
-  this.repeat();
+  //this.audioSrcArrayMake();
+ // this.randomRead();
+  //this.repeat();
   
 }
 
-  componentDidUpdate() {
-
+componentDidUpdate() {
+  this.audioSrcArrayMake();
+  
 }
-      categoryName: string = this.props.match.params.cat_url; //пераметр из адресной строки (текст)
-      cardArray: Array<ICard> = this.state.cards.filter((item) => { return item.url === this.categoryName});
-      audioSrcArray: Array<string> = [];
-      arrLength: number = this.cardArray.length;
+
+      //пераметр из адресной строки (текст типа "0", "3"), номер категории
       
+      audioSrcArray: Array<string> = [];
 
-
-      /*cardArrayMake = () => {
-        for (let i=0; i <this.arrLength; i++) {
-            this.cardArray.push(this.state.cards[this.categoryNumber][i].audioSrc);
-        }
-        this.cardArray.sort(() => Math.random() - 0.5);
-        //console.log("this.cardArray complite = ", this.cardArray);
-      } */
-
-      cardArrayMake = () => {
-        for (let i=0; i <this.arrLength; i++) {
-          this.audioSrcArray.push(this.cardArray[i].audioSrc);
+      audioSrcArrayMake = () => {
+        const arrLength: number = this.state.cards.length;
+        for (let i=0; i <arrLength; i++) {
+          this.audioSrcArray.push(this.state.cards[i].audioSrc);
       }
       this.audioSrcArray.sort(() => Math.random() - 0.5);
-      //console.log("this.cardArray complite = ", this.cardArray);
+
+      console.log(`this.audioSrcArray complite = `, this.audioSrcArray);
     }
+
 
       randomRead = () => {
         if(this.props.startPressed){
-          new Audio("../" + this.audioSrcArray[0]).play(); //читаем по audioSrc из массива cardArray<audioSrc>
+          new Audio("../" + this.audioSrcArray[0]).play(); 
+          console.log(`this.audioSrcArray randomRead = `, this.audioSrcArray);
+          //читаем по audioSrc из массива audioSrcArray<audioSrc>
          // console.log("randomRead", this.cardArray[0]);
         }
       }
 
       repeat = () => {
-        if(this.props.repeatBtn){
-          new Audio("../" + this.audioSrcArray[0]).play(); //читаем по audioSrc из массива cardArray<audioSrc>
+        if(this.props.repeatPressed){
+          new Audio("../" + this.state.audioSrcArray[0]).play(); //читаем по audioSrc из массива audioSrcArrayy<audioSrc>
          // console.log("repeat", this.cardArray[0]);
         }
       }
@@ -152,18 +151,18 @@ componentDidMount() {
     }
     
 
-    onClickHandlerPlay = (item: ICard) => { //item - объект из cardBase.ts
+    onClickHandlerPlay = (item: ICard) => { //item - объект из cardArray
       const starContainer = document.querySelector(".play-btn-container");
       const clickedCard = document.querySelector(`[data-url="../${item.audioSrc}"]`);
-        if(this.audioSrcArray[0] === item.audioSrc) {
+        if(this.state.audioSrcArray[0] === item.audioSrc) {
           if(!clickedCard?.classList.contains("non-active")){
             new Audio("../audio/correct.mp3").play();
             if(clickedCard) clickedCard.classList.add("non-active");
             let star = document.createElement('div');
             star.className = "star-win";
             if(starContainer) starContainer.prepend(star);
-            this.audioSrcArray.splice(0,1);
-            if(this.audioSrcArray.length === 0){
+            this.state.audioSrcArray.splice(0,1);
+            if(this.state.audioSrcArray.length === 0){
               if(this.state.errorAmount === 0){
                 new Audio("../audio/success.mp3").play();
                 const cardContainer = document.querySelector('.cards-container');
@@ -190,11 +189,19 @@ componentDidMount() {
             //console.log("Loh!");
           }
         
-    }
+    } 
       render() {
+
+       return (
+        <>{/* 
+        <div className="container" >{this.state.cards.map((item: ICard) =>{
         return (
-        <>
-        <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatBtn = {this.props.repeatBtn}/>
+        <div className="container" key={item.word + item.url}>{item.url}</div>
+        )
+        })
+      }
+    </div>*/}
+         <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
           <div className="cards-container container">
             {this.state.cards.map((item: ICard) =>{
               return (
@@ -209,7 +216,7 @@ componentDidMount() {
             })
           }
           
-        </div>
+        </div> 
         <div className="result-container">
           <img src="../img/success.jpg" className = "success__img hidden" alt="Success"/>
           <img src="../img/failure.jpg" className = "failure__img hidden" alt="Failure"/>

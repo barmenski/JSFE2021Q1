@@ -1,13 +1,8 @@
-/*import { Component } from "react";*/
-
-/* eslint-disable no-unused-expressions */
 import { NavLink } from 'react-router-dom';
 import * as React from 'react';
 import './Category.css';
-//import category from '../categoryBase';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
-//import {getCategory} from '../categoryBase';
 import { urlDeploy } from '../urlDeploy';
 
 
@@ -31,7 +26,7 @@ interface IProps {
   startPlay: (value: boolean) => void,
   startPressed: boolean,
   repeat: (value: boolean) => void,
-  repeatBtn: boolean
+  repeatPressed: boolean
   }
 
   interface IState {
@@ -68,7 +63,7 @@ class Category extends React.Component<IProps, IState> {
     render() {
         return (
           <>
-          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatBtn = {this.props.repeatBtn}/>
+          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
             <div className="category-container container">
             
             {this.state.category.map((item: ICategory) =>{
