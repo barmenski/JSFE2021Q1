@@ -72,11 +72,13 @@ cancelPopUp = () => {
                                                     toPopUp = {this.toPopUp} popUpActive = {this.state.popUpActive} 
                                                     cancelPopUp = {this.cancelPopUp}/> }/>
           <Redirect exact from='/' to="/category"/>
+          
           <Route path="/cards/:cat_url" component={(props: RouteComponentProps<IParams>) => (<TrainPlay {...props} isPlay={this.state.isPlay} changeMode={this.changeMode} 
                                                     startPlay={this.startPlay} startPressed = {this.state.startPressed}
                                                     repeat={this.repeat} repeatPressed = {this.state.repeatPressed} 
                                                     toPopUp = {this.toPopUp} popUpActive = {this.state.popUpActive} cancelPopUp = {this.cancelPopUp}/>)}/>
-              <Route path = "/admin" component = {() => <AdminPanel/>}/>
+          <Route path = "/admin" component = {() => <AdminPanel/>}/>
+          
         </Switch>
 
       </div>

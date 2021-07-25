@@ -13,13 +13,6 @@ export interface ICategory {
   url: string,
 }
 
-interface Category {
-  id: number;
-  text: string,
-  image: string,
-  url: string,
-}
-
 interface IProps {
   isPlay: boolean,
   changeMode: (value: boolean) => void,
