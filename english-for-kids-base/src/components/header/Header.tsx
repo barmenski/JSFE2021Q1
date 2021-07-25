@@ -3,6 +3,7 @@ import "./Header.css";
 import { NavLink } from 'react-router-dom';
 import ChangeButton from "../changeButton/ChangeButton";
 import PlayButton from "../playButton/PlayButton";
+import PopUp from "../popUp/PopUp";
 
 
 interface IProps {
@@ -12,12 +13,14 @@ interface IProps {
     startPlay: (value: boolean) => void,
     startPressed: boolean,
     repeat: (value: boolean) => void,
-    repeatPressed: boolean
+    repeatPressed: boolean,
+    popUpActive: boolean,
+    toPopUp: (value: boolean) => void,
 }
 
 interface IState {
     isChecked: boolean,
-    
+    popUpActive: boolean,    
 }
 
 class Header extends React.Component<IProps, IState> {
@@ -25,6 +28,7 @@ class Header extends React.Component<IProps, IState> {
         super(props);
         this.state = {
             isChecked: false,
+            popUpActive: false
         }
         this.updateViewState = this.updateViewState.bind(this);
     }
@@ -81,10 +85,11 @@ class Header extends React.Component<IProps, IState> {
                     <NavLink  to={`/cards/5`}  className="menu-item">Emotion</NavLink>
                     <NavLink  to={`/cards/6`}  className="menu-item">Electronics</NavLink>
                     <NavLink  to={`/cards/7`}  className="menu-item">Garage</NavLink>
+                    <button className="menu-item admin-item" type = "submit" onClick = {()=>this.props.toPopUp(this.state.popUpActive)}>Log in</button>
                     </ul>
                 </div>
         <ChangeButton isPlay= {this.props.isPlay} changeMode ={this.props.changeMode}/>
-        
+        <PopUp popUpActive = {this.props.popUpActive}/>
 
         </header>
         <PlayButton isPlay= {this.props.isPlay} startPlay ={this.props.startPlay} startPressed = {this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
@@ -94,4 +99,6 @@ class Header extends React.Component<IProps, IState> {
 }
 
 export default Header;
+
+/*<NavLink  to={`/admin`}  className="menu-item admin-item">Log in</NavLink>*/
 

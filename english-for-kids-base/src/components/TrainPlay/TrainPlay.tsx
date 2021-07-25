@@ -28,7 +28,9 @@ interface IProps extends RouteComponentProps<IParams> {
   startPlay: (value: boolean) => void,
   startPressed: boolean,
   repeat: (value: boolean) => void,
-  repeatPressed: boolean
+  repeatPressed: boolean,
+  popUpActive: boolean,
+  toPopUp: (value: boolean) => void,
 }
 
 interface IState {
@@ -193,15 +195,8 @@ componentDidUpdate() {
       render() {
 
        return (
-        <>{/* 
-        <div className="container" >{this.state.cards.map((item: ICard) =>{
-        return (
-        <div className="container" key={item.word + item.url}>{item.url}</div>
-        )
-        })
-      }
-    </div>*/}
-         <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
+        <>
+         <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed} toPopUp = {this.props.toPopUp} popUpActive = {this.props.popUpActive}/>
           <div className="cards-container container">
             {this.state.cards.map((item: ICard) =>{
               return (

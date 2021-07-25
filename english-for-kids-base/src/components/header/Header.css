@@ -103,6 +103,11 @@
   text-align: left;
 }
 
+.admin-item {
+  background-color: white;
+  color: black;
+}
+
 /*Switch-button*/
 /* The switch - the box around the slider */
 .switch {

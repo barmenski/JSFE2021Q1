@@ -26,7 +26,9 @@ interface IProps {
   startPlay: (value: boolean) => void,
   startPressed: boolean,
   repeat: (value: boolean) => void,
-  repeatPressed: boolean
+  repeatPressed: boolean,
+  popUpActive: boolean,
+  toPopUp: (value: boolean) => void,
   }
 
   interface IState {
@@ -63,7 +65,7 @@ class Category extends React.Component<IProps, IState> {
     render() {
         return (
           <>
-          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
+          <Header isChecked changeMode={this.props.changeMode} isPlay={this.props.isPlay} startPlay={this.props.startPlay} startPressed={this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed} toPopUp = {this.props.toPopUp} popUpActive = {this.props.popUpActive}/>
             <div className="category-container container">
             
             {this.state.category.map((item: ICategory) =>{
