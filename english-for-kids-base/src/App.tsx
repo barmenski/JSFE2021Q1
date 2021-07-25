@@ -19,6 +19,7 @@ state = {
   repeatPressed: false,
   popUpActive: false,
   toPopUp: false,
+  cancelPopUp: false
 }
 
 changeMode = () => {
@@ -54,16 +55,27 @@ toPopUp = () => {
   })
 }
 
+cancelPopUp = () => {
+  this.setState({
+    popUpActive: false
+  })
+}
+
   render() {
     return (
       <div className="App">
         <Switch>
 
-          <Route path='/category' component={() => <Category isPlay={this.state.isPlay} changeMode={this.changeMode} startPlay = {this.startPlay} startPressed = {this.state.startPressed} repeat={this.repeat} repeatPressed = {this.state.repeatPressed}  toPopUp = {this.toPopUp} popUpActive = {this.state.popUpActive} /> }/>
+          <Route path='/category' component={() => <Category isPlay={this.state.isPlay} changeMode={this.changeMode} 
+                                                    startPlay = {this.startPlay} startPressed = {this.state.startPressed} 
+                                                    repeat={this.repeat} repeatPressed = {this.state.repeatPressed}  
+                                                    toPopUp = {this.toPopUp} popUpActive = {this.state.popUpActive} 
+                                                    cancelPopUp = {this.cancelPopUp}/> }/>
           <Redirect exact from='/' to="/category"/>
           <Route path="/cards/:cat_url" component={(props: RouteComponentProps<IParams>) => (<TrainPlay {...props} isPlay={this.state.isPlay} changeMode={this.changeMode} 
-              startPlay={this.startPlay} startPressed = {this.state.startPressed}
-              repeat={this.repeat} repeatPressed = {this.state.repeatPressed} toPopUp = {this.toPopUp} popUpActive = {this.state.popUpActive}/>)}/>
+                                                    startPlay={this.startPlay} startPressed = {this.state.startPressed}
+                                                    repeat={this.repeat} repeatPressed = {this.state.repeatPressed} 
+                                                    toPopUp = {this.toPopUp} popUpActive = {this.state.popUpActive} cancelPopUp = {this.cancelPopUp}/>)}/>
               <Route path = "/admin" component = {() => <AdminPanel/>}/>
         </Switch>
 

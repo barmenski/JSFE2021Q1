@@ -3,6 +3,7 @@ import React from "react";
 
 interface IProps {
     popUpActive: boolean
+    cancelPopUp: (value: boolean) => void,
 }
 
 interface IState {
@@ -20,6 +21,7 @@ class PopUp extends React.Component<IProps, IState> {
 toAdminPanel = () => {
     window.location.assign(`./admin`);
 }
+
     render() {
         return (
             <>
@@ -29,7 +31,7 @@ toAdminPanel = () => {
                     <input type="text" className="popUp-pass" placeholder="Password: admin"/>
                 </div>
                 <div className="button-container">
-                    <button className = "popUp-btn cancel-btn">Cancel</button>
+                    <button className = "popUp-btn cancel-btn" onClick = {() => this.props.cancelPopUp(this.state.popUpActive)}>Cancel</button>
                     <button className = "popUp-btn logIn-btn" onClick = {() => this.toAdminPanel()}>Log In</button>
                 </div>
             </div>

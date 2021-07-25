@@ -16,6 +16,7 @@ interface IProps {
     repeatPressed: boolean,
     popUpActive: boolean,
     toPopUp: (value: boolean) => void,
+    cancelPopUp: (value: boolean) => void,
 }
 
 interface IState {
@@ -89,7 +90,7 @@ class Header extends React.Component<IProps, IState> {
                     </ul>
                 </div>
         <ChangeButton isPlay= {this.props.isPlay} changeMode ={this.props.changeMode}/>
-        <PopUp popUpActive = {this.props.popUpActive}/>
+        <PopUp popUpActive = {this.props.popUpActive} cancelPopUp = {this.props.cancelPopUp}/>
 
         </header>
         <PlayButton isPlay= {this.props.isPlay} startPlay ={this.props.startPlay} startPressed = {this.props.startPressed} repeat = {this.props.repeat} repeatPressed = {this.props.repeatPressed}/>
