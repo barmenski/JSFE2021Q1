@@ -2,6 +2,7 @@ import { AboutGame } from './components/about-game/about-game';
 import { Database } from './components/database';
 import { Game } from './components/game/game';
 import { Header } from './components/header/header';
+import { GameButton } from './components/game-btn/game-btn';
 import { Score } from './components/score/score';
 import { Settings } from './components/settings/settings';
 import { Wrapper } from './components/wrapper/wrapper';
@@ -9,6 +10,8 @@ import { ImageCategoryModel } from './models/image-category-model';
 
 export class App {
   readonly header: Header;
+
+  readonly gameButton: GameButton;
 
   private readonly game: Game;
 
@@ -24,6 +27,7 @@ export class App {
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
+    this.gameButton = new GameButton();
     this.game = new Game();
     this.aboutGame = new AboutGame();
     this.settings = new Settings();
@@ -61,9 +65,8 @@ export class App {
     this.rootElement.appendChild(this.wrapper.element);
     this.wrapper.element.appendChild(this.aboutGame.element);
     this.database.init('barmenski', 1);
-    this.header.initButton();
-    this.header.initPageLink();
-    this.header.checkValid();
+    //this.gameButton.initButton();
+    //this.header.checkValid();
   };
 
   aboutGamePage = () => {

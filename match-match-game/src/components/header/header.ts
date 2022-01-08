@@ -2,103 +2,87 @@ import { BaseComponent } from '../base-component';
 import './header.scss';
 import { Database } from '../database';
 import { Player } from '../player';
+import { LogoLink } from '../logo-link/logoLink';
+import { NavBar } from '../nav-bar/nav-bar';
+import { GameButton } from '../game-btn/game-btn';
 
 export class Header extends BaseComponent {
   database = new Database();
-
+  logoLink = new LogoLink();
+  navBar = new NavBar([
+    {
+      ref: '#about-game',
+      styles: ['nav-link__about', 'active'],
+      text: 'About Game',
+    },
+    { ref: '#best-score', styles: ['nav-link__score'], text: 'Best Score' },
+    {
+      ref: '#settings',
+      styles: ['nav-link__settings'],
+      text: 'Game Settings',
+    },
+  ]);
+  gameButton = new GameButton();
+  readonly cover: HTMLElement;
   player: Player = new Player('', '', '', 0);
 
   constructor() {
     super('header', ['header']);
-    this.element.innerHTML = `
-    <a href="#game" title="Go to game!" class="logo-link"></a>
-    <ul class="nav-list">
-      <li class="nav-item"><a href="#about-game" class="nav-link__about active">About Game</a></li>
-      <li class="nav-item"><a href="#best-score" class="nav-link__score">Best Score</a></li>
-      <li class="nav-item"><a href="#settings" class="nav-link__settings">Game Settings</a></li>
-    </ul>
-    <div class="wrapper__btn">
-      <div class="reg-form">
-        <button type="submit" class="reg__btn">REGISTER NEW PLAYER</button>
-        <button type="submit" class="start__btn notVisible">START GAME</button>
-        <button type="submit" class="stop__btn notVisible">STOP GAME</button>
-      </div>
-      <div class="avatar__img notVisible"></div>
-    </div>
-    <div id="cover" class="cover notVisible">
-    </div>
-    <div id="formReg" class="formReg notVisible">
-    <h1 class="heading-form">Registration new Player</h1>
-    <div class="action">
-      <div class="input-wrapper">
-        <div class="input-container">
-          <input type="text" class="first-name" placeholder="First Name" maxlength="30" required>
-          <div class="first-name-error"></div>
-          <div class="validCheck__image notVisible"></div>
-          <input type="text" class="last-name" placeholder="Last Name" maxlength="30" required>
-          <div class="last-name-error"></div>
-          <div class="validCheck__image notVisible"></div>
-          <input type="email" class="email" placeholder="E-mail" maxlength="30" required>
-          <div class="email-error"></div>
-          <div class="validCheck__image notVisible"></div>
-        </div>
-        <div class="player-avatar"></div>
-      </div>
-      <div class="button-container">
-          <button class="formReg-add__btn invalid" type="submit" disabled>Add User</button>
-          <button class="formReg-cancel__btn" type="submit">Cancel</button>
-      </div>
-    </div>
-  </div>
-  `;
+
+    this.cover = document.createElement('div');
+    this.cover.classList.add('cover', 'notVisible');
+    this.cover.addEventListener('click', () => {
+      document.body.classList.remove('notScrollable');
+      this.cover.classList.add('notVisible');
+    });
+
+    this.element.appendChild(this.logoLink.element);
+    this.element.append(this.navBar.list);
+    this.element.append(this.gameButton.wrapperBtn);
+    this.element.append(this.cover);
+    // console.log(this.logoLink.element);
+    // this.element.innerHTML = `
+    //   <a href="#game" title="Go to game!" class="logo-link"></a>
+    //   <ul class="nav-list">
+    //     <li class="nav-item"><a href="#about-game" class="nav-link__about active">About Game</a></li>
+    //     <li class="nav-item"><a href="#best-score" class="nav-link__score">Best Score</a></li>
+    //     <li class="nav-item"><a href="#settings" class="nav-link__settings">Game Settings</a></li>
+    //   </ul>
+    //   <div class="wrapper__btn">
+    //     <div class="game__btn">
+    //       <button type="submit" class="reg__btn">REGISTER NEW PLAYER</button>
+    //       <button type="submit" class="start__btn notVisible">START GAME</button>
+    //       <button type="submit" class="stop__btn notVisible">STOP GAME</button>
+    //     </div>
+    //     <div class="avatar__img notVisible"></div>
+    //   </div>
+    //   <div id="cover" class="cover notVisible">
+    //   </div>
+    //   <div id="formReg" class="formReg notVisible">
+    //   <h1 class="heading-form">Registration new Player</h1>
+    //   <div class="action">
+    //     <div class="input-wrapper">
+    //       <div class="input-container">
+    //         <input type="text" class="first-name" placeholder="First Name" maxlength="30" required>
+    //         <div class="first-name-error"></div>
+    //         <div class="validCheck__image notVisible"></div>
+    //         <input type="text" class="last-name" placeholder="Last Name" maxlength="30" required>
+    //         <div class="last-name-error"></div>
+    //         <div class="validCheck__image notVisible"></div>
+    //         <input type="email" class="email" placeholder="E-mail" maxlength="30" required>
+    //         <div class="email-error"></div>
+    //         <div class="validCheck__image notVisible"></div>
+    //       </div>
+    //       <div class="player-avatar"></div>
+    //     </div>
+    //     <div class="button-container">
+    //         <button class="formReg-add__btn invalid" type="submit" disabled>Add User</button>
+    //         <button class="formReg-cancel__btn" type="submit">Cancel</button>
+    //     </div>
+    //   </div>
+    // </div>
+    // `;
   }
-
-  initButton = () => {
-    const regButton = document.querySelector('.reg__btn') as HTMLElement;
-    const cover = document.getElementById('cover') as HTMLElement; // затемнение
-    const formReg = document.getElementById('formReg') as HTMLElement; // форма регистрации
-
-    const aboutButton = document.querySelector(
-      '.nav-link__about',
-    ) as HTMLElement;
-    const scoreButton = document.querySelector(
-      '.nav-link__score',
-    ) as HTMLElement;
-    const settingsButton = document.querySelector(
-      '.nav-link__settings',
-    ) as HTMLElement;
-
-    regButton.addEventListener('click', () => {
-      // запускаем форму регистрации
-      document.body.classList.add('notScrollable');
-      cover.classList.remove('notVisible');
-      formReg.classList.remove('notVisible');
-    });
-
-    aboutButton.addEventListener('click', () => {
-      if (!aboutButton.classList.contains('active')) {
-        scoreButton.classList.remove('active');
-        settingsButton.classList.remove('active');
-        aboutButton.classList.add('active');
-      }
-    });
-
-    scoreButton.addEventListener('click', () => {
-      if (!scoreButton.classList.contains('active')) {
-        aboutButton.classList.remove('active');
-        settingsButton.classList.remove('active');
-        scoreButton.classList.add('active');
-      }
-    });
-
-    settingsButton.addEventListener('click', () => {
-      if (!settingsButton.classList.contains('active')) {
-        aboutButton.classList.remove('active');
-        scoreButton.classList.remove('active');
-        settingsButton.classList.add('active');
-      }
-    });
-  };
 
   checkValid = () => {
     const cover = document.getElementById('cover') as HTMLElement; // затенение
@@ -147,13 +131,13 @@ export class Header extends BaseComponent {
       formReg.classList.add('notVisible');
     });
 
-    cover.addEventListener('click', () => {
+    /* cover.addEventListener('click', () => {
       // закрываем форму регистрации по фону
       document.body.classList.remove('notScrollable');
       cover.classList.add('notVisible');
       formReg.classList.add('notVisible');
     });
-
+*/
     addButton.addEventListener('click', () => {
       regButton.classList.add('notVisible');
       startButton.classList.remove('notVisible');
@@ -257,52 +241,6 @@ export class Header extends BaseComponent {
     EmailField.addEventListener('input', () => {
       validateEmail();
       checkAddButton();
-    });
-  };
-
-  initPageLink = () => {
-    const aboutLink = document.querySelector('.nav-link__about') as HTMLElement;
-    const scoreLink = document.querySelector('.nav-link__score') as HTMLElement;
-    const settingsLink = document.querySelector(
-      '.nav-link__settings',
-    ) as HTMLElement;
-    window.addEventListener('hashchange', () => {
-      const currentRouteName = window.location.hash.slice(1);
-      switch (currentRouteName) {
-        case 'about-game':
-          if (!aboutLink.classList.contains('active')) {
-            aboutLink.classList.add('active');
-          }
-          scoreLink.classList.remove('active');
-          settingsLink.classList.remove('active');
-          break;
-        case 'settings':
-          if (!settingsLink.classList.contains('active')) {
-            settingsLink.classList.add('active');
-          }
-          scoreLink.classList.remove('active');
-          aboutLink.classList.remove('active');
-          break;
-        case 'best-score':
-          if (!scoreLink.classList.contains('active')) {
-            scoreLink.classList.add('active');
-          }
-          settingsLink.classList.remove('active');
-          aboutLink.classList.remove('active');
-          break;
-        case 'game':
-          settingsLink.classList.remove('active');
-          scoreLink.classList.remove('active');
-          aboutLink.classList.remove('active');
-          break;
-        default:
-          if (!aboutLink.classList.contains('active')) {
-            aboutLink.classList.add('active');
-          }
-          scoreLink.classList.remove('active');
-          settingsLink.classList.remove('active');
-          break;
-      }
     });
   };
 }
