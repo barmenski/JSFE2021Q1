@@ -5,6 +5,7 @@ import { Player } from '../player';
 import { LogoLink } from '../logo-link/logoLink';
 import { NavBar } from '../nav-bar/nav-bar';
 import { GameButton } from '../game-btn/game-btn';
+import { RegForm } from '../reg-form/reg-form';
 
 export class Header extends BaseComponent {
   database = new Database();
@@ -24,6 +25,7 @@ export class Header extends BaseComponent {
   ]);
   gameButton = new GameButton();
   readonly cover: HTMLElement;
+  regForm = new RegForm();
   player: Player = new Player('', '', '', 0);
 
   constructor() {
@@ -40,6 +42,7 @@ export class Header extends BaseComponent {
     this.element.append(this.navBar.list);
     this.element.append(this.gameButton.wrapperBtn);
     this.element.append(this.cover);
+    this.element.append(this.regForm.formReg);
     // console.log(this.logoLink.element);
     // this.element.innerHTML = `
     //   <a href="#game" title="Go to game!" class="logo-link"></a>

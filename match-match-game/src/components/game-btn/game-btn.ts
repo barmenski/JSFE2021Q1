@@ -16,7 +16,7 @@ export class GameButton {
       //launch registration form
       document.body.classList.add('notScrollable');
       window.app.header.cover.classList.remove('notVisible');
-      //window.app.formReg.classList.remove('notVisible');
+      window.app.header.regForm.formReg.classList.remove('notVisible');
     });
 
     this.startBtn = document.createElement('button');

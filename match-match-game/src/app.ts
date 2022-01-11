@@ -3,6 +3,7 @@ import { Database } from './components/database';
 import { Game } from './components/game/game';
 import { Header } from './components/header/header';
 import { GameButton } from './components/game-btn/game-btn';
+import { RegForm } from './components/reg-form/reg-form';
 import { Score } from './components/score/score';
 import { Settings } from './components/settings/settings';
 import { Wrapper } from './components/wrapper/wrapper';
@@ -12,6 +13,8 @@ export class App {
   readonly header: Header;
 
   readonly gameButton: GameButton;
+
+  readonly regForm: RegForm;
 
   private readonly game: Game;
 
@@ -28,6 +31,7 @@ export class App {
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.gameButton = new GameButton();
+    this.regForm = new RegForm();
     this.game = new Game();
     this.aboutGame = new AboutGame();
     this.settings = new Settings();
