@@ -34,7 +34,6 @@ export class NavBar {
       const activeLink = document
         .querySelectorAll('.nav-item a')
         .forEach((item: any) => {
-          console.log(item.hash.slice(1), currentRouteName);
           if (item.hash.slice(1) === currentRouteName) {
             if (!item.classList.contains('active')) {
               item.classList.add('active');

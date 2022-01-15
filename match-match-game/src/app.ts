@@ -70,7 +70,7 @@ export class App {
     this.wrapper.element.appendChild(this.aboutGame.element);
     this.database.init('barmenski', 1);
     //this.gameButton.initButton();
-    //this.header.checkValid();
+    //this.regForm.checkValid();
   };
 
   aboutGamePage = () => {

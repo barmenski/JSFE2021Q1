@@ -16,7 +16,7 @@ export class GameButton {
       //launch registration form
       document.body.classList.add('notScrollable');
       window.app.header.cover.classList.remove('notVisible');
-      window.app.header.regForm.formReg.classList.remove('notVisible');
+      window.app.header.regForm.regFormWrapper.classList.remove('notVisible');
     });
 
     this.startBtn = document.createElement('button');
@@ -50,8 +50,6 @@ export class GameButton {
     this.wrapperBtn.append(gameBtn);
     this.wrapperBtn.append(this.avatarImg);
   }
-
-  //добавить методы инициализации и проч(забрать из header) и связять с компонентом формы
 }
 
 //   <div class="wrapper__btn">
