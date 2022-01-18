@@ -1,3 +1,5 @@
+import './avatar.scss';
+
 export class Avatar {
   readonly avatar: HTMLElement;
 

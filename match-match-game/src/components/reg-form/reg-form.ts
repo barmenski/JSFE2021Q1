@@ -1,5 +1,6 @@
 import { Avatar } from '../avatar/avatar';
 import { Player } from '../player';
+import './reg-form.scss';
 
 export class RegForm {
   readonly avatar = new Avatar();
@@ -8,6 +9,7 @@ export class RegForm {
   readonly firstName: HTMLInputElement;
   readonly lastName: HTMLInputElement;
   readonly email: HTMLInputElement;
+  readonly avatarInput: HTMLInputElement;
 
   readonly firstNameError: HTMLElement;
   readonly lastNameError: HTMLElement;
@@ -18,6 +20,8 @@ export class RegForm {
 
   readonly addBtn: HTMLElement;
   readonly cancelBtn: HTMLElement;
+
+  imageContainer: HTMLElement;
 
   player: Player = new Player('', '', '', 0);
 
@@ -69,6 +73,34 @@ export class RegForm {
     this.email.addEventListener('input', () => {
       this.validateEmail();
       this.checkAddButton();
+    });
+
+    this.imageContainer = document.createElement('img');
+    this.imageContainer.className = 'image-container';
+
+    this.avatarInput = document.createElement('input');
+    this.avatarInput.setAttribute('type', 'file');
+    this.avatarInput.className = 'avatar-input';
+    this.avatarInput.addEventListener('change', () => {
+      let pictureSrc = '../../assets/images/avatar.svg';
+
+      if (this.avatarInput.files) {
+        const file = this.avatarInput.files[0];
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const img = new Image();
+          if (reader.result) {
+            img.src = reader.result as string;
+
+            this.imageContainer.setAttribute('src', `${img.src}`);
+          }
+        };
+
+        reader.readAsDataURL(file);
+        this.avatarInput.value = '';
+      }
     });
 
     this.firstNameError = document.createElement('div');
@@ -137,6 +169,9 @@ export class RegForm {
     inputContainer.append(this.email);
     inputContainer.append(this.emailError);
     inputContainer.append(this.validArray[2]);
+
+    this.avatar.avatar.append(this.imageContainer);
+    this.avatar.avatar.append(this.avatarInput);
 
     inputWrapper.append(this.avatar.avatar);
 
@@ -229,7 +264,9 @@ export class RegForm {
 //         <div class="email-error"></div>
 //         <div class="validCheck__image notVisible"></div>
 //       </div>
-//       <div class="player-avatar"></div>
+//       <div class="player-avatar">
+//           <input type='file' class="avatar-input">
+//       </div>
 //     </div>
 //     <div class="button-container">
 //         <button class="formReg-add__btn invalid" type="submit" disabled>Add User</button>

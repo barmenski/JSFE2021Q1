@@ -1,3 +1,5 @@
+import './nav-bar.scss';
+
 interface NavInput {
   ref: string;
   styles: string[];

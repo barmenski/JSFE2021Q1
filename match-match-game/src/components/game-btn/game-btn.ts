@@ -1,3 +1,5 @@
+import './game-btn.scss';
+
 export class GameButton {
   readonly wrapperBtn: HTMLElement;
   readonly regBtn: HTMLElement;
