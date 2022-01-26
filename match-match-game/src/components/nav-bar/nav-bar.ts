@@ -14,10 +14,10 @@ export class NavBar {
     this.list.className = 'nav-list';
 
     for (let i = 0; i < links.length; i++) {
-      let item = document.createElement('li');
+      const item = document.createElement('li');
       item.className = 'nav-item';
 
-      let navLink = document.createElement('a');
+      const navLink = document.createElement('a');
       navLink.href = links[i].ref;
       navLink.classList.add(...links[i].styles);
       navLink.innerHTML = links[i].text;
@@ -45,5 +45,5 @@ export class NavBar {
     });
   }
 }
-//[{ref: "#about-game", styles: ["nav-link__about", "active"], text: "About Game"},
-//{ref: "#best-score", styles: ["nav-link__score"], text: "Best Score"}]
+// [{ref: "#about-game", styles: ["nav-link__about", "active"], text: "About Game"},
+// {ref: "#best-score", styles: ["nav-link__score"], text: "Best Score"}]

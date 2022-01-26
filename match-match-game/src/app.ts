@@ -8,6 +8,8 @@ import { Score } from './components/score/score';
 import { Settings } from './components/settings/settings';
 import { Wrapper } from './components/wrapper/wrapper';
 import { ImageCategoryModel } from './models/image-category-model';
+// import { Player } from './components/player';
+// import defAvatar from './assets/images/avatar.svg';
 
 export class App {
   readonly header: Header;
@@ -69,8 +71,6 @@ export class App {
     this.rootElement.appendChild(this.wrapper.element);
     this.wrapper.element.appendChild(this.aboutGame.element);
     this.database.init('barmenski', 1);
-    //this.gameButton.initButton();
-    //this.regForm.checkValid();
   };
 
   aboutGamePage = () => {

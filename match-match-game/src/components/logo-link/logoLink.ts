@@ -9,4 +9,4 @@ export class LogoLink extends BaseComponent {
     this.element.setAttribute('title', 'Go to game!');
   }
 }
-//<a href="#game" title="Go to game!" class="logo-link"></a>
+// <a href="#game" title="Go to game!" class="logo-link"></a>

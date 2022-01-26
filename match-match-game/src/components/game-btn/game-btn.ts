@@ -2,10 +2,13 @@ import './game-btn.scss';
 
 export class GameButton {
   readonly wrapperBtn: HTMLElement;
+
   readonly regBtn: HTMLElement;
+
   readonly startBtn: HTMLElement;
+
   readonly stopBtn: HTMLElement;
-  readonly avatarImg: HTMLElement;
+  // readonly avatarImg: HTMLElement;
 
   constructor() {
     this.wrapperBtn = document.createElement('div');
@@ -15,7 +18,7 @@ export class GameButton {
     this.regBtn.className = 'reg__btn';
     this.regBtn.innerHTML = 'REGISTER NEW PLAYER';
     this.regBtn.addEventListener('click', () => {
-      //launch registration form
+      // launch registration form
       document.body.classList.add('notScrollable');
       window.app.header.cover.classList.remove('notVisible');
       window.app.header.regForm.regFormWrapper.classList.remove('notVisible');
@@ -39,10 +42,10 @@ export class GameButton {
       window.location.hash = '#about-game';
     });
 
-    this.avatarImg = document.createElement('div');
-    this.avatarImg.classList.add('avatar__img', 'notVisible');
+    // this.avatarImg = document.createElement('div');
+    // this.avatarImg.classList.add('avatar__img', 'notVisible');
 
-    let gameBtn = document.createElement('div');
+    const gameBtn = document.createElement('div');
     gameBtn.className = 'game__btn';
 
     gameBtn.append(this.regBtn);
@@ -50,7 +53,7 @@ export class GameButton {
     gameBtn.append(this.stopBtn);
 
     this.wrapperBtn.append(gameBtn);
-    this.wrapperBtn.append(this.avatarImg);
+    // this.wrapperBtn.append(this.avatarImg);
   }
 }
 

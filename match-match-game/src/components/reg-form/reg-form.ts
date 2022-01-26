@@ -1,45 +1,54 @@
 import { Avatar } from '../avatar/avatar';
-import { Player } from '../player';
+
 import './reg-form.scss';
+import defAvatar from '../../assets/images/avatar.svg';
 
 export class RegForm {
   readonly avatar = new Avatar();
 
   readonly regFormWrapper: HTMLElement;
+
   readonly firstName: HTMLInputElement;
+
   readonly lastName: HTMLInputElement;
+
   readonly email: HTMLInputElement;
+
+  readonly regAvatar: HTMLElement;
+
   readonly avatarInput: HTMLInputElement;
 
   readonly firstNameError: HTMLElement;
+
   readonly lastNameError: HTMLElement;
+
   readonly emailError: HTMLElement;
 
   readonly validCheckImage: HTMLElement;
+
   readonly validArray: Array<HTMLElement>;
 
   readonly addBtn: HTMLElement;
+
   readonly cancelBtn: HTMLElement;
 
   imageContainer: HTMLElement;
-
-  player: Player = new Player('', '', '', 0);
 
   constructor() {
     this.regFormWrapper = document.createElement('div');
     this.regFormWrapper.classList.add('reg-form__wrapper', 'notVisible');
 
-    let heading = document.createElement('h1');
+    const heading = document.createElement('h1');
     heading.className = 'heading-form';
     heading.innerHTML = 'Registration new Player';
 
-    let action = document.createElement('div');
+    const action = document.createElement('div');
     action.className = 'action';
 
-    let inputWrapper = document.createElement('div');
+    const inputWrapper = document.createElement('div');
     inputWrapper.className = 'input-wrapper';
 
-    let inputContainer = document.createElement('div');
+    const inputContainer = document.createElement('div');
     inputContainer.className = 'input-container';
 
     this.firstName = document.createElement('input');
@@ -75,27 +84,26 @@ export class RegForm {
       this.checkAddButton();
     });
 
+    this.regAvatar = document.createElement('div');
+    this.regAvatar.className = 'reg-avatar';
+
     this.imageContainer = document.createElement('img');
     this.imageContainer.className = 'image-container';
+
+    this.imageContainer.setAttribute('src', `${defAvatar}`);
 
     this.avatarInput = document.createElement('input');
     this.avatarInput.setAttribute('type', 'file');
     this.avatarInput.className = 'avatar-input';
     this.avatarInput.addEventListener('change', () => {
-      let pictureSrc = '../../assets/images/avatar.svg';
-
       if (this.avatarInput.files) {
         const file = this.avatarInput.files[0];
 
         const reader = new FileReader();
 
         reader.onload = () => {
-          const img = new Image();
-          if (reader.result) {
-            img.src = reader.result as string;
-
-            this.imageContainer.setAttribute('src', `${img.src}`);
-          }
+          this.imageContainer.setAttribute('src', `${reader.result}`);
+          window.player.image = reader.result as string;
         };
 
         reader.readAsDataURL(file);
@@ -116,11 +124,11 @@ export class RegForm {
     this.validCheckImage.classList.add('validCheck__image', 'notVisible');
     this.validArray = [];
     for (let i = 0; i < 3; i++) {
-      let clone = this.validCheckImage.cloneNode(true);
+      const clone = this.validCheckImage.cloneNode(true);
       this.validArray.push(clone as HTMLElement);
     }
 
-    let buttonContainer = document.createElement('div');
+    const buttonContainer = document.createElement('div');
     buttonContainer.className = 'button-container';
 
     this.addBtn = document.createElement('button');
@@ -133,12 +141,14 @@ export class RegForm {
       window.app.header.gameButton.startBtn.classList.remove('notVisible');
       document.body.classList.remove('notScrollable');
       window.app.header.cover.classList.add('notVisible');
+      window.app.header.avatar.refresh();
       this.regFormWrapper.classList.add('notVisible');
 
-      // this.player.FirstName = FirstNameField.value;
-      // this.player.LastName = LastNameField.value;
-      // this.player.email = EmailField.value;
-      // this.player.score = 0;
+      window.player.FirstName = this.firstName.value;
+      window.player.LastName = this.lastName.value;
+      window.player.email = this.email.value;
+      window.player.score = 0;
+      console.log('player from reg-form', window.player);
     });
 
     this.cancelBtn = document.createElement('button');
@@ -148,6 +158,7 @@ export class RegForm {
     this.cancelBtn.addEventListener('click', () => {
       // closed form by click cancel
       document.body.classList.remove('notScrollable');
+      window.app.header.avatar.refresh();
       window.app.header.cover.classList.add('notVisible');
       this.regFormWrapper.classList.add('notVisible');
     });
@@ -170,10 +181,10 @@ export class RegForm {
     inputContainer.append(this.emailError);
     inputContainer.append(this.validArray[2]);
 
-    this.avatar.avatar.append(this.imageContainer);
-    this.avatar.avatar.append(this.avatarInput);
+    this.regAvatar.append(this.imageContainer);
+    this.regAvatar.append(this.avatarInput);
 
-    inputWrapper.append(this.avatar.avatar);
+    inputWrapper.append(this.regAvatar);
 
     buttonContainer.append(this.addBtn);
     buttonContainer.append(this.cancelBtn);
@@ -249,7 +260,7 @@ export class RegForm {
     }
   };
 }
-//<div id="formReg" class="formReg notVisible">
+// <div id="formReg" class="formReg notVisible">
 //   <h1 class="heading-form">Registration new Player</h1>
 //   <div class="action">
 //     <div class="input-wrapper">
@@ -264,7 +275,8 @@ export class RegForm {
 //         <div class="email-error"></div>
 //         <div class="validCheck__image notVisible"></div>
 //       </div>
-//       <div class="player-avatar">
+//       <div class="reg-avatar">
+//           <img class="img-container">
 //           <input type='file' class="avatar-input">
 //       </div>
 //     </div>

@@ -4,6 +4,7 @@ interface MyRecord {
   email: string;
   score: number;
   id: IDBValidKey;
+  image: string;
 }
 
 export class Database {

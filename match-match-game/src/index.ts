@@ -1,9 +1,13 @@
 import './styles.scss';
 import { App } from './app';
+import { Player } from './components/player';
+import defAvatar from './assets/images/avatar.svg';
 
+window.player = new Player('', '', '', 0, `${defAvatar}`);
 declare global {
   interface Window {
     app: App;
+    player: Player;
   }
 }
 

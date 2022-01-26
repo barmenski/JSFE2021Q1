@@ -14,16 +14,25 @@ let gameTimeNum: number;
 
 export class Game extends BaseComponent {
   private readonly cardsField: CardsField;
+
   readonly settings: Settings;
+
   readonly timer: Timer;
+
   readonly congrat: Congrat;
+
   private activeCard?: Card;
+
   private isAnimation = false;
+
   readonly regForm = new RegForm();
 
   rightClick: number;
+
   wrongClick: number;
+
   scoreClick: number;
+
   score: number;
 
   constructor() {
@@ -101,9 +110,9 @@ export class Game extends BaseComponent {
     cover.classList.remove('notVisible');
     congratPopup.classList.remove('notVisible');
     congratText.innerHTML = `Congratulations! You successfully found all matches on ${gameTimeStr} minutes. Score: ${score}`;
-    window.app.regForm.player.score = score;
-
-    window.app.database.write('players', window.app.regForm.player);
+    window.player.score = score;
+    console.log('player from game', window.player);
+    window.app.database.write('players', window.player);
 
     congratButton.addEventListener('click', () => {
       cover.classList.add('notVisible');

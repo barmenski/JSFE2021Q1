@@ -45,12 +45,12 @@ export class Score extends BaseComponent {
           result[i].LastName,
           result[i].email,
           result[i].score,
+          result[i].image,
         );
 
-        console.log(this.innerElement);
         this.innerElement?.insertAdjacentElement(
           'afterbegin',
-          this.scoreLine.element,
+          this.scoreLine.item,
         );
       }
     });
@@ -62,16 +62,18 @@ export class Score extends BaseComponent {
     const promise: Promise<Array<Player>> =
       window.app.database.readFiltered('players');
     promise.then(result => {
+      console.log(result);
       for (let i = 0; i < result.length; i++) {
         this.scoreLine = new ScoreLine(
           result[i].FirstName,
           result[i].LastName,
           result[i].email,
           result[i].score,
+          result[i].image,
         );
         this.innerElement?.insertAdjacentElement(
           'afterbegin',
-          this.scoreLine.element,
+          this.scoreLine.item,
         );
       }
     });
