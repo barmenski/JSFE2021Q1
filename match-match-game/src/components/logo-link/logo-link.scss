@@ -6,3 +6,9 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+@media only screen and (max-width: 1000px) {
+  .logo-link {
+    order: 0;
+  }
+}

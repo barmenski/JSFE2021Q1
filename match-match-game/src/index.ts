@@ -29,6 +29,10 @@ const Routing = [
     name: 'best-score',
     component: window.app.bestScorePage,
   },
+  {
+    name: 'indexeddb-test',
+    component: window.app.indexedDbPage,
+  },
 ];
 
 const defaultRoute = {

@@ -16,7 +16,8 @@
 
 .nav-link__about,
 .nav-link__settings,
-.nav-link__score {
+.nav-link__score,
+.nav-link__default {
   width: 100%;
   height: 100%;
   display: block;
@@ -36,14 +37,16 @@
 .nav-link__score.active,
 .nav-link__about:hover,
 .nav-link__settings:hover,
-.nav-link__score:hover {
+.nav-link__score:hover,
+.nav-link__default:hover {
   opacity: 0.7;
   background-color: #1e88e5;
 }
 
 .nav-link__about::before,
 .nav-link__settings::before,
-.nav-link__score::before {
+.nav-link__score::before,
+.nav-link__default::before {
   width: 20px;
   height: 20px;
   content: '';
@@ -65,4 +68,15 @@
 
 .nav-link__score::before {
   background-image: url('../../assets/icon/score-icon.svg');
+}
+
+.nav-link__default::before {
+  background-image: url('../../assets/icon/default-icon.svg');
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav-list {
+    order: 3;
+    justify-content: center;
+  }
 }

@@ -7,3 +7,9 @@
   margin: 10px;
   margin-right: 21px;
 }
+
+@media only screen and (max-width: 1000px) {
+  .avatar__img {
+    order: 2;
+  }
+}

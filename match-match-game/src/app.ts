@@ -8,8 +8,7 @@ import { Score } from './components/score/score';
 import { Settings } from './components/settings/settings';
 import { Wrapper } from './components/wrapper/wrapper';
 import { ImageCategoryModel } from './models/image-category-model';
-// import { Player } from './components/player';
-// import defAvatar from './assets/images/avatar.svg';
+import { IndexedDbTest } from './components/indexeddb-test/indexeddb-test';
 
 export class App {
   readonly header: Header;
@@ -30,6 +29,8 @@ export class App {
 
   readonly database: Database;
 
+  readonly indexedDbTest: IndexedDbTest;
+
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.gameButton = new GameButton();
@@ -40,6 +41,7 @@ export class App {
     this.score = new Score();
     this.wrapper = new Wrapper();
     this.database = new Database();
+    this.indexedDbTest = new IndexedDbTest();
     this.rootElement = rootElement;
   }
 
@@ -83,5 +85,11 @@ export class App {
     this.score.reset();
     this.wrapper.element.appendChild(this.score.element);
     this.score.addLine();
+  };
+
+  indexedDbPage = () => {
+    this.wrapper.element.innerHTML = '';
+    this.indexedDbTest.init('idb-test');
+    this.wrapper.element.appendChild(this.indexedDbTest.dbTestWrapper);
   };
 }

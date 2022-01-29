@@ -1,16 +1,13 @@
 import { BaseComponent } from '../base-component';
 import './header.scss';
 import { Database } from '../database';
-// import { Player } from '../player';
 import { LogoLink } from '../logo-link/logoLink';
 import { NavBar } from '../nav-bar/nav-bar';
 import { GameButton } from '../game-btn/game-btn';
 import { RegForm } from '../reg-form/reg-form';
 import { Avatar } from '../avatar/avatar';
-// import defAvatar from '../../assets/images/avatar.svg';
 
 export class Header extends BaseComponent {
-  // readonly player: Player;
   avatar = new Avatar();
 
   database = new Database();
@@ -29,6 +26,11 @@ export class Header extends BaseComponent {
       styles: ['nav-link__settings'],
       text: 'Game Settings',
     },
+    {
+      ref: '#indexeddb-test',
+      styles: ['nav-link__default'],
+      text: 'IndexedDB test',
+    },
   ]);
 
   gameButton = new GameButton();
@@ -37,12 +39,9 @@ export class Header extends BaseComponent {
 
   regForm = new RegForm();
 
-  // player: Player = new Player('', '', '', 0, `${defAvatar}`);
-
   constructor() {
     super('header', ['header']);
 
-    // this.player = new Player('', '', '', 0, `${defAvatar}`);
     this.cover = document.createElement('div');
     this.cover.classList.add('cover', 'notVisible');
     this.cover.addEventListener('click', () => {
