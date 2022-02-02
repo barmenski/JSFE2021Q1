@@ -1,11 +1,11 @@
 import { BaseComponent } from '../base-component';
-import './header.scss';
 import { Database } from '../database';
 import { LogoLink } from '../logo-link/logoLink';
 import { NavBar } from '../nav-bar/nav-bar';
 import { GameButton } from '../game-btn/game-btn';
-import { RegForm } from '../reg-form/reg-form';
+import { RegFormMini } from '../reg-form/reg-form-mini';
 import { Avatar } from '../avatar/avatar';
+import './header.scss';
 
 export class Header extends BaseComponent {
   avatar = new Avatar();
@@ -37,7 +37,7 @@ export class Header extends BaseComponent {
 
   readonly cover: HTMLElement;
 
-  regForm = new RegForm();
+  regFormMini = new RegFormMini();
 
   constructor() {
     super('header', ['header']);
@@ -47,16 +47,16 @@ export class Header extends BaseComponent {
     this.cover.addEventListener('click', () => {
       document.body.classList.remove('notScrollable');
       this.cover.classList.add('notVisible');
-      if (this.regForm.regFormWrapper.classList.contains('notVisible')) {
-        this.regForm.regFormWrapper.classList.add('notVisible');
+      if (this.regFormMini.regFormWrapper.classList.contains('notVisible')) {
+        this.regFormMini.regFormWrapper.classList.add('notVisible');
       }
     });
 
     this.element.appendChild(this.logoLink.element);
     this.element.append(this.navBar.list);
     this.element.append(this.gameButton.wrapperBtn);
-    this.element.append(this.avatar.avatar);
+    this.element.append(this.avatar.avatarWrapper);
     this.element.append(this.cover);
-    this.element.append(this.regForm.regFormWrapper);
+    this.element.append(this.regFormMini.regFormWrapper);
   }
 }

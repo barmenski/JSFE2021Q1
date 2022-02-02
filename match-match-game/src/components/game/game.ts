@@ -112,7 +112,7 @@ export class Game extends BaseComponent {
     congratText.innerHTML = `Congratulations! You successfully found all matches on ${gameTimeStr} minutes. Score: ${score}`;
     window.player.score = score;
     console.log('player from game', window.player);
-    window.app.database.write('players', window.player);
+    window.database.write('players', window.player);
 
     congratButton.addEventListener('click', () => {
       cover.classList.add('notVisible');

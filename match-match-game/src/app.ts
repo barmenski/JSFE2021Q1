@@ -1,9 +1,9 @@
 import { AboutGame } from './components/about-game/about-game';
-import { Database } from './components/database';
+//import { Database } from './components/database';
 import { Game } from './components/game/game';
 import { Header } from './components/header/header';
 import { GameButton } from './components/game-btn/game-btn';
-import { RegForm } from './components/reg-form/reg-form';
+import { RegFormMini } from './components/reg-form/reg-form-mini';
 import { Score } from './components/score/score';
 import { Settings } from './components/settings/settings';
 import { Wrapper } from './components/wrapper/wrapper';
@@ -15,7 +15,7 @@ export class App {
 
   readonly gameButton: GameButton;
 
-  readonly regForm: RegForm;
+  readonly regFormMini: RegFormMini;
 
   private readonly game: Game;
 
@@ -27,20 +27,20 @@ export class App {
 
   private readonly score: Score;
 
-  readonly database: Database;
+  // readonly database: Database;
 
   readonly indexedDbTest: IndexedDbTest;
 
   constructor(private readonly rootElement: HTMLElement) {
     this.header = new Header();
     this.gameButton = new GameButton();
-    this.regForm = new RegForm();
+    this.regFormMini = new RegFormMini();
     this.game = new Game();
     this.aboutGame = new AboutGame();
     this.settings = new Settings();
     this.score = new Score();
     this.wrapper = new Wrapper();
-    this.database = new Database();
+    //this.database = new Database();
     this.indexedDbTest = new IndexedDbTest();
     this.rootElement = rootElement;
   }
@@ -72,7 +72,6 @@ export class App {
     this.rootElement.appendChild(this.header.element);
     this.rootElement.appendChild(this.wrapper.element);
     this.wrapper.element.appendChild(this.aboutGame.element);
-    this.database.init('barmenski', 1);
   };
 
   aboutGamePage = () => {
@@ -89,7 +88,7 @@ export class App {
 
   indexedDbPage = () => {
     this.wrapper.element.innerHTML = '';
-    this.indexedDbTest.init('idb-test');
+    this.indexedDbTest.init('idb-test', 2);
     this.wrapper.element.appendChild(this.indexedDbTest.dbTestWrapper);
   };
 }

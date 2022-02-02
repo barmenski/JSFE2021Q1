@@ -36,8 +36,7 @@ export class Score extends BaseComponent {
 
   addAll = () => {
     this.innerElement = document.querySelector('.score-list');
-    const promise: Promise<Array<Player>> =
-      window.app.database.readAll('players');
+    const promise: Promise<Array<Player>> = window.database.readAll('players');
     promise.then(result => {
       for (let i = 0; i < result.length; i++) {
         this.scoreLine = new ScoreLine(
@@ -60,7 +59,7 @@ export class Score extends BaseComponent {
     this.innerElement = null;
     this.innerElement = document.querySelector('.score-list');
     const promise: Promise<Array<Player>> =
-      window.app.database.readFiltered('players');
+      window.database.readFiltered('players');
     promise.then(result => {
       console.log(result);
       for (let i = 0; i < result.length; i++) {

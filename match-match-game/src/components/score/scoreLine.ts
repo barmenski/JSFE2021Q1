@@ -37,7 +37,7 @@ export class ScoreLine {
     itemContainer.append(itemEmail);
     this.item.append(itemContainer);
     this.item.append(itemScore);
-    console.log(FirstName, LastName, email, score, image);
+
     // `
     // <img class="avatar__img">
     // <div class="item-container">

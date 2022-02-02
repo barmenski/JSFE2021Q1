@@ -1,3 +1,21 @@
+.avatar__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar__name {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: white;
+}
+
 .avatar__img {
   width: 40px;
   height: 40px;
@@ -9,7 +27,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .avatar__img {
+  .avatar__wrapper {
     order: 2;
   }
 }

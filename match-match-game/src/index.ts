@@ -1,15 +1,22 @@
 import './styles.scss';
 import { App } from './app';
 import { Player } from './components/player';
+import { Database } from './components/database';
 import defAvatar from './assets/images/avatar.svg';
 
-window.player = new Player('', '', '', 0, `${defAvatar}`);
 declare global {
   interface Window {
     app: App;
     player: Player;
+    database: Database;
   }
 }
+window.database = new Database();
+window.database.init('barmenski', 1);
+let firstPlayer: Player;
+let askDB = window.database.readFirst('players');
+askDB.then(result => console.log(result));
+window.player = new Player('', '', '', 0, `${defAvatar}`);
 
 const appElement = document.querySelector('body');
 if (!appElement) throw Error('<body> element not found');

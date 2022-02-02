@@ -20,7 +20,6 @@ export class Database {
         autoIncrement: true,
       });
       store.createIndex('score', 'score');
-      store.createIndex('email', 'email');
       this.db = database;
     };
 
@@ -61,7 +60,6 @@ export class Database {
       };
     });
   }
-
   readAll<RecordType>(collection: string): Promise<Array<RecordType>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(collection, 'readonly');
@@ -70,7 +68,21 @@ export class Database {
 
       transaction.oncomplete = () => {
         resolve(result.result);
-        // console.log(result.result);
+      };
+      transaction.onerror = () => {
+        reject(result.error);
+      };
+    });
+  }
+
+  readFirst<RecordType>(collection: string): Promise<Array<RecordType>> {
+    return new Promise((resolve, reject) => {
+      const transaction = this.db.transaction(collection, 'readonly');
+      const store = transaction.objectStore(collection);
+      const result = store.get(1);
+
+      transaction.oncomplete = () => {
+        resolve(result.result);
       };
       transaction.onerror = () => {
         reject(result.error);

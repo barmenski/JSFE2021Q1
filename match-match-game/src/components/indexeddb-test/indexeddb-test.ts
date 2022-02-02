@@ -1,3 +1,8 @@
+interface Note {
+  text: string;
+  timestamp: number;
+}
+
 import './indexeddb-test.scss';
 
 export class IndexedDbTest {
@@ -14,6 +19,8 @@ export class IndexedDbTest {
   readonly dbTestGetIn: HTMLInputElement;
 
   readonly dbTestGetOut: HTMLElement;
+
+  readonly dbTestGetAllBtn: HTMLButtonElement;
 
   constructor() {
     this.dbTestWrapper = document.createElement('div');
@@ -42,11 +49,19 @@ export class IndexedDbTest {
       this.readStickyNote(this.dbTest, this.dbTestGetIn.value);
     });
 
+    this.dbTestGetAllBtn = document.createElement('button');
+    this.dbTestGetAllBtn.className = 'dbtest__button';
+    this.dbTestGetAllBtn.innerHTML = 'Get All note';
+    this.dbTestGetAllBtn.addEventListener('click', () => {
+      this.getAndDisplayNotes(this.dbTest);
+    });
+
     this.dbTestWrapper.append(this.dbTestInput);
     this.dbTestWrapper.append(this.dbTestAddBtn);
     this.dbTestWrapper.append(this.dbTestGetIn);
     this.dbTestWrapper.append(this.dbTestGetBtn);
     this.dbTestWrapper.append(this.dbTestGetOut);
+    this.dbTestWrapper.append(this.dbTestGetAllBtn);
   }
 
   init(dbName: string, version?: number) {
@@ -54,7 +69,18 @@ export class IndexedDbTest {
 
     dbReq.onupgradeneeded = () => {
       this.dbTest = dbReq.result;
-      this.dbTest.createObjectStore('notes', { autoIncrement: true });
+      //this.dbTest.createObjectStore('notes', { autoIncrement: true });
+
+      let notes;
+      if (!this.dbTest.objectStoreNames.contains('notes')) {
+        notes = this.dbTest.createObjectStore('notes', { autoIncrement: true });
+      } else {
+        notes = dbReq.transaction?.objectStore('notes');
+      }
+
+      if (!notes?.indexNames.contains('timestamp')) {
+        notes?.createIndex('timestamp', 'timestamp');
+      }
     };
     dbReq.onsuccess = () => {
       this.dbTest = dbReq.result;
@@ -102,5 +128,37 @@ export class IndexedDbTest {
     req.onerror = () => {
       console.log(`error${req.error}`);
     };
+  }
+
+  getAndDisplayNotes(db: IDBDatabase) {
+    let tx = db.transaction(['notes'], 'readonly');
+    let store = tx.objectStore('notes');
+
+    let index = store.index('timestamp');
+    //console.log(index);
+    let req = index.openCursor(null, 'next');
+
+    //let req = store.openCursor();
+    let allNotes = [] as Array<Note>;
+
+    req.onsuccess = () => {
+      let cursor = req.result;
+
+      if (cursor != null) {
+        allNotes.push(cursor.value);
+        cursor.continue();
+      } else {
+        this.displayNotes(allNotes);
+      }
+    };
+  }
+
+  displayNotes(notes: Array<Note>) {
+    for (let i = 0; i < notes.length; i++) {
+      let note = notes[i];
+      const out = document.createElement('li');
+      out.innerHTML = `text: ${note.text} timestamp: ${note.timestamp}`;
+      this.dbTestGetOut.append(out);
+    }
   }
 }
