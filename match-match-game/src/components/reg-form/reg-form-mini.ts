@@ -67,7 +67,7 @@ export class RegFormMini {
     this.avatarInput.className = 'avatar-input';
     this.avatarInput.addEventListener('change', () => {
       if (this.avatarInput.files) {
-        const file = this.avatarInput.files[0];
+        const file = this.avatarInput.files[0]; //pseudoarray of uploaded files
 
         const reader = new FileReader();
 
@@ -76,7 +76,7 @@ export class RegFormMini {
           window.player.image = reader.result as string;
         };
 
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file); //read to base64
         this.avatarInput.value = '';
       }
     });

@@ -1,4 +1,4 @@
-interface MyRecord {
+export interface MyRecord {
   firstName: string;
   lastName: string;
   email: string;
@@ -11,59 +11,54 @@ export class Database {
   public db!: IDBDatabase;
 
   init(dbName: string, version?: number) {
-    const iDB = window.indexedDB;
-    const openRequest = iDB.open(dbName, version);
-    openRequest.onupgradeneeded = () => {
-      const database = openRequest.result;
-      const store = database.createObjectStore('players', {
-        keyPath: 'id',
-        autoIncrement: true,
-      });
-      store.createIndex('score', 'score');
-      this.db = database;
-    };
+    return new Promise(resolve => {
+      const openRequest = window.indexedDB.open(dbName, version); //opened DB with name and version. This async request
+      openRequest.onupgradeneeded = () => {
+        //on the first load page or update version
+        const database = openRequest.result;
+        const store = database.createObjectStore('players', {
+          //make store of objects
+          keyPath: 'id',
+          autoIncrement: true,
+        });
+        store.createIndex('score', 'score'); //make index
+        this.db = database; //public db get database with store and index
+      };
 
-    openRequest.onsuccess = () => {
-      this.db = openRequest.result;
-    };
-  }
+      openRequest.onsuccess = () => {
+        //if DB is exist. It executes after refresh page.
+        this.db = openRequest.result;
+        resolve(openRequest.result);
+      };
 
-  write<RecordType>(collection: string, data: RecordType): Promise<RecordType> {
-    return new Promise((resolve, reject) => {
-      let transResult: RecordType;
-      const transaction = this.db.transaction(collection, 'readwrite');
-      transaction.oncomplete = () => resolve(transResult);
-
-      const store = transaction.objectStore(collection);
-      const res = store.add({});
-
-      res.onsuccess = () => {
-        const newRecord: RecordType = { ...data, id: res.result };
-        transResult = newRecord;
-        /* let result = store.put({
-          firstName: 'mike',
-          lastName: 'vazovski',
-          email: res.result.toString(),
-          score: 0,
-          id: res.result,
-        }); */
-        const result = store.put(newRecord);
-        result.onsuccess = () => {
-          console.log('complete', result.result);
-        };
-        result.onerror = () => {
-          console.log('error', result.result);
-        };
-        transaction.onabort = () => {
-          console.log('abort');
-        };
+      openRequest.onerror = () => {
+        //if DB is exist. It executes after refresh page.
+        console.log(`Error on init() ${ErrorEvent}`);
       };
     });
   }
-  readAll<RecordType>(collection: string): Promise<Array<RecordType>> {
+
+  write<RecordType>(objStore: string, data: RecordType): Promise<RecordType> {
+    return new Promise(() => {
+      const transaction = this.db.transaction(objStore, 'readwrite'); //make transaction
+      const store = transaction.objectStore(objStore); //extract store of objects to const store
+      const result = store.put(data); //if it exist same - it will rewrite
+
+      result.onsuccess = () => {
+        console.log('complete', result.result); //result.result = id
+      };
+      result.onerror = () => {
+        console.log('error', result.result);
+      };
+      transaction.onabort = () => {
+        console.log('abort');
+      };
+    });
+  }
+  readAll<RecordType>(objStore: string): Promise<Array<RecordType>> {
     return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction(collection, 'readonly');
-      const store = transaction.objectStore(collection);
+      const transaction = this.db.transaction(objStore, 'readonly');
+      const store = transaction.objectStore(objStore);
       const result = store.getAll();
 
       transaction.oncomplete = () => {
@@ -75,10 +70,10 @@ export class Database {
     });
   }
 
-  readFirst<RecordType>(collection: string): Promise<Array<RecordType>> {
+  readFirst<RecordType>(objStore: string): Promise<Array<RecordType>> {
     return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction(collection, 'readonly');
-      const store = transaction.objectStore(collection);
+      const transaction = this.db.transaction(objStore, 'readonly');
+      const store = transaction.objectStore(objStore);
       const result = store.get(1);
 
       transaction.oncomplete = () => {
@@ -90,10 +85,10 @@ export class Database {
     });
   }
 
-  readFiltered<RecordType>(collection: string): Promise<Array<RecordType>> {
+  readFiltered<RecordType>(objStore: string): Promise<Array<RecordType>> {
     return new Promise((resolve, reject) => {
-      const transaction = this.db.transaction(collection, 'readonly');
-      const store = transaction.objectStore(collection);
+      const transaction = this.db.transaction(objStore, 'readonly');
+      const store = transaction.objectStore(objStore);
       const result = store.index('score').openCursor(null, 'next');
       const resData: Array<RecordType> = [];
       result.onsuccess = () => {

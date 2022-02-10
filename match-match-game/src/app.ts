@@ -88,7 +88,10 @@ export class App {
 
   indexedDbPage = () => {
     this.wrapper.element.innerHTML = '';
-    this.indexedDbTest.init('idb-test', 2);
+    const promise = new Promise(() => this.indexedDbTest.init('idb-test', 3));
+    promise.then(() =>
+      this.indexedDbTest.getAndDisplayNotes(this.indexedDbTest.dbTest),
+    );
     this.wrapper.element.appendChild(this.indexedDbTest.dbTestWrapper);
   };
 }
