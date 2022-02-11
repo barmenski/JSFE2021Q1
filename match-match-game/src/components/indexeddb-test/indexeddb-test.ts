@@ -1,9 +1,9 @@
+import './indexeddb-test.scss';
+
 interface Note {
   text: string;
   timestamp: number;
 }
-
-import './indexeddb-test.scss';
 
 export class IndexedDbTest {
   public dbTest!: IDBDatabase;
@@ -69,7 +69,7 @@ export class IndexedDbTest {
 
     dbReq.onupgradeneeded = () => {
       this.dbTest = dbReq.result;
-      //this.dbTest.createObjectStore('notes', { autoIncrement: true });
+      // this.dbTest.createObjectStore('notes', { autoIncrement: true });
 
       let notes;
       if (!this.dbTest.objectStoreNames.contains('notes')) {
@@ -131,18 +131,18 @@ export class IndexedDbTest {
   }
 
   getAndDisplayNotes(db: IDBDatabase) {
-    let tx = db.transaction(['notes'], 'readonly');
-    let store = tx.objectStore('notes');
+    const tx = db.transaction(['notes'], 'readonly');
+    const store = tx.objectStore('notes');
 
-    let index = store.index('timestamp');
-    //console.log(index);
-    let req = index.openCursor(null, 'next');
+    const index = store.index('timestamp');
+    // console.log(index);
+    const req = index.openCursor(null, 'next');
 
-    //let req = store.openCursor();
-    let allNotes = [] as Array<Note>;
+    // let req = store.openCursor();
+    const allNotes = [] as Array<Note>;
 
     req.onsuccess = () => {
-      let cursor = req.result;
+      const cursor = req.result;
 
       if (cursor != null) {
         allNotes.push(cursor.value);
@@ -155,7 +155,7 @@ export class IndexedDbTest {
 
   displayNotes(notes: Array<Note>) {
     for (let i = 0; i < notes.length; i++) {
-      let note = notes[i];
+      const note = notes[i];
       const out = document.createElement('li');
       out.innerHTML = `text: ${note.text} timestamp: ${note.timestamp}`;
       this.dbTestGetOut.append(out);

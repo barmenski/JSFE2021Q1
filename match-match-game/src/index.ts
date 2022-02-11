@@ -2,7 +2,7 @@ import './styles.scss';
 import { App } from './app';
 import { Player } from './components/player';
 import { Database } from './components/database';
-import defAva from '../src/assets/images/avatar.svg';
+import defAva from './assets/images/avatar.svg';
 
 declare global {
   interface Window {
@@ -71,4 +71,4 @@ window.database
     });
   });
 
-//window.player = new Player(``, ``, ``, 0, defAvatar); //создает плеера по нулям, а из БД плеер позже появляется
+// window.player = new Player(``, ``, ``, 0, defAvatar); //создает плеера по нулям, а из БД плеер позже появляется

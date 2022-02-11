@@ -2,7 +2,9 @@ import './avatar.scss';
 
 export class Avatar {
   readonly avatar: HTMLElement;
+
   readonly firstName: HTMLElement;
+
   readonly avatarWrapper: HTMLElement;
 
   constructor() {

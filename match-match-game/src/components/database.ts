@@ -12,27 +12,27 @@ export class Database {
 
   init(dbName: string, version?: number) {
     return new Promise(resolve => {
-      const openRequest = window.indexedDB.open(dbName, version); //opened DB with name and version. This async request
+      const openRequest = window.indexedDB.open(dbName, version); // opened DB with name and version. This async request
       openRequest.onupgradeneeded = () => {
-        //on the first load page or update version
+        // on the first load page or update version
         const database = openRequest.result;
         const store = database.createObjectStore('players', {
-          //make store of objects
+          // make store of objects
           keyPath: 'id',
           autoIncrement: true,
         });
-        store.createIndex('FirstName', 'FirstName'); //make index
-        this.db = database; //public db get database with store and index
+        store.createIndex('FirstName', 'FirstName'); // make index
+        this.db = database; // public db get database with store and index
       };
 
       openRequest.onsuccess = () => {
-        //if DB is exist. It executes after refresh page.
+        // if DB is exist. It executes after refresh page.
         this.db = openRequest.result;
         resolve(openRequest.result);
       };
 
       openRequest.onerror = () => {
-        //if DB is exist. It executes after refresh page.
+        // if DB is exist. It executes after refresh page.
         console.log(`Error on init() ${ErrorEvent}`);
       };
     });
@@ -40,12 +40,12 @@ export class Database {
 
   write<RecordType>(objStore: string, data: RecordType): Promise<RecordType> {
     return new Promise(() => {
-      const transaction = this.db.transaction(objStore, 'readwrite'); //make transaction
-      const store = transaction.objectStore(objStore); //extract store of objects to const store
-      const result = store.put(data); //if it exist same - it will rewrite
+      const transaction = this.db.transaction(objStore, 'readwrite'); // make transaction
+      const store = transaction.objectStore(objStore); // extract store of objects to const store
+      const result = store.put(data); // if it exist same - it will rewrite
 
       result.onsuccess = () => {
-        console.log('complete', result.result); //result.result = id
+        console.log('complete', result.result); // result.result = id
       };
       result.onerror = () => {
         console.log('error', result.result);
@@ -55,6 +55,7 @@ export class Database {
       };
     });
   }
+
   readAll<RecordType>(objStore: string): Promise<Array<RecordType>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
@@ -75,11 +76,11 @@ export class Database {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
 
-      let cursorReq = store.openCursor();
-      let allData: Array<RecordType> = [];
+      const cursorReq = store.openCursor();
+      const allData: Array<RecordType> = [];
 
       cursorReq.onsuccess = () => {
-        let cursor = cursorReq.result;
+        const cursor = cursorReq.result;
 
         if (cursor != null) {
           allData.push(cursor.value);
