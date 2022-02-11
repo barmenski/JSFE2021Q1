@@ -1,5 +1,4 @@
 import { AboutGame } from './components/about-game/about-game';
-//import { Database } from './components/database';
 import { Game } from './components/game/game';
 import { Header } from './components/header/header';
 import { GameButton } from './components/game-btn/game-btn';
@@ -40,7 +39,6 @@ export class App {
     this.settings = new Settings();
     this.score = new Score();
     this.wrapper = new Wrapper();
-    //this.database = new Database();
     this.indexedDbTest = new IndexedDbTest();
     this.rootElement = rootElement;
   }

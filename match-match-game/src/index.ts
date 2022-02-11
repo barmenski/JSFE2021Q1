@@ -2,6 +2,7 @@ import './styles.scss';
 import { App } from './app';
 import { Player } from './components/player';
 import { Database } from './components/database';
+import defAva from '../src/assets/images/avatar.svg';
 
 declare global {
   interface Window {
@@ -13,20 +14,27 @@ declare global {
 window.database = new Database();
 window.database
   .init('barmenski', 1)
-  .then(result => console.log('IndexedDB inited!', result))
-  .then(() => window.database.readFirst('players'))
-  .then((result: any) => {
-    window.player = new Player(
-      `${result.FirstName}`,
-      `${result.LastName}`,
-      `${result.email}`,
-      result.score,
-      `${result.image}`,
-    );
-    console.log('readFirst made!', window.player);
-  })
+  .then(() => console.log('IndexedDB inited!'))
+  .then(() => window.database.readLast('players'))
+  .then(
+    (result: any) => {
+      if (result === undefined) {
+        window.player = new Player(`Player`, `dbEmpty`, ``, 0, `${defAva}`);
+      } else {
+        window.player = new Player(
+          `${result.FirstName}`,
+          `${result.LastName}`,
+          `${result.email}`,
+          result.score,
+          `${result.image}`,
+        );
+      }
+    },
+    (error: any) => {
+      console.log(error);
+    },
+  )
   .then(() => {
-    console.log('start window.app.initPage!', window.player);
     const appElement = document.querySelector('body');
     if (!appElement) throw Error('<body> element not found');
     window.app = new App(appElement);

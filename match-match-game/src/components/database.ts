@@ -21,7 +21,7 @@ export class Database {
           keyPath: 'id',
           autoIncrement: true,
         });
-        store.createIndex('score', 'score'); //make index
+        store.createIndex('FirstName', 'FirstName'); //make index
         this.db = database; //public db get database with store and index
       };
 
@@ -70,17 +70,26 @@ export class Database {
     });
   }
 
-  readFirst<RecordType>(objStore: string): Promise<Array<RecordType>> {
+  readLast<RecordType>(objStore: string): Promise<RecordType> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
-      const result = store.get(1);
 
-      transaction.oncomplete = () => {
-        resolve(result.result);
-      };
-      transaction.onerror = () => {
-        reject(result.error);
+      let cursorReq = store.openCursor();
+      let allData: Array<RecordType> = [];
+
+      cursorReq.onsuccess = () => {
+        let cursor = cursorReq.result;
+
+        if (cursor != null) {
+          allData.push(cursor.value);
+          cursor.continue();
+        } else {
+          resolve(allData[allData.length - 1]);
+        }
+        cursorReq.onerror = () => {
+          reject(cursorReq.error);
+        };
       };
     });
   }
@@ -89,12 +98,11 @@ export class Database {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
-      const result = store.index('score').openCursor(null, 'next');
+      const result = store.index('FirstName').openCursor(null, 'next');
       const resData: Array<RecordType> = [];
       result.onsuccess = () => {
         const cursor = result.result;
         if (cursor) {
-          // console.log(cursor.value);
           if (cursor.value.id) {
             resData.push(cursor.value);
           }
@@ -103,7 +111,6 @@ export class Database {
       };
       transaction.oncomplete = () => {
         resolve(resData);
-        // console.log(resData);
       };
     });
   }

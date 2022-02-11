@@ -16,6 +16,13 @@ export class Avatar {
     this.firstName = document.createElement('span');
     this.firstName.className = 'avatar__name';
     this.firstName.innerHTML = `${window.player.FirstName}`;
+    this.firstName.addEventListener('click', () => {
+      document.body.classList.add('notScrollable');
+      window.app.header.cover.classList.remove('notVisible');
+      window.app.header.regFormMini.regFormWrapper.classList.remove(
+        'notVisible',
+      );
+    });
 
     this.avatarWrapper.append(this.firstName);
     this.avatarWrapper.append(this.avatar);

@@ -106,6 +106,7 @@ export class RegFormMini {
       document.body.classList.remove('notScrollable');
       window.app.header.cover.classList.add('notVisible');
       window.player.FirstName = this.firstName.value;
+      window.player.LastName = '';
       window.player.score = 0;
       window.app.header.avatar.refresh();
       window.database.write('players', window.player);
