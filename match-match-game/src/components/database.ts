@@ -1,9 +1,7 @@
 export interface MyRecord {
-  firstName: string;
-  lastName: string;
-  email: string;
+  FirstName: string;
+  LastName: string;
   score: number;
-  id: IDBValidKey;
   image: string;
 }
 
@@ -18,8 +16,8 @@ export class Database {
         const database = openRequest.result;
         const store = database.createObjectStore('players', {
           // make store of objects
-          keyPath: 'id',
-          autoIncrement: true,
+          keyPath: 'FirstName',
+          autoIncrement: false,
         });
         store.createIndex('FirstName', 'FirstName'); // make index
         this.db = database; // public db get database with store and index
@@ -38,21 +36,29 @@ export class Database {
     });
   }
 
-  write<RecordType>(objStore: string, data: RecordType): Promise<RecordType> {
+  write(objStore: string, data: MyRecord): Promise<MyRecord> {
     return new Promise(() => {
       const transaction = this.db.transaction(objStore, 'readwrite'); // make transaction
       const store = transaction.objectStore(objStore); // extract store of objects to const store
+      //let index = store.index('FirstName');
+      //const resGetKey = index.getKey(data.FirstName);
+      //resGetKey.onsuccess = () => {
+      // console.log(resGetKey.result);
       const result = store.put(data); // if it exist same - it will rewrite
 
       result.onsuccess = () => {
         console.log('complete', result.result); // result.result = id
       };
       result.onerror = () => {
-        console.log('error', result.result);
+        console.log('error', result.error);
       };
       transaction.onabort = () => {
         console.log('abort');
       };
+      // };
+      //resGetKey.onerror = () => {
+      //   console.log('error', resGetKey.error);
+      //  };
     });
   }
 
@@ -104,7 +110,7 @@ export class Database {
       result.onsuccess = () => {
         const cursor = result.result;
         if (cursor) {
-          if (cursor.value.id) {
+          if (cursor.value.FirstName) {
             resData.push(cursor.value);
           }
           cursor?.continue();
@@ -112,6 +118,9 @@ export class Database {
       };
       transaction.oncomplete = () => {
         resolve(resData);
+      };
+      transaction.onerror = () => {
+        reject(transaction.error);
       };
     });
   }

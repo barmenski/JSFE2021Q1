@@ -19,12 +19,11 @@ window.database
   .then(
     (result: any) => {
       if (result === undefined) {
-        window.player = new Player(`Player`, `dbEmpty`, ``, 0, `${defAva}`);
+        window.player = new Player(`Player`, `dbEmpty`, 0, `${defAva}`);
       } else {
         window.player = new Player(
           `${result.FirstName}`,
           `${result.LastName}`,
-          `${result.email}`,
           result.score,
           `${result.image}`,
         );

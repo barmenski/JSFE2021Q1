@@ -108,6 +108,7 @@ export class RegFormMini {
       window.player.FirstName = this.firstName.value;
       window.player.LastName = '';
       window.player.score = 0;
+      window.player.image = defAvatar;
       window.app.header.avatar.refresh();
       window.database.write('players', window.player);
       this.regFormWrapper.classList.add('notVisible');

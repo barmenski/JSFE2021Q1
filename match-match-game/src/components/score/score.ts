@@ -6,9 +6,8 @@ import { ScoreLine } from './scoreLine';
 interface MyRecord {
   firstName: string;
   lastName: string;
-  email: string;
   score: number;
-  id: IDBValidKey;
+  image: string;
 }
 
 export class Score extends BaseComponent {
@@ -22,7 +21,6 @@ export class Score extends BaseComponent {
     <h1 class="heading">Best players</h1>
     <ul class="score-list">
     </ul>
-    <button class="clear__btn" type="submit">Clear</button>
     `;
   }
 
@@ -42,7 +40,6 @@ export class Score extends BaseComponent {
         this.scoreLine = new ScoreLine(
           result[i].FirstName,
           result[i].LastName,
-          result[i].email,
           result[i].score,
           result[i].image,
         );
@@ -66,7 +63,6 @@ export class Score extends BaseComponent {
         this.scoreLine = new ScoreLine(
           result[i].FirstName,
           result[i].LastName,
-          result[i].email,
           result[i].score,
           result[i].image,
         );

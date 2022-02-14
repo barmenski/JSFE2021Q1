@@ -111,6 +111,7 @@ export class Game extends BaseComponent {
     congratPopup.classList.remove('notVisible');
     congratText.innerHTML = `Congratulations! You successfully found all matches on ${gameTimeStr} minutes. Score: ${score}`;
     window.player.score = score;
+    console.log(window.player);
     window.database.write('players', window.player);
 
     congratButton.addEventListener('click', () => {

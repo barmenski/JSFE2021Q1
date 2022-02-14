@@ -12,7 +12,7 @@ export class Settings extends BaseComponent {
     super('div', ['settings']);
     this.categoryCards = 0;
     this.amountCards = 8;
-    this.showTime = 10;
+    this.showTime = 5;
     this.element.innerHTML = `
       <div class="game-cards">
         <div class="select-container">

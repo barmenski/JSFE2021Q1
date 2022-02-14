@@ -4,7 +4,6 @@ export class ScoreLine {
   constructor(
     FirstName: string,
     LastName: string,
-    email: string,
     score: number,
     image: string,
   ) {
@@ -22,17 +21,12 @@ export class ScoreLine {
     itemName.className = 'item__name';
     itemName.innerHTML = `${FirstName} ${LastName}`;
 
-    const itemEmail = document.createElement('div');
-    itemEmail.className = 'item__email';
-    itemEmail.innerHTML = `${email}`;
-
     const itemScore = document.createElement('div');
     itemScore.className = 'item__score';
     itemScore.innerHTML = `Score: <span>${score}</span>`;
 
     this.item.append(avatarImage);
     itemContainer.append(itemName);
-    itemContainer.append(itemEmail);
     this.item.append(itemContainer);
     this.item.append(itemScore);
 
