@@ -5,7 +5,6 @@ import { CardsField } from '../cards-field/cards-field';
 import { Congrat } from '../congrat/congrat';
 import { Settings } from '../settings/settings';
 import { Timer } from '../timer/timer';
-import { RegForm } from '../reg-form/reg-form';
 import '../header/header';
 
 const FLIP_DELAY = 1.0;
@@ -24,8 +23,6 @@ export class Game extends BaseComponent {
   private activeCard?: Card;
 
   private isAnimation = false;
-
-  readonly regForm = new RegForm();
 
   rightClick: number;
 

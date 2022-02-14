@@ -29,13 +29,13 @@ export class NavBar {
     window.addEventListener('hashchange', () => {
       const currentRouteName = window.location.hash.slice(1);
       const passiveLink = document
-        .querySelectorAll('.nav-item a')
-        .forEach((item: any) => {
+        .querySelectorAll<HTMLAnchorElement>('.nav-item a')
+        .forEach(item => {
           item.classList.remove('active');
         });
       const activeLink = document
-        .querySelectorAll('.nav-item a')
-        .forEach((item: any) => {
+        .querySelectorAll<HTMLAnchorElement>('.nav-item a')
+        .forEach(item => {
           if (item.hash.slice(1) === currentRouteName) {
             if (!item.classList.contains('active')) {
               item.classList.add('active');

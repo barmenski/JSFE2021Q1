@@ -40,9 +40,9 @@ export class Database {
     return new Promise(() => {
       const transaction = this.db.transaction(objStore, 'readwrite'); // make transaction
       const store = transaction.objectStore(objStore); // extract store of objects to const store
-      //let index = store.index('FirstName');
-      //const resGetKey = index.getKey(data.FirstName);
-      //resGetKey.onsuccess = () => {
+      // let index = store.index('FirstName');
+      // const resGetKey = index.getKey(data.FirstName);
+      // resGetKey.onsuccess = () => {
       // console.log(resGetKey.result);
       const result = store.put(data); // if it exist same - it will rewrite
 
@@ -56,7 +56,7 @@ export class Database {
         console.log('abort');
       };
       // };
-      //resGetKey.onerror = () => {
+      // resGetKey.onerror = () => {
       //   console.log('error', resGetKey.error);
       //  };
     });

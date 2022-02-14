@@ -3,13 +3,6 @@ import { Player } from '../player';
 import './score.scss';
 import { ScoreLine } from './scoreLine';
 
-interface MyRecord {
-  firstName: string;
-  lastName: string;
-  score: number;
-  image: string;
-}
-
 export class Score extends BaseComponent {
   innerElement = null as HTMLUListElement | null;
 
