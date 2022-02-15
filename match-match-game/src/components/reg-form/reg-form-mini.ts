@@ -26,6 +26,8 @@ export class RegFormMini {
 
   imageContainer: HTMLElement;
 
+  playerImage: string;
+
   constructor() {
     this.regFormWrapper = document.createElement('div');
     this.regFormWrapper.classList.add('reg-form__wrapper', 'notVisible');
@@ -61,6 +63,7 @@ export class RegFormMini {
     this.imageContainer.className = 'image-container';
 
     this.imageContainer.setAttribute('src', `${defAvatar}`);
+    this.playerImage = defAvatar;
 
     this.avatarInput = document.createElement('input');
     this.avatarInput.setAttribute('type', 'file');
@@ -73,7 +76,7 @@ export class RegFormMini {
 
         reader.onload = () => {
           this.imageContainer.setAttribute('src', `${reader.result}`);
-          window.player.image = reader.result as string;
+          this.playerImage = reader.result as string;
         };
 
         reader.readAsDataURL(file); // read to base64
@@ -108,7 +111,7 @@ export class RegFormMini {
       window.player.FirstName = this.firstName.value;
       window.player.LastName = '';
       window.player.score = 0;
-      window.player.image = defAvatar;
+      window.player.image = this.playerImage;
       window.app.header.avatar.refresh();
       window.database.write('players', window.player);
       this.regFormWrapper.classList.add('notVisible');

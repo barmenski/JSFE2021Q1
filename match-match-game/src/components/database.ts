@@ -1,3 +1,5 @@
+import { Player } from './player';
+
 export interface MyRecord {
   FirstName: string;
   LastName: string;
@@ -8,24 +10,40 @@ export interface MyRecord {
 export class Database {
   public db!: IDBDatabase;
 
-  init(dbName: string, version?: number) {
+  init(dbName: string, version?: number): Promise<IDBDatabase> {
     return new Promise(resolve => {
       const openRequest = window.indexedDB.open(dbName, version); // opened DB with name and version. This async request
       openRequest.onupgradeneeded = () => {
         // on the first load page or update version
-        const database = openRequest.result;
-        const store = database.createObjectStore('players', {
-          // make store of objects
-          keyPath: 'FirstName',
-          autoIncrement: false,
-        });
-        store.createIndex('FirstName', 'FirstName'); // make index
-        this.db = database; // public db get database with store and index
+        this.db = openRequest.result;
+        let store: IDBObjectStore | undefined;
+        if (!this.db.objectStoreNames.contains('players')) {
+          store = this.db.createObjectStore('players', {
+            keyPath: 'FirstName',
+            autoIncrement: false,
+          });
+        } else {
+          store = openRequest.transaction?.objectStore('players');
+        }
+
+        if (!store?.indexNames.contains('score')) {
+          store?.createIndex('score', 'score');
+        }
       };
 
       openRequest.onsuccess = () => {
         // if DB is exist. It executes after refresh page.
         this.db = openRequest.result;
+        /*
+        const tx = this.db.transaction(['players'], 'readonly');
+        const store = tx.objectStore('players');
+        const index = store.index('score');
+        const req = index.getAll(390);
+        req.onsuccess = () => {
+          console.log('getAll:', req.result);
+        };
+        console.log('index:', index);
+        */
         resolve(openRequest.result);
       };
 
@@ -40,10 +58,6 @@ export class Database {
     return new Promise(() => {
       const transaction = this.db.transaction(objStore, 'readwrite'); // make transaction
       const store = transaction.objectStore(objStore); // extract store of objects to const store
-      // let index = store.index('FirstName');
-      // const resGetKey = index.getKey(data.FirstName);
-      // resGetKey.onsuccess = () => {
-      // console.log(resGetKey.result);
       const result = store.put(data); // if it exist same - it will rewrite
 
       result.onsuccess = () => {
@@ -55,14 +69,10 @@ export class Database {
       transaction.onabort = () => {
         console.log('abort');
       };
-      // };
-      // resGetKey.onerror = () => {
-      //   console.log('error', resGetKey.error);
-      //  };
     });
   }
 
-  readAll<RecordType>(objStore: string): Promise<Array<RecordType>> {
+  readAll(objStore: string): Promise<Array<MyRecord>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
@@ -77,13 +87,13 @@ export class Database {
     });
   }
 
-  readLast<RecordType>(objStore: string): Promise<RecordType> {
+  readLast(objStore: string): Promise<MyRecord> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
 
       const cursorReq = store.openCursor();
-      const allData: Array<RecordType> = [];
+      const allData: Array<MyRecord> = [];
 
       cursorReq.onsuccess = () => {
         const cursor = cursorReq.result;
@@ -101,12 +111,12 @@ export class Database {
     });
   }
 
-  readFiltered<RecordType>(objStore: string): Promise<Array<RecordType>> {
+  readFiltered(objStore: string): Promise<Array<MyRecord>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
-      const result = store.index('FirstName').openCursor(null, 'next');
-      const resData: Array<RecordType> = [];
+      const result = store.openCursor(null, 'prev');
+      const resData: Array<MyRecord> = [];
       result.onsuccess = () => {
         const cursor = result.result;
         if (cursor) {
@@ -117,6 +127,8 @@ export class Database {
         }
       };
       transaction.oncomplete = () => {
+        resData.sort((a, b) => (a.score > b.score ? 1 : -1));
+        console.log('readFiltered, cursor:', resData);
         resolve(resData);
       };
       transaction.onerror = () => {

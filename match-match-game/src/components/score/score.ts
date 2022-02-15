@@ -51,7 +51,6 @@ export class Score extends BaseComponent {
     const promise: Promise<Array<Player>> =
       window.database.readFiltered('players');
     promise.then(result => {
-      console.log(result);
       for (let i = 0; i < result.length; i++) {
         this.scoreLine = new ScoreLine(
           result[i].FirstName,
