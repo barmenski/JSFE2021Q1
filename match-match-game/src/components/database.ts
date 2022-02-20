@@ -111,6 +111,34 @@ export class Database {
     });
   }
 
+  readOne(objStore: string, name: string): Promise<MyRecord> {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction([objStore], 'readonly');
+      const store = tx.objectStore(objStore);
+      const req = store.getAll(name);
+      req.onsuccess = () => {
+        resolve(req.result[0]);
+      };
+      req.onerror = () => {
+        reject(req.error);
+      };
+    });
+  }
+
+  deleteOne(objStore: string, name: string): Promise<String> {
+    return new Promise((resolve, reject) => {
+      const tx = this.db.transaction([objStore], 'readwrite');
+      const store = tx.objectStore(objStore);
+      const req = store.delete(name);
+      req.onsuccess = () => {
+        resolve(`Delete ${name} complete!`);
+      };
+      req.onerror = () => {
+        reject(req.error);
+      };
+    });
+  }
+
   readFiltered(objStore: string): Promise<Array<MyRecord>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
@@ -128,7 +156,6 @@ export class Database {
       };
       transaction.oncomplete = () => {
         resData.sort((a, b) => (a.score > b.score ? 1 : -1));
-        console.log('readFiltered, cursor:', resData);
         resolve(resData);
       };
       transaction.onerror = () => {

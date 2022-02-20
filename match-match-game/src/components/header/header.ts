@@ -1,16 +1,14 @@
 import { BaseComponent } from '../base-component';
-import { Database } from '../database';
 import { LogoLink } from '../logo-link/logoLink';
 import { NavBar } from '../nav-bar/nav-bar';
 import { GameButton } from '../game-btn/game-btn';
 import { RegFormMini } from '../reg-form/reg-form-mini';
 import { Avatar } from '../avatar/avatar';
+
 import './header.scss';
 
 export class Header extends BaseComponent {
   avatar = new Avatar();
-
-  database = new Database();
 
   logoLink = new LogoLink();
 
@@ -35,19 +33,18 @@ export class Header extends BaseComponent {
 
   gameButton = new GameButton();
 
-  readonly cover: HTMLElement;
+  cover: HTMLElement;
 
   regFormMini = new RegFormMini();
 
   constructor() {
     super('header', ['header']);
-
     this.cover = document.createElement('div');
     this.cover.classList.add('cover', 'notVisible');
     this.cover.addEventListener('click', () => {
       document.body.classList.remove('notScrollable');
       this.cover.classList.add('notVisible');
-      if (this.regFormMini.regFormWrapper.classList.contains('notVisible')) {
+      if (!this.regFormMini.regFormWrapper.classList.contains('notVisible')) {
         this.regFormMini.regFormWrapper.classList.add('notVisible');
       }
     });

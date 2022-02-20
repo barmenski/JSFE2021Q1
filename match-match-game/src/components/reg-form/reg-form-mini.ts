@@ -1,11 +1,7 @@
-import { Avatar } from '../avatar/avatar';
-
 import './reg-form.scss';
 import defAvatar from '../../assets/images/avatar.svg';
 
 export class RegFormMini {
-  readonly avatar = new Avatar();
-
   readonly regFormWrapper: HTMLElement;
 
   readonly firstName: HTMLInputElement;
@@ -28,13 +24,15 @@ export class RegFormMini {
 
   playerImage: string;
 
+  heading: HTMLElement;
+
   constructor() {
     this.regFormWrapper = document.createElement('div');
     this.regFormWrapper.classList.add('reg-form__wrapper', 'notVisible');
 
-    const heading = document.createElement('h1');
-    heading.className = 'heading-form';
-    heading.innerHTML = 'Registration new Player';
+    this.heading = document.createElement('h1');
+    this.heading.className = 'heading-form';
+    this.heading.innerHTML = 'Registration new Player';
 
     const action = document.createElement('div');
     action.className = 'action';
@@ -129,7 +127,7 @@ export class RegFormMini {
       this.regFormWrapper.classList.add('notVisible');
     });
 
-    this.regFormWrapper.append(heading);
+    this.regFormWrapper.append(this.heading);
     this.regFormWrapper.append(action);
     action.append(inputWrapper);
     action.append(buttonContainer);
