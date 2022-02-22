@@ -1,4 +1,5 @@
 import { Player } from './player';
+import defAva from '../assets/images/avatar.svg';
 
 export interface MyRecord {
   FirstName: string;
@@ -9,6 +10,8 @@ export interface MyRecord {
 
 export class Database {
   public db!: IDBDatabase;
+
+  public defPlayer = new Player(`Player`, `dbEmpty`, 0, `${defAva}`);
 
   init(dbName: string, version?: number): Promise<IDBDatabase> {
     return new Promise(resolve => {
@@ -111,21 +114,28 @@ export class Database {
     });
   }
 
-  readOne(objStore: string, name: string): Promise<MyRecord> {
+  readOne(
+    objStore: string,
+    name: string | undefined = 'player',
+  ): Promise<MyRecord> {
     return new Promise((resolve, reject) => {
       const tx = this.db.transaction([objStore], 'readonly');
       const store = tx.objectStore(objStore);
       const req = store.getAll(name);
       req.onsuccess = () => {
-        resolve(req.result[0]);
+        if (req.result[0] === undefined) {
+          resolve(this.defPlayer);
+        } else {
+          resolve(req.result[0]);
+        }
       };
       req.onerror = () => {
-        reject(req.error);
+        reject(this.defPlayer);
       };
     });
   }
 
-  deleteOne(objStore: string, name: string): Promise<String> {
+  deleteOne(objStore: string, name: string | undefined = ''): Promise<string> {
     return new Promise((resolve, reject) => {
       const tx = this.db.transaction([objStore], 'readwrite');
       const store = tx.objectStore(objStore);

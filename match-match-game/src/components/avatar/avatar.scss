@@ -50,8 +50,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
-  text-align: center;
+  line-height: 14px;
   letter-spacing: 1.25px;
   color: #2196f3;
   z-index: 1;
@@ -59,21 +58,16 @@
 
 .playerPanel__wrapper li,
 .playerPanel__wrapper div {
-  padding: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+  line-height: 22px;
 }
 
 /* Ссылки внутри выпадающего списка */
 .playerLines {
   padding: 7px;
   background: #ffffff;
-  cursor: pointer;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: left;
-  letter-spacing: 1.25px;
   color: #333333;
   z-index: 2;
 }
@@ -81,6 +75,15 @@
 .playerChange {
   color: #333333;
   cursor: default;
+}
+
+.playerName {
+  vertical-align: baseline;
+  line-height: 22px;
+}
+
+.playerDelete {
+  color: #b90000;
 }
 
 /* Изменение цвета выпадающих ссылок при наведении курсора */

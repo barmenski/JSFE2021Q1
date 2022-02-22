@@ -4,14 +4,22 @@ import './avatar.scss';
 
 export class Avatar {
   readonly avatar: HTMLElement;
+
   readonly firstName: HTMLElement;
+
   readonly avatarWrapper: HTMLElement;
+
   readonly playerPanelWrapper;
+
   readonly playerChange;
+
+  readonly playerAdd;
+
   readonly playerEdit;
+
   readonly playerLines;
+
   readonly editFormMini;
-  readonly playerDelete: HTMLElement;
 
   constructor() {
     this.editFormMini = new RegFormMini();
@@ -34,14 +42,26 @@ export class Avatar {
       this.playerPanelWrapper.classList.remove('notVisible');
     });
 
-    document.body.addEventListener('click', e => {
+    document.body.addEventListener('click', () =>
       this.playerPanelWrapper.classList.contains('notVisible')
         ? ''
-        : this.playerPanelWrapper.classList.add('notVisible');
-    });
+        : this.playerPanelWrapper.classList.add('notVisible'),
+    );
 
     this.playerPanelWrapper = document.createElement('div');
     this.playerPanelWrapper.classList.add('playerPanel__wrapper', 'notVisible');
+
+    this.playerAdd = document.createElement('div');
+    this.playerAdd.innerHTML = 'Add new profile';
+    this.playerAdd.className = 'playerAdd';
+    this.playerAdd.addEventListener('click', () => {
+      document.body.classList.add('notScrollable');
+      window.app.header.cover.classList.remove('notVisible');
+      window.app.header.regFormMini.regFormWrapper.classList.remove(
+        'notVisible',
+      );
+      this.playerPanelWrapper.classList.add('notVisible');
+    });
 
     this.playerEdit = document.createElement('div');
     this.playerEdit.innerHTML = 'Edit my profile';
@@ -49,6 +69,16 @@ export class Avatar {
     this.playerEdit.addEventListener('click', () => {
       document.body.classList.add('notScrollable');
       window.app.header.cover.classList.remove('notVisible');
+      this.editFormMini.firstName.setAttribute(
+        'value',
+        window.player.FirstName,
+      );
+      this.editFormMini.imageContainer.setAttribute(
+        'src',
+        `${window.player.image}`,
+      );
+      this.editFormMini.addBtn.removeAttribute('disabled');
+      this.editFormMini.addBtn.classList.remove('invalid');
       this.editFormMini.regFormWrapper.classList.remove('notVisible');
       this.playerPanelWrapper.classList.add('notVisible');
     });
@@ -57,21 +87,14 @@ export class Avatar {
     this.playerChange.innerHTML = 'Change profile:';
     this.playerChange.className = 'playerChange';
 
-    this.playerDelete = document.createElement('div');
-    this.playerDelete.innerHTML = 'X';
-    // this.playerDelete.addEventListener('click', e => {
-
-    //   let clickedPlayer = (e.target as Element).closest('li')?.innerHTML;
-    //   if (clickedPlayer) {
-    //     window.database.deleteOne('players', clickedPlayer);
-    //   }
-    // });
-
     this.playerLines = document.createElement('ul');
     this.playerLines.className = 'playerLines';
     this.playerLines.addEventListener('click', e => {
       window.database
-        .readOne('players', (e.target as HTMLElement).innerHTML)
+        .readOne(
+          'players',
+          (e.target as HTMLElement).closest('li')?.dataset.name,
+        )
         .then(result => {
           window.player = result;
           window.app.header.avatar.refresh();
@@ -80,6 +103,7 @@ export class Avatar {
       this.playerPanelWrapper.classList.add('notVisible');
     });
 
+    this.playerPanelWrapper.append(this.playerAdd);
     this.playerPanelWrapper.append(this.playerEdit);
     this.playerPanelWrapper.append(this.playerChange);
     this.playerPanelWrapper.append(this.playerLines);
@@ -97,25 +121,38 @@ export class Avatar {
 
   readDataBase = () => {
     this.playerLines.innerHTML = '';
+
     window.database.readAll('players').then((result: Array<Player>) => {
       for (let i = 0; i < result.length; i++) {
-        let playerOneLine = document.createElement('li');
+        const playerOneLine = document.createElement('li');
         playerOneLine.className = 'playerOneLine';
-        if (result[i].FirstName.length > 10) {
-          playerOneLine.innerHTML = result[i].FirstName.slice(0, 9) + '...';
-          playerOneLine.append(this.playerDelete);
-        } else {
-          playerOneLine.innerHTML = result[i].FirstName;
-          playerOneLine.append(this.playerDelete);
-        }
 
+        const playerName = document.createElement('span');
+        playerName.className = 'playerName';
+
+        const playerDelete = document.createElement('div');
+        playerDelete.className = 'playerDelete';
+        playerDelete.innerHTML = 'X';
+        playerDelete.addEventListener('click', e => {
+          const clickedPlayer = (e.target as Element).closest('li')?.dataset
+            .name;
+          if (clickedPlayer) {
+            window.database
+              .deleteOne('players', clickedPlayer)
+              .then(res => console.log(res));
+          }
+        });
+
+        if (result[i].FirstName.length > 9) {
+          playerName.innerHTML = `${result[i].FirstName.slice(0, 8)}... `;
+        } else {
+          playerName.innerHTML = result[i].FirstName;
+        }
+        playerOneLine.setAttribute('data-name', result[i].FirstName);
+        playerOneLine.append(playerName);
+        playerOneLine.append(playerDelete);
         this.playerLines.append(playerOneLine);
       }
-      // result.forEach(item => {
-      //   console.log(item.FirstName);
-      //   playerOneLine.innerHTML = item.FirstName;
-      //   this.playerLines.append(playerOneLine);
-      // });
     });
   };
 }
