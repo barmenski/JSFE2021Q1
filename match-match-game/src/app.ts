@@ -62,7 +62,6 @@ export class App {
   settingsPage = () => {
     this.wrapper.element.innerHTML = '';
     this.wrapper.element.appendChild(this.settings.element);
-    this.settings.initSettings();
   };
 
   initPage = () => {

@@ -13,7 +13,7 @@ declare global {
 }
 window.database = new Database();
 window.database
-  .init('barmenski', 7)
+  .init('barmenski', 1)
   .then((result: IDBDatabase) =>
     console.log(`IndexedDB '${result.name}' inited!`),
   )
@@ -21,13 +21,24 @@ window.database
   .then(
     (result: Player) => {
       if (result === undefined) {
-        window.player = new Player(`Player`, `dbEmpty`, 0, `${defAva}`);
+        window.player = new Player(
+          `Player`,
+          `dbEmpty`,
+          0,
+          `${defAva}`,
+          0,
+          8,
+          5,
+        );
       } else {
         window.player = new Player(
           `${result.FirstName}`,
           `${result.LastName}`,
           result.score,
           `${result.image}`,
+          result.categoryCards,
+          result.amountCards,
+          result.showTime,
         );
       }
     },

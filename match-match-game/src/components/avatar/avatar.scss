@@ -88,7 +88,8 @@
 
 /* Изменение цвета выпадающих ссылок при наведении курсора */
 .playerPanel__wrapper li:hover,
-.playerEdit:hover {
+.playerEdit:hover,
+.playerAdd:hover {
   background-color: rgb(192, 189, 189);
 }
 

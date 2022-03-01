@@ -1,17 +1,10 @@
 import { Player } from './player';
 import defAva from '../assets/images/avatar.svg';
 
-export interface MyRecord {
-  FirstName: string;
-  LastName: string;
-  score: number;
-  image: string;
-}
-
 export class Database {
   public db!: IDBDatabase;
 
-  public defPlayer = new Player(`Player`, `dbEmpty`, 0, `${defAva}`);
+  public defPlayer = new Player(`Player`, `dbEmpty`, 0, `${defAva}`, 0, 8, 5);
 
   init(dbName: string, version?: number): Promise<IDBDatabase> {
     return new Promise(resolve => {
@@ -37,16 +30,6 @@ export class Database {
       openRequest.onsuccess = () => {
         // if DB is exist. It executes after refresh page.
         this.db = openRequest.result;
-        /*
-        const tx = this.db.transaction(['players'], 'readonly');
-        const store = tx.objectStore('players');
-        const index = store.index('score');
-        const req = index.getAll(390);
-        req.onsuccess = () => {
-          console.log('getAll:', req.result);
-        };
-        console.log('index:', index);
-        */
         resolve(openRequest.result);
       };
 
@@ -57,14 +40,15 @@ export class Database {
     });
   }
 
-  write(objStore: string, data: MyRecord): Promise<MyRecord> {
-    return new Promise(() => {
+  write(objStore: string, data: Player): Promise<string> {
+    return new Promise(resolve => {
       const transaction = this.db.transaction(objStore, 'readwrite'); // make transaction
       const store = transaction.objectStore(objStore); // extract store of objects to const store
       const result = store.put(data); // if it exist same - it will rewrite
 
       result.onsuccess = () => {
         console.log('complete', result.result); // result.result = id
+        resolve('Done');
       };
       result.onerror = () => {
         console.log('error', result.error);
@@ -75,7 +59,7 @@ export class Database {
     });
   }
 
-  readAll(objStore: string): Promise<Array<MyRecord>> {
+  readAll(objStore: string): Promise<Array<Player>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
@@ -90,13 +74,13 @@ export class Database {
     });
   }
 
-  readLast(objStore: string): Promise<MyRecord> {
+  readLast(objStore: string): Promise<Player> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
 
       const cursorReq = store.openCursor();
-      const allData: Array<MyRecord> = [];
+      const allData: Array<Player> = [];
 
       cursorReq.onsuccess = () => {
         const cursor = cursorReq.result;
@@ -117,7 +101,7 @@ export class Database {
   readOne(
     objStore: string,
     name: string | undefined = 'player',
-  ): Promise<MyRecord> {
+  ): Promise<Player> {
     return new Promise((resolve, reject) => {
       const tx = this.db.transaction([objStore], 'readonly');
       const store = tx.objectStore(objStore);
@@ -149,12 +133,12 @@ export class Database {
     });
   }
 
-  readFiltered(objStore: string): Promise<Array<MyRecord>> {
+  readFiltered(objStore: string): Promise<Array<Player>> {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(objStore, 'readonly');
       const store = transaction.objectStore(objStore);
       const result = store.openCursor(null, 'prev');
-      const resData: Array<MyRecord> = [];
+      const resData: Array<Player> = [];
       result.onsuccess = () => {
         const cursor = result.result;
         if (cursor) {
